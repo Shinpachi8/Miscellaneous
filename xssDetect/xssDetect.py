@@ -7,6 +7,7 @@ import requests
 import copy
 import urlparse
 import urllib
+import re
 import json
 import base64
 import time
@@ -91,19 +92,26 @@ def getLinks(filename):
     DEBUG = True
     with open(filename, 'rb') as f:
         content=f.read()
-        blocks = content.split("\r\n\r\n\r\n\r\n")
+        blocks = re.split("======================================================[\n|\r\n]", content)
         for index, block in enumerate(blocks):
 
-            tmp = block.split("\r\n")[3:-1]
-            if (len(tmp) < 1):
+            tmp = re.split("[\n|\r\n]", block)
+
+            # continue
+            if (len(tmp) < 3):
                 continue
-            else:
-                try:
-                    _ = tmp[0].split(" ")[1]
-                    if not checkType(_):
-                        continue
-                except:
-                    return result
+            if (not tmp[1].startswith("GET")) and (not tmp[1].startswith("POST")):
+                # filter non get / POST request
+                continue
+            
+            # print tmp
+            # else:
+            #     try:
+            #         _ = tmp[0].split(" ")[1]
+            #         if not checkType(_):
+            #             continue
+            #     except:
+            #         return result
             path = ""
             host = ""
             headers = {"Cookie": "", "User-Agent": ""}
@@ -125,6 +133,8 @@ def getLinks(filename):
                     headers["Referer"] = "".join(_.split(":")[1:]).strip()
                 if _.startswith("Cookie"):
                     headers["Cookie"] = _.split(":")[1].strip()
+                if _.startswith("Accept-Language"):
+                    headers['Accept-Language'] = _.split(":")[1].strip()
 
             # 去重，利用域名，目录， 和参数的sort值来判断，如果相同就忽略
             # 否则就加入到no_repeat里
@@ -363,7 +373,7 @@ def start_point(args):
     # 增加文件是否存在的校验
     dict_result = getLinks(filename)
     # sys.exit(0)
-    # 将action结尾的URL放入同一个URL，这样以后再出现struts漏洞时，就可以用的上了
+    # # 将action结尾的URL放入同一个URL，这样以后再出现struts漏洞时，就可以用的上了
     with open("action.lst", "a") as f:
         for i in dict_result.keys():
             _ = urlparse.urlparse(dict_result[i]["url"])
@@ -380,7 +390,7 @@ def start_point(args):
     # XSS/LFI scan
     _init_get_url(dict_result, XSS_Rule, inqueue)
     logging.info("[-] Totally {0} requests".format(inqueue.qsize()))
-    time.sleep(3)
+    # time.sleep(3)
     threads = []
     # 30个线程来跑
     for i in xrange(threadNum):
@@ -424,6 +434,23 @@ def parse_arg():
     # else:
     return args
 
+
+
+
+# def temp_parse(args):
+#     filename = args.file
+#     all_links = []
+#     with open(filename, 'r') as f:
+#         content = f.read()
+#         # all_links = [for i in content.split("======================================================") if i.startswith("GET") or i.startswith("POST")]
+#         for i in re.split("======================================================[\n|\r\n]", content):
+#             print repr(i[:4])
+#             if i.startswith("POST") or i.startswith("GET"):
+#                 all_links.append(i)
+
+#         print all_links
+#         print len(all_links)
+
 if __name__ == '__main__':
     Usage = "python %s target_log" %(sys.argv[0])
 
@@ -432,7 +459,7 @@ if __name__ == '__main__':
     except:
         print Usage
         exit(0)
-    
+    start_point(args)
 
     # filename = sys.argv[1]
     # inqueue = Queue()
@@ -489,4 +516,5 @@ if __name__ == '__main__':
     #     print "[+] [GET]:\t" + Fore.GREEN + outqueue.get() + Style.RESET_ALL
 
     # print "[-][-] Done!"
+
 

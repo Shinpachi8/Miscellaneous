@@ -224,10 +224,10 @@ def sqli_test(url, headers, data=None):
     t = a.aim_error_list
     if a.aim_error_list:
         a.confirm_sqli()
-        if a.aim_error_list:
-            print "10 [found SQLi] {}".format(a.aim_error_list)
-        else:
-            print "5 [found SQLi no Confirm] {}".format(t)
+        # if a.aim_error_list:
+        #     # print "10 [found SQLi] {}".format(a.aim_error_list)
+        # else:
+            # print "5 [found SQLi no Confirm] {}".format(t)
     return a.aim_error_list
 
 

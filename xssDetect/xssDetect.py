@@ -95,15 +95,19 @@ def getLinks(filename):
         blocks = re.split("======================================================[\n|\r\n]", content)
         for index, block in enumerate(blocks):
 
-            tmp = re.split("[\n|\r\n]", block)
+            block = re.split("[\n|\r\n]", block)
 
             # continue
-            if (len(tmp) < 3):
+            tmp = [i for i in block if i]
+            if (len(tmp) < 4): continue
+            if (not tmp[0].startswith('GET')) and (not tmp[0].startswith('POST')): continue
+            try:
+                p = tmp[0].split(" ")[1]
+                if not checkType(p):
+                    continue
+            except:
+                # return result
                 continue
-            if (not tmp[1].startswith("GET")) and (not tmp[1].startswith("POST")):
-                # filter non get / POST request
-                continue
-            
             # print tmp
             # else:
             #     try:
@@ -231,6 +235,7 @@ def _init_get_url(url_group,rules,inqueue):
 
                         tmp_dict[parameter_item] = _rule
                         tmp_qs = urllib.unquote(urllib.urlencode(tmp_dict)).replace('+','%20')
+                        
                         if "lfi" == rule_item:
                             inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': "root:x:0", 'headers': headers, 'type': 'lfi'})
                         if 'usr' in _rule:
@@ -324,7 +329,7 @@ class detectXSS(threading.Thread):
                 return _bool
             req_result = ''.join(req.content.split('\n'))
 
-            if req_result.find(_regex) > 0:
+            if req_result.find(_regex) > -1:
                 _bool = True
             
             # return _bool
@@ -373,6 +378,7 @@ def start_point(args):
     # 增加文件是否存在的校验
     dict_result = getLinks(filename)
     # sys.exit(0)
+    print dict_result
     # # 将action结尾的URL放入同一个URL，这样以后再出现struts漏洞时，就可以用的上了
     with open("action.lst", "a") as f:
         for i in dict_result.keys():
@@ -390,7 +396,7 @@ def start_point(args):
     # XSS/LFI scan
     _init_get_url(dict_result, XSS_Rule, inqueue)
     logging.info("[-] Totally {0} requests".format(inqueue.qsize()))
-    # time.sleep(3)
+    time.sleep(3)
     threads = []
     # 30个线程来跑
     for i in xrange(threadNum):

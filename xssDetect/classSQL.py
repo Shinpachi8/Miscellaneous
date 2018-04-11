@@ -40,6 +40,8 @@ class classSQL(object):
         if payload is None: payload=classSQL.payload
         if self.method == 'GET':
             _ = urlparse.urlparse(self.url)
+            if not _.query:
+                return
             values = dict(urlparse.parse_qsl(_.query))
             for p in payload:
                 for param in values.keys():
@@ -211,6 +213,12 @@ class classSQL(object):
 
 
 def sqli_test(url, headers, data=None):
+    """
+    :url: the url to detect
+    :headers:  header info, type is dict
+    :data: if POST request, data is the post data
+    :rtype: classSQL().aim_error_list, a list object which contains the error-based request and payload 
+    """
     a = classSQL(url, headers, data=data)
     a.start_test()
     t = a.aim_error_list
@@ -220,6 +228,7 @@ def sqli_test(url, headers, data=None):
             print "10 [found SQLi] {}".format(a.aim_error_list)
         else:
             print "5 [found SQLi no Confirm] {}".format(t)
+    return a.aim_error_list
 
 
 

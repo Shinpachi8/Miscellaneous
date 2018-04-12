@@ -189,7 +189,21 @@ class classSQL(object):
             print confirm_value2
             self.get_value(payload=[confirm_value1, confirm_value2])
             print "=========== confirm sql error injection============"
-            self.start_test()
+            # self.start_test()
+            for url in self.to_check_list:
+                try:
+                    if self.method == 'GET':
+                        rsp = requests.get(url, headers=self.headers, timeout=10)
+                    else:
+                        rsp = requests.post(self.url, data=url, headers=self.headers, proxies={'http': '127.0.0.1:8080'}, timeout=10, verify=False)
+                    if rsp.status_code != 200:
+                        break
+                    else:
+                        response = rsp.content
+                    if anchor in response:
+                        self.aim_error_list.append((self.method, self.url, url))
+                except Exception as identifier:
+                    pass
 
             
 

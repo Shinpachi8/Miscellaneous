@@ -61,11 +61,11 @@ class Pollution(object):
                         'url': self.url,
                         'data': tmp_qs_str if not self.json else json.dumps(tmp_qs)
                     })
-    
+
     def payload_generate(self):
         print self.payloads
         if self.pollution_all:
-            pass 
+            pass
         else:
             self.pollut()
             return self.polluted_urls
@@ -103,6 +103,16 @@ class Url:
     @staticmethod
     def urlencode(qs):
         return urllib.quote(qs)
+
+
+
+def addslashes(s):
+    l = ['\\', '"', "'", "\0"]
+    for i in l:
+        if i in s:
+            s = s.replace(i, '\\'+i)
+    return s
+
 
 
 def main():

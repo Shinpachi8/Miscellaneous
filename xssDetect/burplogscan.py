@@ -172,8 +172,8 @@ def start_point(args):
     for index in dict_links:
         url = dict_links[index]['url']
         headers = dict_links[index]['headers']
-        Content-Type = headers.get('Content-Type', '')
-        if 'multipart/form-data' in Content-Type:
+        ContentType = headers.get('Content-Type', '')
+        if 'multipart/form-data' in ContentType:
             continue
 
         data = dict_links[index]['data'] if 'data' in dict_links[index] else None
@@ -232,6 +232,9 @@ class detectXSS(threading.Thread):
                     query = hj.data
 
             for p in XSS_Rule:
+                if p == 'cli':
+                    domain = base64.b64encode(hj.url.url_string()).replace('=', '')
+                    p.replace('{domain}', domain)
                 poll = Pollution(query, XSS_Rule[p], isjson=isjson).payload_generate()
                 # poll is dict list
                 for payload in poll:

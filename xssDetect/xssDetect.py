@@ -18,7 +18,7 @@ import logging
 from Queue import Queue
 from colorama import *
 from classSQL import *
-from common import *
+from lib.common import *
 
 """
 根据网络上的一些脚本，自己改了一下
@@ -101,21 +101,12 @@ def getLinks(filename):
                 if not checkType(p):
                     continue
             except:
-                # return result
                 continue
-            # print tmp
-            # else:
-            #     try:
-            #         _ = tmp[0].split(" ")[1]
-            #         if not checkType(_):
-            #             continue
-            #     except:
-            #         return result
+
             path = ""
             host = ""
             headers = {"Cookie": "", "User-Agent": ""}
-            # print tmp
-            # continue
+
             for _ in tmp:
                 if _.startswith("GET") or _.startswith("POST"):
                     # 以防格式不对，多出来一个请求头

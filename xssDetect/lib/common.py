@@ -2,7 +2,7 @@
 # coding=utf-8
 
 """
-in here, we create some basic class to use like TURL, THTTPJOB, 
+in here, we create some basic class to use like TURL, THTTPJOB,
 and some function like is_http and so on
 
 """
@@ -24,6 +24,16 @@ STATIC_EXT += ["pdf","png","rar","rtf","swf","tar","tgz","txt","wav","woff","xml
 
 
 BLACK_LIST_PATH = ['logout', 'log-out', 'log_out']
+
+
+BLACK_LIST_HOST = ['safebrowsing.googleapis.com', 'shavar.services.mozilla.com',]
+BLACK_LIST_HOST += ['detectportal.firefox.com', 'aus5.mozilla.org', 'incoming.telemetry.mozilla.org',]
+BLACK_LIST_HOST += ['incoming.telemetry.mozilla.org', 'addons.g-fox.cn', 'offlintab.firefoxchina.cn',]
+BLACK_LIST_HOST += ['services.addons.mozilla.org', 'g-fox.cn', 'addons.firefox.com.cn',]
+BLACK_LIST_HOST += ['versioncheck-bg.addons.mozilla.org', 'firefox.settings.services.mozilla.com']
+BLACK_LIST_HOST += ['blocklists.settings.services.mozilla.com', 'normandy.cdn.mozilla.net']
+BLACK_LIST_HOST += ['activity-stream-icons.services.mozilla.com', 'ocsp.digicert.com']
+BLACK_LIST_HOST += ['safebrowsing.clients.google.com', 'safebrowsing-cache.google.com']
 
 class TURL(object):
     """docstring for TURL"""
@@ -155,17 +165,17 @@ class TURL(object):
 
 class THTTPJOB(object):
     """docstring for THTTPJOB"""
-    def __init__(self, 
-                url, 
-                method='GET', 
-                data=None, 
+    def __init__(self,
+                url,
+                method='GET',
+                data=None,
                 files=False,
                 filename='',
                 filetype='image/png',
-                headers=None, 
-                block_static=True, 
+                headers=None,
+                block_static=True,
                 block_path = True,
-                allow_redirects=False, 
+                allow_redirects=False,
                 verify=False,
                 timeout = 10,
                 is_json=False,
@@ -179,7 +189,7 @@ class THTTPJOB(object):
         :filetype: the uplaod filetype
         :headers: the request headers, it's a dict type,
         :block_static: if true, will not request the static ext url
-        :block_path: if true, will not request the path in BLOCK_LIST_PATH
+        :block_path: if true, will not request the path in BLACK_LIST_PATH
         :allow_redirects: if the requests will auto redirects
         :verify: if verify the cert
         :timeout: the request will raise error if more than timeout
@@ -203,20 +213,28 @@ class THTTPJOB(object):
                 'Chrome/38.0.2125.111 Safari/537.36 IQIYI Cloud Security Scanner tp_cloud_security[at]qiyi.com'),
             'Connection': 'close',
         }
+        self.ConnectionError = False
         self.headers = headers if headers else self_headers
         self.block_static = block_static
         self.allow_redirects = allow_redirects
         self.verify = verify
         self.timeout = timeout
 
-        
+
     def request(self):
         """
         return status_code, headers, htmlm, time_check
         """
         if self.block_static and self.url.is_ext_static():
+            self.response = requests.Response()
             return -1, {}, '', 0
         elif self.block_path and self.url.is_block_path():
+
+            self.response = requests.Response()
+            return -1, {}, '', 0
+        elif self.url.get_host in BLACK_LIST_HOST:
+            print "found {} in black list host".format(self.url.get_host)
+            self.response = requests.Response()
             return -1, {}, '', 0
         else:
             start_time = time.time()
@@ -326,7 +344,7 @@ class Pollution(object):
             query_dict = json.loads(self.query)
         else:
             query_dict = dict(urlparse.parse_qsl(self.query, keep_blank_values=True))
-    
+
         for key in query_dict.keys():
             for payload in self.payloads:
                 tmp_qs = query_dict.copy()
@@ -334,7 +352,7 @@ class Pollution(object):
                 self.polluted_urls.append(tmp_qs)
 
     def payload_generate(self):
-        print self.payloads
+        #print self.payloads
         if self.pollution_all:
             pass
         else:

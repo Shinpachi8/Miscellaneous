@@ -1,0 +1,3301 @@
+======================================================
+19:24:11  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/xss_r/?name=name HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+Cache-Control: max-age=0
+
+
+======================================================
+
+
+
+======================================================
+19:24:11  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/css/main.css HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/?name=name
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+If-Modified-Since: Tue, 03 Apr 2018 07:11:14 GMT
+If-None-Match: "fba-568ec696ee880"
+Cache-Control: max-age=0
+
+
+======================================================
+
+
+
+======================================================
+19:24:11  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/js/dvwaPage.js HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/?name=name
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+If-Modified-Since: Tue, 03 Apr 2018 07:11:14 GMT
+If-None-Match: "379-568ec696ee880"
+Cache-Control: max-age=0
+
+
+======================================================
+
+
+
+======================================================
+19:24:11  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/images/logo.png HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/?name=name
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+If-Modified-Since: Tue, 03 Apr 2018 07:11:14 GMT
+If-None-Match: "13b4-568ec696ee880"
+Cache-Control: max-age=0
+
+
+======================================================
+
+
+
+======================================================
+19:24:13  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/xss_d/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/?name=name
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:15  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/xss_d/?default=English HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_d/
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:17  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/weak_id/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_d/?default=English
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:18  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli_blind/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/weak_id/
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:21  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli_blind/?id=1&Submit=Submit HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/sqli_blind/
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:22  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/sqli_blind/?id=1&Submit=Submit
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:23  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli/?id=1&Submit=Submit HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/sqli/
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:25  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/fi/?page=include.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/sqli/?id=1&Submit=Submit
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:27  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/fi/?page=file1.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/fi/?page=include.php
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:30  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/exec/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/fi/?page=file1.php
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+19:24:31  http://10.127.21.237:80
+======================================================
+POST /dvwa/vulnerabilities/exec/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/exec/
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 18
+Cookie: security=low; PHPSESSID=ih8l55f678jtuastbip79857m0
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+ip=1&Submit=Submit
+======================================================
+
+
+
+======================================================
+19:27:59  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/fi/?page=../../../../../../../../../../../etc/passwd HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+Upgrade-Insecure-Requests: 1
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+19:27:59  http://10.127.21.237:80
+======================================================
+GET /dvwa/login.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+Upgrade-Insecure-Requests: 1
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+19:27:59  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/css/login.css HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/login.php
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+19:27:59  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/images/login_logo.png HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/login.php
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+19:27:59  http://detectportal.firefox.com:80  [63.243.224.219]
+======================================================
+GET /success.txt HTTP/1.1
+Host: detectportal.firefox.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cache-Control: no-cache
+Pragma: no-cache
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+19:38:15  https://safebrowsing.googleapis.com:443  [172.217.160.74]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARCJkwQaAhgIR9_b8iICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEMmLBBoCGAjrRhBDIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQ6voDGgIYCOXHODsiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARD__gIaAhgIHqfkKiICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+19:57:14  https://shavar.services.mozilla.com:443  [54.191.46.28]
+======================================================
+POST /downloads?client=navclient-auto-ffox&appver=59.0&pver=2.2 HTTP/1.1
+Host: shavar.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 349
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+allow-flashallow-digest256;a:1490633678
+base-track-digest256;a:1512580265
+block-flash-digest256;a:1496263270
+block-flashsubdoc-digest256;a:1512160865
+except-flash-digest256;a:1494877265
+except-flashallow-digest256;a:1490633678
+except-flashsubdoc-digest256;a:1517935265
+mozplugin-block-digest256;a:1471849627
+mozstd-trackwhite-digest256;a:1512580265
+
+======================================================
+
+
+
+======================================================
+20:08:13  https://safebrowsing.googleapis.com:443  [172.217.27.138]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARCLkwQaAhgIkpSfZSICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEMuLBBoCGAjnXQxuIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQ7PoDGgIYCF-pow4iAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARCA_wIaAhgI-1DCTCICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+10:35:11  http://10.127.21.237:80
+======================================================
+GET /dvwa/login.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+10:35:12  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/css/login.css HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/login.php
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+10:35:12  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/images/login_logo.png HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/login.php
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+10:35:12  http://10.127.21.237:80
+======================================================
+GET /favicon.ico HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cookie: PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+10:35:12  http://10.127.21.237:80
+======================================================
+GET /favicon.ico HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cookie: PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+10:35:14  http://10.127.21.237:80
+======================================================
+POST /dvwa/login.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/login.php
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 88
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+username=admin&password=password&Login=Login&user_token=8c368d4d852eee687f3947480e2ed5dc
+======================================================
+
+
+
+======================================================
+10:35:14  http://10.127.21.237:80
+======================================================
+GET /dvwa/index.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/login.php
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+10:35:14  http://10.127.21.237:80
+======================================================
+GET /dvwa/favicon.ico HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+10:35:14  http://detectportal.firefox.com:80  [117.104.138.17]
+======================================================
+GET /success.txt HTTP/1.1
+Host: detectportal.firefox.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cache-Control: no-cache
+Pragma: no-cache
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+10:35:16  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/xss_s/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/index.php
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+10:35:17  http://10.127.21.237:80
+======================================================
+GET /dvwa/security.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_s/
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+10:35:17  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/images/lock.png HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/security.php
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+10:35:19  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/xss_r/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/security.php
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+10:35:21  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/xss_r/?name=1 HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+10:35:23  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/?name=1
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+10:35:25  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli/?id=1&Submit=Submit HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/sqli/
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+10:35:27  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/fi/?page=include.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/sqli/?id=1&Submit=Submit
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+10:35:28  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/fi/?page=file1.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/fi/?page=include.php
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+10:35:30  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/exec/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/fi/?page=file1.php
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+10:35:32  http://10.127.21.237:80
+======================================================
+POST /dvwa/vulnerabilities/exec/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/exec/
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 18
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+ip=1&Submit=Submit
+======================================================
+
+
+
+======================================================
+10:48:21  http://ciscobinary.openh264.org:80  [61.213.151.50]
+======================================================
+GET /openh264-win64-0410d336bb748149a4f560eb6108090f078254b1.zip HTTP/1.1
+Host: ciscobinary.openh264.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+If-Modified-Since: Wed, 23 Aug 2017 22:06:07 GMT
+If-None-Match: 02f3064f3c44bb405d18f935e6915fe1
+
+
+======================================================
+
+
+
+======================================================
+10:48:22  https://aus5.mozilla.org:443  [54.148.132.67]
+======================================================
+GET /update/3/GMP/59.0.2/20180323154952/WINNT_x86_64-msvc-x64/zh-CN/release-cck-mozillaonline/Windows_NT%206.1.1.0.7601%20(x64)/MozillaOnline/2018.3/update.xml HTTP/1.1
+Host: aus5.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cache-Control: no-cache
+Pragma: no-cache
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+10:48:28  https://incoming.telemetry.mozilla.org:443  [34.212.55.103]
+======================================================
+POST /submit/telemetry/fa72fd84-e341-4ef7-b1cc-48a4b4238852/main/Firefox/59.0.2/release/20180323154952?v=4 HTTP/1.1
+Host: incoming.telemetry.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Type: application/json; charset=UTF-8
+Date: Thu, 12 Apr 2018 02:48:21 GMT
+Content-Encoding: gzip
+Content-Length: 6626
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+
+ã      
+Ì=kè€ÿuÖUë"AG2/ﬂ2‘â3£Z#©¢∆è,E^ç∏ñHï§Ê±∆ õ`ÛhmRÙ±Y$mí&@–$€E≥∏ª˚c‚±Ωü˙zŒΩEΩ<3ZÕÿÿuyyœπÁ}Œ•éÁ‚”Õ›ŒmœœmÂ<Æ{∂.ı\C…SY!yÖˆÙ|ó8N^1l•´H≤a®ÃuBj«^‡WÏWêDb‰E%O§∂(›Vå€)(ÜÙòyD√&Ên+[9{4x{0w˚qŒùæS'á∏»â°Â5ÈéΩÅ[uìuEYíâ™\ﬂ‚‘/§Ω‡$ª|N-ƒŒqΩh4∞OÔ-ﬁ9¢æÑ0≤ºÌ6¡Ã∏Ñ√%≥OFN0,u=éZGSÚ√Ë»¡Õ˜mﬂßÈÄ⁄Õù¡BˆÈ ∞]‹‡ƒ∂y√—ÄÓ√ÿ‡ê˙qÑw„ ∂m˜ad+7≈ÏQ·âÿc∏•-Œï€™™¡0Äq‚fÙºÃTuhŸãiò’ÁuÒÜú¨1ïC;ÍW(íˆµMq5]+Æò`˙º,â"¨–Û¬(nxDE—p'4BÍ¥h!≠˙C≤(ŒﬂÅ5àÆëD>h;’Ë‹˜ÄÓ«pèHHiø⁄IpËtºtÿÂÉÊ‚∏aÒnƒQ⁄£éÌ∫ÅM&¢≤b≈!≈ŸÖ3√Y<&√	=œ∑Uãﬂ]æW§Çgº∑ŸÆak y‰é∫…cÏÉ›Ttc˛ÊéÁ{Qü›UjÇH’ÆÜ x@æÖ"sÜ¬p‚ÌA}<Ï“∞—+æ3C©v(Ì¬,•à ∫„√Cñ‚ÿv˙…… ú˜º»ÎhûŸ>çiÑ$¢Zî§ÂÔá††ÈLIíßÛ¨jdW$D%+ffó$¢®+
+"iQ∑È˘á√Ÿô<¢mœyÑìt–.º’ ≈r«† "Í[8∞.e:5≤ëx9ˆ¿Ÿ`7é#®h2˝+ ;NJªNlw·Îò…˘÷≤˘LW;„–KßIKÁq|;Ò·…§Df
+!ﬂ|!OoK∞-_åÌ1cLa¥[ˆ8F0(ÿG∂7∞ªﬁ¿ãOs∑{ˆ ¢[9¥, i8ä
+L©\F´óÄ˚∞à u/±ÎdOn∏„√ê3ö<"^L6=Ïé„≠/rˆE5ôÚ1¢@ÿUaÙ»âÈw<†QÕ-e∑nY”–Z°y∑l	Nà∞œÊÂn«·òû¡∫`âò	~„M¯tçëÈ{Ä¬ah¥Ú√rÕÏîµöYn7Zù˝“ÉN≥t`ôx3¥}d◊d$WﬂD_¶7ûÏZÖmßÀu∏{Ö°#{0ÊÇ*≤Ô$w(*3'°∞kï1îà¸CawdÖ}SDNñh<ÑÔ≤óªÂ)Zù}´#m7¬æK(˚We∏Ïﬂ	nˇ∆—ñíèbEï ä{´›π_≠W˜≠9Ù$c9¥+NbÑK·‡≈^ª›ÏXÂ=sﬂÏ4w[• õ@≤ä,Âë¢2r§Æ™ıÊAªcﬁ3ÎÌNÀ¥öç∫Ö‚R™ôVŸ¨ 76%'Fë#¡p–ô∏çs∆`¨ë·	»:|+2N°üb¨UŒ¨b¬-∂Ãì¿¡KHÕ	˚ÁÆÕ$N‚"á¢iØ™Œok£î¡±*lÑëH+ë’¨à™FVQ´â¢aµK≠ˆAÛOõ%XÛ˛˛n´≥”hÌwJÌ∆NµVC¬‘⁄≥díi$]B∞…¢qàµ∆nµe◊ÏX•≥˝p‹¢∆/ &1…kíÇî·bÁA	T¶æS›=hôïπç-⁄ÜEHÚ≈€∫onõ⁄¶ç¬gï[’fªS≠ˇ5òıj£æ wÍRπiºÑaR3f\·2∆EåIàb15Ô22û€2>(eá|Ál‚˜≤n	'L=b˘¿ê∆·ir«¡B‚åá„KÆxµl_§c;/ü∆Ë\r2$q∑3ÒÆ/]q…Eo?ÔßÈ	∏È(IoÿSsá£3{"Md9eÓîi⁄ıπ‰ƒIi\@∏Q"‹&níã$qÉîÿ#ô€£ƒeúòr=Óyâ^Ø{&≥ﬁô‹¨a±@‰–Z÷ÂR≠≥k∂7fQ7ùÑÀõ ±–¯Üu%ı(¯ëçª$√XÖùµAÏdˆ=çßrı'√5c∏‹SﬂzŒlN:?Èp4^¥k◊/ƒ‚‘î	g[s‰/Ú‚àOÎÌj©1˝N≠¥{=∂º≈ûYkö≠Nπy–1[-pcÂ∆Çï‘ıT_+÷õÖ«„ % ’x⁄Á0 S†`ú,3ÄU;Ωzòy—>Sê-s∑c>®ZmkVJÉº°∫ÅúâFxÿ)œD)N™|}QI‚†î™4á$E¬u> !‚ç ÷ﬁA ‘;çª‡˙J	gqNªU™[%û\T≠ée’6 Rí2\ü…°LÃ◊jçRes â|”aú¶œnN”ëqV≠≥W™W¨Ω“]≥sœlY@÷œo”§TüMJ%≤ sY“≠Èã4’Ù%Tùﬂ©≤D4Zªä7É9~©2óskKµS∫8~$jí5p•Pí‘Ïä:øP5ç´ã&IJÅ—fäüÆÈ˙"äS⁄ÏTÎU0∞ï·+M≤éï°KWƒ◊êå	æ»∂}Ÿñi-äÃZ°ØPà2–£n÷:ï™’lX’ˆFT‰%"¿Çk)¶u,c¶Ü@òO&“å#*u¢˛∆],≠ôÌΩFeﬁÊØáUÍ}^!„µ¨ª.íY(:óëê˝M6ÂH$"±√:'ä¨d3ô`"‘.mÉ7…]tyÎUyVZˇÉV≠\+Å∏ÌTÕVvÛÛÓV][æh9Æ™åÂíò%:eÖrÑ”,ﬂ]¬uÈÓ/∆@]‚fÅñ¨áır'x»ÛŒÀJ¿eh†MéM“Göcf≤‡Er4-0X5Ó'1Z!ó®…ÅòKÜÂ•HîjHñ∂πI,ñXß¿êLZÌ÷AπΩ\ ñ V7 ¯^ÌöO2tüùÕh•±ÜIπ—j4ÁÀÈÎxıR$ +\™î⁄•Î|c«RD‰¡·ácRr–R‰%pôÛCÁ™©1{≠‹yÈEÓæ$)Ò\` í,B5í≥ñ$ùy>Qú=iQy^°Õ6ß’0MÊ3]ùëI"+œÌÆÈ$ÍèïF;: ¿€•ÑOò∆Ç‡$5JÃõéE‚¨weô•VyÄ∂ÓUÀf«¨ÔVÎÊ2Ô-]í!30y4ú¡d√∆"Ü	çÄl÷K€5ÿm≈DÆß@pØZ1ùr©ﬁ)C∞^†T*@,Ç¥Æ39]Äª'i M ﬁnAjVr”¸¨ò;•≈sÃQw0^i∫^êX]üÄ´TKµ∆nßŸjÏ7¡ŒîÓ/‚%äsè{!°≥àîj˜K-ﬁì≥∞ó•Œ ¢ﬁ~é‰2ŸUsRì∞ÃÚA´:dΩfQbI†€nï w´u∆÷vr|úXåÎë¨e õ€˚òjn
+ÍJÜöD¥–%∂ rãÙºDÈ„u8´€rÓ∂@+¸Œª˚Â©…≈©°*s£y°GSì£:bd•V"ô„9¯k÷±>±2¯X˜xNóy∂là‹Ôb»…Î&‚‰Yû©ı»E,0£Yﬁªé◊‚°Úıà˜Ÿ≤√ß≈ˆÆ˘ÚA≥íMòb≈Yú "“z)•§s˚¢ßß¨ôJ∆ŸB(ü “2˜A#;u≥}ø—∫;ı.áAp8† ,Ω‰%h]dÅä\cƒ¥Ãëy7Æ∫∂ÁéØ 0y=˛z·¨¢1ÜÅ-“'Ã_Jc§Ø¡~cj|LOä£D’f–#⁄rr_@Q[E˘Î©ÆdΩq–^I˜´˚ÛÂop.°¶ñ^JÀÕ,æäj/∑kñ^/GµÕ-æ\7¥<\5[ÊéŸ2Îeì◊á:iÅ®√céQH{QÅ˝ÙaAñ0\†EÖõ!IT˘1Ç¢®Ÿbù$©ò	∫¥gèqt¡”ê˙çnπÙ(ÇAîOﬁ◊œo79A-yÌZŒ∆ä®¨¬´« ï—ø!ldcÅJ∑ÜvË>çc∫9$îL∫>s¢ÕŒç_FçÕ·¿EEúà
+¡ów’lb(Ú"5"yÄO>:ıùM"√Q·©P1ºi+IrLªûK7-Æ“E”}µ.Ò_'m)!?‚öû‚¢cM+˘±ﬁ¶)°pU) âúŒñ”‘ãÏ…M—@ï…E&§H∏û∏A3íXëƒàdm¥√ênö‹†O§ë1§8Ûb5ë·÷jÁcUøbv∂W˚i]ÃdÇeXå¡ƒ3¢‚Ããˇ≤(_(.∏üµ—”í,à("WÁﬂ9]◊÷rAkcîÿP!ŒG#Î$Õ∏äZ	uãìáL»35˛‚EJµAR¬Mç^îï…€∫^ÃJ∑!âãû‡w¥6F	1&≤B&≤ùy√ú,∞ÈRnÈ∫¯UTV‚≥“']õJIEˆ≤—À›“5©èruøtùñOïäÖt´Ω”ıŸº"ë^Ê•÷ú(∞8U`^4dmÊ◊$ÄñÆ¨vUıÉ˝ﬁπ(SZá0IµFûºcï•äˆyù‘öXq„«9ïe”z~iM$≤?çÕ∆3“ï3¢5å[nz2ˇé…’≥°uå+œ»ùÔ_7≤XhãπÛeÚ†5–ê≤ıZmÊuÿïÈ˚≈Y–&ñ◊◊èì…Ç4\.ÛŸ(-TÒr9œ’ÅæÏ,gç\g%Âƒz&HŸ®É+œÀe:õñÑóß9kl_πsóH¢â≤6U"EÈáÁ˜í⁄kiC˝#/|l⁄êGŸ D∂‡Óëó¥ºÈ«Ò(∫}ÎVˇ∞êˇ
+Axx+Èn›JÛ… ‹8∫%…E™»ä´πR◊†ÑJ]≠®;≤B4ó–¢Ê*Fè™Êxä∑¡(6zΩà∆¯≤ãà˝; ~0é∂'Õ~¸Ò`êˆXa›t|4ÈyW≥{y•◊ïÛ∂(uÛ=]+Je™Ëz7ﬂÕ>%SCï$…Œ√ëÛäNı|◊ÅØíÒáx ˇ$≠Ã£¢·8™k;˘û®Èy•ÿ”ÚECrÚ™£iN◊µ{™ÿÀ>:H†vªÄ.Ï^ +§Î‰Ì¢(ÊªZWÈI≤⁄34m›2r{÷Œ;˘XKnä)UXÔò≈ñKDº-‚üÇ¯ó¢ü3@Æ†F˝√∏ü4'öÆ3|xèX—°˝`H±â…1ì¿x>-8¡∂TPã≤ÂåÜ∂s¬•ìd>):ˆbß
+À⁄0ØG¯ÀÆx8¥¨h‚¬ Ãë7Ãy'‘áº|ó⁄CvW,ikº=úG"‹	Ì”a‡ª}lìÆ˘6)µ )[_–∑ßh8EGœ˜¬¢IRæ+vﬁ&FQí≠ËÁz)Ë[¨ÕãüB§∫5úÓÜ„‘-àRÅËQî¥<—e*ÈEuÀG}:e∑ülB‹Jl‹9§Ò˚8≈å(§ ‘≠^0«∞yäΩ≤2è„±P,h[Ÿ&0sÎ√[ÅﬂÏ≠ﬁíõëRÍG˝ éÊQS>LË{t‡Çﬁ;ﬁàÊùÅdn&àxY¿gdœﬂ¢!çã∫‰P≈—Ú:çº¢ËJﬁñ5/K¢AÄ¸TÎπH„§ÒZ0â´≥ﬁ5lY)Ê]€ÜßãÆíÛ2ùí≈ÓJ®Uá¶èµ√ãLÀ1∂‹cÍ¢,ˆÙº#â6p\ÈÂã]ëÊâlÀvëuXÛ,7”´¨>ﬂtlç∆eK˙îm®pØÁù§Op3:π†Úaâ7Jª‡`õ≤0ˆ—¨<∆>iqËu«)m<L5y#µt¬#&Êr.]ä=:£’ŸGŸ_r∑úˆR√~g˜=∞W„Ótq$=ÿô7Êñ¿ﬂŒFßQLá∏ë!·È˛6Vf∞]HB<∂˚ˆ	ìC*˛c€ƒﬂ*ÿ(ƒ≈ï+v©? ÿLh XÙÏ°78eØS—,b7¥òé∞!{ˇa 9ÿkÎÓ6ˆÅÄy9˝Ægè(u˜˜ﬁ∆„r¸ÂD⁄—ÄÌ´oG˚˚êçvdYfz!•WÚ‰*si*íπN&óÓ=H/&C¶≈à∞"Èû«;|Eùz{F0µÆ	F”Fy…Ω›œóÎÃ-∞hæi;èˆÌ∑ÓÆ≤ÉûèÉ‡xÉ*Ó—yß2¸)6Û|»Éá`∆ÿŸ:Üj}◊Â)l“’ÓÒÑƒπjΩm÷À™XeÈÓPu◊òçWj{;ÿrØÎ˘vxö}≤›∞ˆ™€%°“I©\"ÃØe‹∑§FnVvÆ√∫ﬁ	>Wë*¶èöÂ¶Õ∂*¨≥Y:ä
+∑ï+Û>S€@(÷c.g=ÚP”m◊ÅÇ¢Ä&R∞ƒﬁà˜EÃ1·˚bÎK¬^EÿÌQﬂs"Aï≈‘dT+´ú¢Åñ¬l‡D2Ü≈ãƒ˝üF|L∑%"J∏õVib‹–c]
+sﬁ°;∫ﬁPS∏$¢ﬂØŸYöœ^Á&f≠DÅ—œ*ä&ß˜ì8DÕKG$à˛nÛ†ƒ∫ß%&ÍMT5ﬂ”¿i√}‘}œ≈‡£!6¥GΩ√>{'
+#0Õ†Ã˝†a|—±Tx/»ÑG∏xè⁄h∂#n
+Ü£ Ú∏ëreó†é∆Mﬁ[ßÄ‹B∑Ì‘îû!˜élH-‹ö}J√UÛ∂r~ Ïá;¿ˇqØáç˚0 éôÈHÏ1á∫jÅiÛLïY∂c;MõªÅ%ÅùX};LW•Ä®AËßíâP$˜b9◊9ñ@†Ô£˚®”¿‹ãÓ«‡Â“5ìù∞›w1‘B†s“Oâ-⁄áÕkN¯)ôÙœk’Ç=‚Æç±o°'∆3–02™«>oÕ9A}aÎL»Õí°¿◊,‡Ï§}3Áÿf‡\éláı◊ìUC¡wÒ&ì|z€]åÉ‘Ô3ŸHí∂¡√∞°“CNm∂ôπõ«ûa`¡Éê„hmÂ.IÖ≠êvú:ìB&òCl3d@fAÊ€òÂ¢ âL·”îÅ5Íƒ6It_fù«
+ñ˚‘y4«H/™d{õ#ó"õ‰‡€íÈ¢√ırsKÔÅM∞3Œ©Y1˛›ò3≤›¶çöü{ÀoøºzÛV0ÙΩ¬[ˆü%Dπ+NÜËÆÉ–c]A'`∏%z,Å9h’2©Æ ÔaÄ±Ù≠ø˙€/ˇE¸ePœ.3Úß4€ÈñËöT<õ&@èìVï•Ù˚4#∫≥êÍ‡˝©∫Ò‰qtÇ‰›ô§!Ô¥È—D‹+h√p$ºï∏ØÑ‡†ö¥kN%%√C‘≤§MÊÑõìHpk™≤]õıCœø˙´Áﬂ˘˛˘ÔüÎ˜O?zÚŸOˇÁˇ˛˜ªÁﬂ˝˙≥Ô¸˙ŸèﬁyÒÈ^|Ègˇ˙åˆ„ü˝·ùØ¬‡˘Geü>˘≈˘?|˚Ÿø¸ˆŸOæ˘¸7ü¿‡Ûﬂ¸›¥ã/¿óŒq≠¨§Çõ†_Élø_ÂAE:·Œ6ãp≥Åœ;|LHƒÁf…¡¨+Ú≈>ÕR/bú¸∫3Óü~˘Ï«øx˛¡Oüˇú∆œﬂ˜≥æ{˛Ìü<ÚÓ”'ø˛ﬂOû?˘˜?ºÛµ)/fn≥'œ¯À◊Ä)s)˜ùL~9ßM+≤Ô´±	ﬂhü≤ibËÆÖK%!Ùúæ &‰*+˝ÖßBíåµ`@œ°ç“–§hSÑ°˝à
+^,ÄªÛh(ƒ‡k∞‹p=àøz$ú
+«};¶¸-%t,F«õÂ,¡≥ä¥
+Úƒ◊ñ]ç#ÅUcø}I| =86¬8]à?\!gú
+∫Ã®ê·¿¥† Á,ûE	{å.ØÄ'IıÈŒLÌiñ'¨ı⁄rÂ~ü˙¬i0Ê≤Åöƒ}JŸ–1ƒ›®G=XŸF„µÿ◊‰˚ùÚáº
+&Ã˘ÓdJ|≥ú`ıæ◊ï<Iò¥Ág; É†Û@OhO¢˚WBﬁiÅtµÈ!Ø±È)%ÿ∏ïH8ˆ‚æ¿¶Iúe˛gò"Lx‘û÷õˇ8i›Ñ¸	‰v∫çåÅXrÎ¶…õIÚ^‚FYÒ˛u%Ò¨•‡H∞¶˚zT]rÃ±öº∆kK⁄\ô°éNœMä,ñ«æ¿7°¨Ω™Y´lA‹aáqÚ€-Å∆N∆Zå Bã=#U__“É•óŸí+&b7»çÉπ1
+¢xrtq I¬ÿú‡dã,˙:á¯*¥!s{Á•«∞ıåπ¢n\*-ÊÙ˛º‹xÒÒìg?˛‰¸”_=˚ﬁáÁ?˙mí‰˛„wœøıÕgﬂ˚Ÿ˘œﬂ˙—>}Ú0¯‚ÉOû¸¡Lz‹É»ù8eHôWú„&ÈÈ˜ùÈŸ˜|»»è^KÜ‹ÛÜ¬=DJÊÏ–´¶nÚ˛¿ùπ∑ÃæJ⁄“¯ÈGÔ<˚ı'ü˝ÍΩgˇ¸≠ÁÔø˚¸„<Ú£ˇı·≥ﬂ}Ì≈ßﬂ|ˆ‰ÁÁ˛‚¸ÎbaÔ{?¡∫—ø}ıÈ«3œøÒıÛﬂºÍ!îõ3™¿È"4x≠ı’ÛÈÒeﬁ·8[`[Aø”◊∂7ƒ¥í∞g;è∂Ìê˘	≤◊$Oæ8âó˛f…Ìx¯•Ç–Ó{ë¿L≥ «xÈb~Ó%›/(ÿêÉ’ÍHàß¸L`›,'ëösúV∆}:dEwˆ_—=æÃã#¯™∆≈˝Ï…{/>¯9VöˆﬁlŸì›∏ ﬁóº»ëHë≤º∞L †¥9ÉŒ·πËõì°›˝tqÓp8 √_¿∆ÔKö2/Û:ãïVÌtpäá‘áa0ˆ]^üä¯Àù∏Í±á«Ã>u‹ÖÚêR0¿Ìã∆’óN˜eûåhË%ÔÓ‡Ò,¯6œŒŒŒ˛ò˘ﬁ™p  
+======================================================
+
+
+
+======================================================
+11:06:06  https://safebrowsing.googleapis.com:443  [172.217.160.74]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARCNkwQaAhgIwBlkxyICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEM2LBBoCGAgaO-0JIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQ7voDGgIYCEhxypoiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARCC_wIaAhgIVYIj_iICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+11:10:31  https://download.api.bsb.baidu.com:443  [111.206.223.88]
+======================================================
+POST /downloads?ver=2.2&key=ffD7Y9anV5dZVp8 HTTP/1.1
+Host: download.api.bsb.baidu.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 113
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+baidu-malware-shavar;a:1-112:s:1-111
+baidu-phish-shavar;a:1-112:s:1-7,9-42,44-51,53-56,58-69,71-88,90-98,100-110
+
+======================================================
+
+
+
+======================================================
+11:15:30  https://shavar.services.mozilla.com:443  [54.201.205.103]
+======================================================
+POST /downloads?client=navclient-auto-ffox&appver=59.0&pver=2.2 HTTP/1.1
+Host: shavar.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 349
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+allow-flashallow-digest256;a:1490633678
+base-track-digest256;a:1512580265
+block-flash-digest256;a:1496263270
+block-flashsubdoc-digest256;a:1512160865
+except-flash-digest256;a:1494877265
+except-flashallow-digest256;a:1490633678
+except-flashsubdoc-digest256;a:1517935265
+mozplugin-block-digest256;a:1471849627
+mozstd-trackwhite-digest256;a:1512580265
+
+======================================================
+
+
+
+======================================================
+11:34:13  https://aus5.mozilla.org:443  [54.69.224.218]
+======================================================
+GET /update/6/Firefox/59.0.2/20180323154952/WINNT_x86_64-msvc-x64/zh-CN/release-cck-mozillaonline/Windows_NT%206.1.1.0.7601%20(x64)/ISET:SSE4_2,MEM:8056/MozillaOnline/2018.3/update.xml HTTP/1.1
+Host: aus5.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cache-Control: no-cache
+Pragma: no-cache
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+11:36:27  https://safebrowsing.googleapis.com:443  [216.58.200.42]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDHkwQaAhgIuirGKiICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEIKMBBoCGAiw-L0-IgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQqvsDGgIYCKUFIhUiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARC-_wIaAhgIqMXBySICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+12:00:37  https://download.api.bsb.baidu.com:443  [111.206.223.88]
+======================================================
+POST /downloads?ver=2.2&key=ffD7Y9anV5dZVp8 HTTP/1.1
+Host: download.api.bsb.baidu.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 113
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+baidu-malware-shavar;a:1-112:s:1-111
+baidu-phish-shavar;a:1-112:s:1-7,9-42,44-51,53-56,58-69,71-88,90-98,100-110
+
+======================================================
+
+
+
+======================================================
+12:06:28  https://safebrowsing.googleapis.com:443  [172.217.160.106]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDJkwQaAhgIGWBGfiICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEISMBBoCGAii5u1_IgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQrPsDGgIYCGsQ4voiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDA_wIaAhgIae59LSICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+12:15:32  https://shavar.services.mozilla.com:443  [54.191.46.28]
+======================================================
+POST /downloads?client=navclient-auto-ffox&appver=59.0&pver=2.2 HTTP/1.1
+Host: shavar.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 349
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+allow-flashallow-digest256;a:1490633678
+base-track-digest256;a:1512580265
+block-flash-digest256;a:1496263270
+block-flashsubdoc-digest256;a:1512160865
+except-flash-digest256;a:1494877265
+except-flashallow-digest256;a:1490633678
+except-flashsubdoc-digest256;a:1517935265
+mozplugin-block-digest256;a:1471849627
+mozstd-trackwhite-digest256;a:1512580265
+
+======================================================
+
+
+
+======================================================
+12:18:46  https://download.api.bsb.baidu.com:443  [111.206.223.88]
+======================================================
+POST /downloads?ver=2.2&key=ffD7Y9anV5dZVp8 HTTP/1.1
+Host: download.api.bsb.baidu.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 113
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+baidu-malware-shavar;a:1-112:s:1-111
+baidu-phish-shavar;a:1-112:s:1-7,9-42,44-51,53-56,58-69,71-88,90-98,100-110
+
+======================================================
+
+
+
+======================================================
+12:36:10  https://safebrowsing.googleapis.com:443  [172.217.160.106]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDLkwQaAhgICo2phyICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEIaMBBoCGAhQU-PYIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQrvsDGgIYCIZ-P5oiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDC_wIaAhgIm9gx4iICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+13:06:15  https://safebrowsing.googleapis.com:443  [216.58.200.234]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDNkwQaAhgIRMr7ZyICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEIiMBBoCGAgdd2sYIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQsPsDGgIYCGhWMzgiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDE_wIaAhgIS-mSqyICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+13:15:34  https://shavar.services.mozilla.com:443  [52.35.21.241]
+======================================================
+POST /downloads?client=navclient-auto-ffox&appver=59.0&pver=2.2 HTTP/1.1
+Host: shavar.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 349
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+allow-flashallow-digest256;a:1490633678
+base-track-digest256;a:1512580265
+block-flash-digest256;a:1496263270
+block-flashsubdoc-digest256;a:1512160865
+except-flash-digest256;a:1494877265
+except-flashallow-digest256;a:1490633678
+except-flashsubdoc-digest256;a:1517935265
+mozplugin-block-digest256;a:1471849627
+mozstd-trackwhite-digest256;a:1512580265
+
+======================================================
+
+
+
+======================================================
+13:36:35  https://safebrowsing.googleapis.com:443  [216.58.200.234]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDPkwQaAhgI2iLiNyICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEImMBBoCGAioN_8AIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQsvsDGgIYCNtSymsiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDG_wIaAhgIZGTRMSICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:06:29  https://safebrowsing.googleapis.com:443  [216.58.200.42]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDRkwQaAhgI7M52eiICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEIqMBBoCGAjuU34YIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQtPsDGgIYCIzO0AAiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDI_wIaAhgII03-wiICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:15:29  http://10.127.21.237:80
+======================================================
+POST /dvwa/vulnerabilities/exec/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://10.127.21.237/dvwa/vulnerabilities/exec/
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 17
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+ip=&Submit=Submit
+======================================================
+
+
+
+======================================================
+14:15:37  https://shavar.services.mozilla.com:443  [52.43.54.37]
+======================================================
+POST /downloads?client=navclient-auto-ffox&appver=59.0&pver=2.2 HTTP/1.1
+Host: shavar.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 349
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+allow-flashallow-digest256;a:1490633678
+base-track-digest256;a:1512580265
+block-flash-digest256;a:1496263270
+block-flashsubdoc-digest256;a:1512160865
+except-flash-digest256;a:1494877265
+except-flashallow-digest256;a:1490633678
+except-flashsubdoc-digest256;a:1517935265
+mozplugin-block-digest256;a:1471849627
+mozstd-trackwhite-digest256;a:1512580265
+
+======================================================
+
+
+
+======================================================
+14:36:24  https://safebrowsing.googleapis.com:443  [172.217.160.74]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDTkwQaAhgIUYgoPyICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEIyMBBoCGAhlZvVBIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQtPsDGgIYCIzO0AAiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDK_wIaAhgIg_LLOiICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:50:49  http://addons.g-fox.cn:80  [111.206.239.24]
+======================================================
+GET /ntab.gif?c=ntab&t=timing&a=1-o-idb&d=36&f=&r=0.29804937264399955&cid=stub.firefox.com.cn HTTP/1.1
+Host: addons.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:50:49  http://addons.g-fox.cn:80  [111.206.239.24]
+======================================================
+GET /ntab.gif?c=ntab&t=timing&a=1-g-idb&d=122&f=&r=0.5674545711538597&cid=stub.firefox.com.cn HTTP/1.1
+Host: addons.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:50:49  http://addons.g-fox.cn:80  [111.206.239.24]
+======================================================
+GET /ntab.gif?c=ntab&t=timing&a=1-o-cursor&d=122&f=&r=0.5499696094690525&cid=stub.firefox.com.cn HTTP/1.1
+Host: addons.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:50:50  http://addons.g-fox.cn:80  [111.206.239.24]
+======================================================
+GET /ntab.gif?c=ntab&t=timing&a=1-g-cursor&d=192&f=&r=0.9233530433494368&cid=stub.firefox.com.cn HTTP/1.1
+Host: addons.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:50:50  http://addons.g-fox.cn:80  [111.206.239.24]
+======================================================
+GET /ntab.gif?c=ntab&t=timing&a=1-f-cursor&d=238&f=&r=0.8415308005866189&cid=stub.firefox.com.cn HTTP/1.1
+Host: addons.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:50:50  http://addons.g-fox.cn:80  [111.206.239.24]
+======================================================
+GET /ntab.gif?c=ntab&t=timing&a=1-u-grid&d=240&f=&r=0.6910420393407393&cid=stub.firefox.com.cn HTTP/1.1
+Host: addons.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:50:50  http://addons.g-fox.cn:80  [111.206.239.24]
+======================================================
+GET /ntab.gif?c=ntab&t=qdtab&a=load&d=grid&f=&r=0.8285837891126284&cid=stub.firefox.com.cn HTTP/1.1
+Host: addons.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:50:50  http://addons.g-fox.cn:80  [111.206.239.24]
+======================================================
+GET /ntab.gif?c=ntab&t=view&a=load&d=quickdial&f=&r=0.8511399621256427&cid=stub.firefox.com.cn HTTP/1.1
+Host: addons.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:50:50  http://offlintab.firefoxchina.cn:80  [111.206.239.24]
+======================================================
+GET /offlintab.appcache HTTP/1.1
+Host: offlintab.firefoxchina.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://offlintab.firefoxchina.cn/
+X-Moz: offline-resource
+Connection: close
+If-Modified-Since: Fri, 23 Feb 2018 03:27:29 GMT
+If-None-Match: "5a8f8a21-33a"
+
+
+======================================================
+
+
+
+======================================================
+14:50:50  http://addons.g-fox.cn:80  [111.206.239.24]
+======================================================
+GET /ntab.gif?c=ntab&t=timing&a=1-noupdate&d=432&f=&r=0.7368519724618361&cid=stub.firefox.com.cn HTTP/1.1
+Host: addons.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:50:50  http://offlintab.firefoxchina.cn:80  [111.206.239.24]
+======================================================
+GET /data/master-ii/defaultdials-0.json HTTP/1.1
+Host: offlintab.firefoxchina.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://offlintab.firefoxchina.cn/
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:50:50  http://addons.g-fox.cn:80  [111.206.239.24]
+======================================================
+GET /ntab.gif?c=ntab&t=timing&a=1-g-dials&d=544&f=&r=0.4070293133696624&cid=stub.firefox.com.cn HTTP/1.1
+Host: addons.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:50:50  http://addons.g-fox.cn:80  [111.206.239.24]
+======================================================
+GET /ntab.gif?c=ntab&t=timing&a=1-f-dials&d=556&f=&r=0.9994831818450266&cid=stub.firefox.com.cn HTTP/1.1
+Host: addons.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:50:50  http://offlintab.firefoxchina.cn:80  [111.206.239.24]
+======================================================
+GET /data/sites.json HTTP/1.1
+Host: offlintab.firefoxchina.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Referer: http://offlintab.firefoxchina.cn/
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:50:50  http://addons.g-fox.cn:80  [111.206.239.24]
+======================================================
+GET /ntab.gif?c=ntab&t=timing&a=1-g-sites&d=604&f=&r=0.24646991024630138&cid=stub.firefox.com.cn HTTP/1.1
+Host: addons.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:50:50  http://addons.g-fox.cn:80  [111.206.239.24]
+======================================================
+GET /ntab.gif?c=ntab&t=timing&a=1-f-frequentsites&d=608&f=&r=0.1430177001230165&cid=stub.firefox.com.cn HTTP/1.1
+Host: addons.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:50:50  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli/?id=1%22%3C%2Fscript%3E%3Csvg%20onload%3Dalert%601%60%3E&Submit=Submit HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cookie: security=low; PHPSESSID=hd2vj968t26o528eidk9l6dsh1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+15:06:29  https://safebrowsing.googleapis.com:443  [172.217.160.106]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDVkwQaAhgI7J6aISICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEI6MBBoCGAgT7gJHIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQtvsDGgIYCFcZxD0iAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDM_wIaAhgIY5VCvCICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+15:15:53  https://shavar.services.mozilla.com:443  [52.35.21.241]
+======================================================
+POST /downloads?client=navclient-auto-ffox&appver=59.0&pver=2.2 HTTP/1.1
+Host: shavar.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 349
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+allow-flashallow-digest256;a:1490633678
+base-track-digest256;a:1512580265
+block-flash-digest256;a:1496263270
+block-flashsubdoc-digest256;a:1512160865
+except-flash-digest256;a:1494877265
+except-flashallow-digest256;a:1490633678
+except-flashsubdoc-digest256;a:1517935265
+mozplugin-block-digest256;a:1471849627
+mozstd-trackwhite-digest256;a:1512580265
+
+======================================================
+
+
+
+======================================================
+15:36:01  https://safebrowsing.googleapis.com:443  [216.58.200.234]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDXkwQaAhgIBXmPjiICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEI-MBBoCGAhzDNFEIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQuPsDGgIYCNmjROIiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDO_wIaAhgIKIdjpSICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+16:05:45  https://safebrowsing.googleapis.com:443  [172.217.27.138]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDZkwQaAhgIB5VLKyICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEJGMBBoCGAi5IIGeIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQuvsDGgIYCN1Mex0iAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDQ_wIaAhgIsskYBSICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+16:15:54  https://shavar.services.mozilla.com:443  [52.10.11.113]
+======================================================
+POST /downloads?client=navclient-auto-ffox&appver=59.0&pver=2.2 HTTP/1.1
+Host: shavar.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 349
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+allow-flashallow-digest256;a:1490633678
+base-track-digest256;a:1512580265
+block-flash-digest256;a:1496263270
+block-flashsubdoc-digest256;a:1512160865
+except-flash-digest256;a:1494877265
+except-flashallow-digest256;a:1490633678
+except-flashsubdoc-digest256;a:1517935265
+mozplugin-block-digest256;a:1471849627
+mozstd-trackwhite-digest256;a:1512580265
+
+======================================================
+
+
+
+======================================================
+16:36:01  https://safebrowsing.googleapis.com:443  [216.58.200.234]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDbkwQaAhgIr5aFTSICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEJOMBBoCGAjGnpSyIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQvPsDGgIYCDbHaYYiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDS_wIaAhgIruHqbCICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:06:03  https://safebrowsing.googleapis.com:443  [172.217.160.106]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDdkwQaAhgI1QGx2SICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEJWMBBoCGAjqKnQKIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQvvsDGgIYCA5fSu8iAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDU_wIaAhgItzDsMiICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:15:56  https://shavar.services.mozilla.com:443  [52.35.21.241]
+======================================================
+POST /downloads?client=navclient-auto-ffox&appver=59.0&pver=2.2 HTTP/1.1
+Host: shavar.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 349
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+allow-flashallow-digest256;a:1490633678
+base-track-digest256;a:1512580265
+block-flash-digest256;a:1496263270
+block-flashsubdoc-digest256;a:1512160865
+except-flash-digest256;a:1494877265
+except-flashallow-digest256;a:1490633678
+except-flashsubdoc-digest256;a:1517935265
+mozplugin-block-digest256;a:1471849627
+mozstd-trackwhite-digest256;a:1512580265
+
+======================================================
+
+
+
+======================================================
+17:36:14  https://safebrowsing.googleapis.com:443  [172.217.160.106]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDfkwQaAhgIuPpl8iICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEJeMBBoCGAiRwQsaIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQwPsDGgIYCFWCjPkiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDW_wIaAhgI3P2-ViICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:40:48  https://easylist.to:443  [104.27.147.83]
+======================================================
+GET /easylist/easyprivacy.txt?_=211600 HTTP/1.1
+Host: easylist.to
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cookie: __cfduid=d87986add2c41a9ed8208012985da1e931523184591
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+17:42:14  https://services.addons.mozilla.org:443  [34.213.85.175]
+======================================================
+GET /zh-CN/firefox/api/1.5/search/guid:cehomepage%40mozillaonline.com,cpmanager%40mozillaonline.com,%7B972ce4c6-7e08-4474-a285-3208198ce6fd%7D,switchyomega%40feliscatus.addons.mozilla.org,vim-vixen%40i-beam.org,uBlock0%40raymondhill.net,%7B4c98c9c7-fc13-4622-b08a-a18923469c1c%7D,firefox-compact-light%40mozilla.org%40personas.mozilla.org,firefox-compact-dark%40mozilla.org%40personas.mozilla.org?src=firefox&appOS=WINNT&appVersion=59.0.2&tMain=556&tFirstPaint=1464&tSessionRestored=1761 HTTP/1.1
+Host: services.addons.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+17:42:14  http://g-fox.cn:80  [202.108.249.221]
+======================================================
+GET /chinaedition/addons/cpmanager/update.rdf?reqVersion=2&id=cpmanager@mozillaonline.com&version=3.59.1&maxAppVersion=59.*&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:14  http://g-fox.cn:80  [202.108.249.221]
+======================================================
+GET /chinaedition/addons/cehomepage-iii/update.rdf?version=2.59.1&pt=quickdial|grid|false|4,2|transparent|NA|false|NA|NA|NA|false HTTP/1.1
+Host: g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:14  http://addons.firefox.com.cn:80  [125.39.5.39]
+======================================================
+GET /chinaedition/addons/cpmanager/update?reqVersion=2&id=cpmanager@mozillaonline.com&version=3.59.1&maxAppVersion=59.*&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: addons.firefox.com.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:14  http://g-fox.cn:80  [202.108.249.221]
+======================================================
+GET /chinaedition/addons/cpmanager/update-ori.rdf HTTP/1.1
+Host: g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:15  https://versioncheck-bg.addons.mozilla.org:443  [52.27.68.242]
+======================================================
+GET /update/VersionCheck.php?reqVersion=2&id=activity-stream@mozilla.org&version=2018.02.17.0026-173e2795&maxAppVersion=59.*&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: versioncheck-bg.addons.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:15  https://versioncheck-bg.addons.mozilla.org:443  [52.27.68.242]
+======================================================
+GET /update/VersionCheck.php?reqVersion=2&id=onboarding@mozilla.org&version=1.0&maxAppVersion=59.*&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: versioncheck-bg.addons.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:15  https://versioncheck-bg.addons.mozilla.org:443  [52.27.68.242]
+======================================================
+GET /update/VersionCheck.php?reqVersion=2&id=aushelper@mozilla.org&version=2.0&maxAppVersion=59.*&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: versioncheck-bg.addons.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:16  https://versioncheck-bg.addons.mozilla.org:443  [52.27.68.242]
+======================================================
+GET /update/VersionCheck.php?reqVersion=2&id=screenshots@mozilla.org&version=25.0.0&maxAppVersion=*&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: versioncheck-bg.addons.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:16  https://versioncheck-bg.addons.mozilla.org:443  [52.27.68.242]
+======================================================
+GET /update/VersionCheck.php?reqVersion=2&id=shield-recipe-client@mozilla.org&version=80&maxAppVersion=59.*&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: versioncheck-bg.addons.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:16  https://versioncheck-bg.addons.mozilla.org:443  [52.27.68.242]
+======================================================
+GET /update/VersionCheck.php?reqVersion=2&id=webcompat@mozilla.org&version=1.1&maxAppVersion=59.*&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: versioncheck-bg.addons.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:17  https://versioncheck-bg.addons.mozilla.org:443  [52.27.68.242]
+======================================================
+GET /update/VersionCheck.php?reqVersion=2&id=switchyomega@feliscatus.addons.mozilla.org&version=2.5.10&maxAppVersion=null&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: versioncheck-bg.addons.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:17  https://versioncheck-bg.addons.mozilla.org:443  [52.27.68.242]
+======================================================
+GET /update/VersionCheck.php?reqVersion=2&id={972ce4c6-7e08-4474-a285-3208198ce6fd}&version=59.0.2&maxAppVersion=59.0.2&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: versioncheck-bg.addons.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:17  https://versioncheck-bg.addons.mozilla.org:443  [52.27.68.242]
+======================================================
+GET /update/VersionCheck.php?reqVersion=2&id=vim-vixen@i-beam.org&version=0.12&maxAppVersion=null&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: versioncheck-bg.addons.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:18  https://versioncheck-bg.addons.mozilla.org:443  [52.27.68.242]
+======================================================
+GET /update/VersionCheck.php?reqVersion=2&id=uBlock0@raymondhill.net&version=1.15.24&maxAppVersion=null&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: versioncheck-bg.addons.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:18  https://versioncheck-bg.addons.mozilla.org:443  [52.27.68.242]
+======================================================
+GET /update/VersionCheck.php?reqVersion=2&id={4c98c9c7-fc13-4622-b08a-a18923469c1c}&version=1.1.7&maxAppVersion=undefined&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: versioncheck-bg.addons.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:35  https://versioncheck-bg.addons.mozilla.org:443  [52.27.68.242]
+======================================================
+GET /update/VersionCheck.php?reqVersion=2&id=followonsearch@mozilla.com&version=0.9.6&maxAppVersion=66.*&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: versioncheck-bg.addons.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:35  https://versioncheck-bg.addons.mozilla.org:443  [52.27.68.242]
+======================================================
+GET /update/VersionCheck.php?reqVersion=2&id=firefox@getpocket.com&version=1.0.5&maxAppVersion=59.*&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: versioncheck-bg.addons.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:35  https://versioncheck-bg.addons.mozilla.org:443  [52.27.68.242]
+======================================================
+GET /update/VersionCheck.php?reqVersion=2&id=formautofill@mozilla.org&version=1.0&maxAppVersion=59.*&status=userEnabled&appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=59.0.2&appOS=WINNT&appABI=x86_64-msvc&locale=zh-CN&currentAppVersion=59.0.2&updateType=112&compatMode=normal HTTP/1.1
+Host: versioncheck-bg.addons.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Moz-XPI-Update: 1
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+17:42:51  https://easylist-downloads.adblockplus.org:443  [46.4.68.226]
+======================================================
+GET /easylistchina.txt?_=211600 HTTP/1.1
+Host: easylist-downloads.adblockplus.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+17:44:14  https://firefox.settings.services.mozilla.com:443  [52.222.238.18]
+======================================================
+GET /v1/buckets/monitor/collections/changes/records HTTP/1.1
+Host: firefox.settings.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+origin: null
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+17:44:14  https://blocklists.settings.services.mozilla.com:443  [52.35.159.162]
+======================================================
+GET /v1/blocklist/3/%7Bec8030f7-c20a-464f-9b0e-13a3a9e97384%7D/59.0.2/Firefox/20180323154952/WINNT_x86_64-msvc/zh-CN/release-cck-mozillaonline/Windows_NT%206.1/MozillaOnline/2018.3/5/5/1/ HTTP/1.1
+Host: blocklists.settings.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cache-Control: no-cache
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+17:44:15  https://firefox.settings.services.mozilla.com:443  [52.222.238.18]
+======================================================
+GET /v1/buckets/pinning/collections/pins/records?_sort=-last_modified HTTP/1.1
+Host: firefox.settings.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: application/json
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+content-type: application/json
+origin: null
+Connection: close
+If-Modified-Since: Mon, 30 Jan 2017 16:47:48 GMT
+If-None-Match: "1485794868067"
+
+
+======================================================
+
+
+
+======================================================
+17:44:17  https://firefox.settings.services.mozilla.com:443  [52.222.238.18]
+======================================================
+GET /v1/buckets/pinning/collections/pins HTTP/1.1
+Host: firefox.settings.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: application/json
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+content-type: application/json
+origin: null
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+17:44:18  https://firefox.settings.services.mozilla.com:443  [52.222.238.18]
+======================================================
+GET /v1/buckets/pinning/collections/pins/records?_sort=id HTTP/1.1
+Host: firefox.settings.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: application/json
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+content-type: application/json
+origin: null
+Connection: close
+If-Modified-Since: Mon, 30 Jan 2017 16:47:48 GMT
+If-None-Match: "1485794868067"
+
+
+======================================================
+
+
+
+======================================================
+17:44:19  https://firefox.settings.services.mozilla.com:443  [52.222.238.18]
+======================================================
+GET /v1/buckets/pinning/collections/pins HTTP/1.1
+Host: firefox.settings.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: application/json
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+content-type: application/json
+origin: null
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+17:48:13  https://normandy.cdn.mozilla.net:443  [54.69.165.255]
+======================================================
+GET /api/v1/ HTTP/1.1
+Host: normandy.cdn.mozilla.net
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: application/json
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+origin: null
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+17:48:15  https://normandy.cdn.mozilla.net:443  [54.69.165.255]
+======================================================
+GET /api/v1/classify_client/ HTTP/1.1
+Host: normandy.cdn.mozilla.net
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: application/json
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+origin: null
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+17:48:16  https://normandy.cdn.mozilla.net:443  [54.69.165.255]
+======================================================
+GET /api/v1/recipe/signed/?enabled=true HTTP/1.1
+Host: normandy.cdn.mozilla.net
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: application/json
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+origin: null
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+17:48:17  https://normandy.cdn.mozilla.net:443  [54.69.165.255]
+======================================================
+GET /api/v1/action/signed/ HTTP/1.1
+Host: normandy.cdn.mozilla.net
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: application/json
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+origin: null
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+17:48:46  https://activity-stream-icons.services.mozilla.com:443  [52.222.238.148]
+======================================================
+GET /v1/icons.json.br HTTP/1.1
+Host: activity-stream-icons.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+if-none-match: "bb05b76915efc074b898e359088790aa"
+origin: null
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+18:06:25  https://safebrowsing.googleapis.com:443  [64.233.189.95]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDhkwQaAhgI99cE3CICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEJmMBBoCGAheCktdIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQwvsDGgIYCOFVQL0iAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDY_wIaAhgIOC4v9CICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+18:15:58  https://shavar.services.mozilla.com:443  [52.25.138.199]
+======================================================
+POST /downloads?client=navclient-auto-ffox&appver=59.0&pver=2.2 HTTP/1.1
+Host: shavar.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 349
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+allow-flashallow-digest256;a:1490633678
+base-track-digest256;a:1512580265
+block-flash-digest256;a:1496263270
+block-flashsubdoc-digest256;a:1512160865
+except-flash-digest256;a:1494877265
+except-flashallow-digest256;a:1490633678
+except-flashsubdoc-digest256;a:1517935265
+mozplugin-block-digest256;a:1471849627
+mozstd-trackwhite-digest256;a:1512580265
+
+======================================================
+
+
+
+======================================================
+18:36:09  https://safebrowsing.googleapis.com:443  [216.58.200.234]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDjkwQaAhgI0pvyYiICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEJuMBBoCGAjlk4k9IgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQxPsDGgIYCMDjP-IiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDa_wIaAhgIcNZqkCICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+19:06:04  https://safebrowsing.googleapis.com:443  [172.217.160.74]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDlkwQaAhgICCW6nSICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEJ2MBBoCGAgZm7w2IgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQxfsDGgIYCMdm56wiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDc_wIaAhgI-C62_yICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+19:16:00  https://shavar.services.mozilla.com:443  [35.162.37.78]
+======================================================
+POST /downloads?client=navclient-auto-ffox&appver=59.0&pver=2.2 HTTP/1.1
+Host: shavar.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 349
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+allow-flashallow-digest256;a:1490633678
+base-track-digest256;a:1512580265
+block-flash-digest256;a:1496263270
+block-flashsubdoc-digest256;a:1512160865
+except-flash-digest256;a:1494877265
+except-flashallow-digest256;a:1490633678
+except-flashsubdoc-digest256;a:1517935265
+mozplugin-block-digest256;a:1471849627
+mozstd-trackwhite-digest256;a:1512580265
+
+======================================================
+
+
+
+======================================================
+19:35:45  https://safebrowsing.googleapis.com:443  [216.58.200.42]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDnkwQaAhgItWCFDSICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEJ-MBBoCGAgPr8qlIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQx_sDGgIYCJOPVpAiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDe_wIaAhgIoHCxASICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+20:05:22  https://safebrowsing.googleapis.com:443  [172.217.160.74]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDpkwQaAhgIDw5lsiICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEKCMBBoCGAhJ7H6CIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQyPsDGgIYCOZbKTciAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDg_wIaAhgIGpT2XSICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+20:16:03  https://shavar.services.mozilla.com:443  [35.162.37.78]
+======================================================
+POST /downloads?client=navclient-auto-ffox&appver=59.0&pver=2.2 HTTP/1.1
+Host: shavar.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 349
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+allow-flashallow-digest256;a:1490633678
+base-track-digest256;a:1512580265
+block-flash-digest256;a:1496263270
+block-flashsubdoc-digest256;a:1512160865
+except-flash-digest256;a:1494877265
+except-flashallow-digest256;a:1490633678
+except-flashsubdoc-digest256;a:1517935265
+mozplugin-block-digest256;a:1471849627
+mozstd-trackwhite-digest256;a:1512580265
+
+======================================================
+
+
+
+======================================================
+9:08:26  http://detectportal.firefox.com:80  [61.213.168.42]
+======================================================
+GET /success.txt HTTP/1.1
+Host: detectportal.firefox.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cache-Control: no-cache
+Pragma: no-cache
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+9:08:29  http://detectportal.firefox.com:80  [61.213.168.42]
+======================================================
+GET /success.txt HTTP/1.1
+Host: detectportal.firefox.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cache-Control: no-cache
+Pragma: no-cache
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+9:08:31  https://secure.fanboy.co.nz:443  [104.24.16.62]
+======================================================
+GET /easylist.txt?_=211608 HTTP/1.1
+Host: secure.fanboy.co.nz
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cookie: __cfduid=d3767dd022c34c269b869faedf5670f031523184592
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+9:38:25  https://safebrowsing.googleapis.com:443  [172.217.24.10]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARDrkwQaAhgIS6vLCiICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEKKMBBoCGAjTmssPIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQyfsDGgIYCPIlfxUiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARDi_wIaAhgIr4nk6iICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+9:38:27  https://shavar.services.mozilla.com:443  [34.210.98.35]
+======================================================
+POST /downloads?client=navclient-auto-ffox&appver=59.0&pver=2.2 HTTP/1.1
+Host: shavar.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 349
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+allow-flashallow-digest256;a:1490633678
+base-track-digest256;a:1512580265
+block-flash-digest256;a:1496263270
+block-flashsubdoc-digest256;a:1512160865
+except-flash-digest256;a:1494877265
+except-flashallow-digest256;a:1490633678
+except-flashsubdoc-digest256;a:1517935265
+mozplugin-block-digest256;a:1471849627
+mozstd-trackwhite-digest256;a:1512580265
+
+======================================================
+
+
+
+======================================================
+9:38:27  https://download.api.bsb.baidu.com:443  [111.206.223.88]
+======================================================
+POST /downloads?ver=2.2&key=ffD7Y9anV5dZVp8 HTTP/1.1
+Host: download.api.bsb.baidu.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 113
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+baidu-malware-shavar;a:1-112:s:1-111
+baidu-phish-shavar;a:1-112:s:1-7,9-42,44-51,53-56,58-69,71-88,90-98,100-110
+
+======================================================
+
+
+
+======================================================
+10:08:19  https://safebrowsing.googleapis.com:443  [216.58.200.234]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARCilAQaAhgI4FtrsCICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEMyMBBoCGAhZzNjOIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQgPwDGgIYCHo1IfsiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARCYgAMaAhgIb2NwgyICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+10:08:20  https://aus5.mozilla.org:443  [52.88.57.64]
+======================================================
+GET /update/6/Firefox/59.0.2/20180323154952/WINNT_x86_64-msvc-x64/zh-CN/release-cck-mozillaonline/Windows_NT%206.1.1.0.7601%20(x64)/ISET:SSE4_2,MEM:8056/MozillaOnline/2018.3/update.xml HTTP/1.1
+Host: aus5.mozilla.org
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Cache-Control: no-cache
+Pragma: no-cache
+Cookie: _ga=GA1.2.397564942.1523155913
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+12:40:19  http://i.firefoxchina.cn:80  [111.206.239.24]
+======================================================
+GET /bookmarks/updates-22.json HTTP/1.1
+Host: i.firefoxchina.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+12:40:20  http://ocsp.digicert.com:80  [117.18.237.29]
+======================================================
+POST / HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: close
+
+0Q0O0M0K0I0	+ _¶zÄùµ'ü5ŒÉCàû£«ÄaÇ1a’/(ÁçF8¥,·∆Ÿ‚	‘˜CUR/¬òΩ9`W
+======================================================
+
+
+
+======================================================
+12:40:20  http://ocsp.digicert.com:80  [117.18.237.29]
+======================================================
+POST / HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: close
+
+0Q0O0M0K0I0	+ _¶zÄùµ'ü5ŒÉCàû£«ÄaÇ1a’/(ÁçF8¥,·∆Ÿ‚~E£•√PSºP˘∂õ≠
+======================================================
+
+
+
+======================================================
+12:40:20  http://ocsp.digicert.com:80  [117.18.237.29]
+======================================================
+POST / HTTP/1.1
+Host: ocsp.digicert.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 83
+Content-Type: application/ocsp-request
+Connection: close
+
+0Q0O0M0K0I0	+ _¶zÄùµ'ü5ŒÉCàû£«ÄaÇ1a’/(ÁçF8¥,·∆Ÿ‚~E£•√PSºP˘∂õ≠
+======================================================
+
+
+
+======================================================
+12:40:20  http://addons.g-fox.cn:80  [111.206.239.24]
+======================================================
+GET /ntab.gif?c=ntab&t=searchplugins&a=detect&d=current&f=false&hr=https%3A%2F%2Fduckduckgo.com%2F%3Fq%3DTEST%26t%3Dffsb&r=0.26788359056102773&cid=stub.firefox.com.cn HTTP/1.1
+Host: addons.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+12:40:20  http://addons.g-fox.cn:80  [111.206.239.24]
+======================================================
+GET /ntab.gif?c=ntab&t=searchplugins&a=detect&d=baidu&f=true&r=0.12196453219706704&cid=stub.firefox.com.cn HTTP/1.1
+Host: addons.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+12:40:21  https://safebrowsing.googleapis.com:443  [172.217.160.74]
+======================================================
+GET /v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyD_Drzahe4dBzGCZ9ArvowCvrPx_yFrlCM&$httpMethod=POST&$req=ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaJwgFEAEaGwoNCAUQBhgBIgMwMDEwARCjlAQaAhgI2UMAayICIAIoARonCAEQARobCg0IARAGGAEiAzAwMTABEM2MBBoCGAhex44iIgIgAigBGicIAxABGhsKDQgDEAYYASIDMDAxMAEQgfwDGgIYCAvxkLYiAiACKAEaJwgHEAEaGwoNCAcQBhgBIgMwMDEwARCZgAMaAhgI725ZFSICIAIoARolCAkQARoZCg0ICRAGGAEiAzAwMTABEAoaAhgIAsxrJiICIAIoAQ== HTTP/1.1
+Host: safebrowsing.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+X-HTTP-Method-Override: POST
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+12:40:23  https://download.api.bsb.baidu.com:443  [111.206.223.88]
+======================================================
+POST /downloads?ver=2.2&key=ffD7Y9anV5dZVp8 HTTP/1.1
+Host: download.api.bsb.baidu.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 113
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+baidu-malware-shavar;a:1-112:s:1-111
+baidu-phish-shavar;a:1-112:s:1-7,9-42,44-51,53-56,58-69,71-88,90-98,100-110
+
+======================================================
+
+
+
+======================================================
+12:40:23  http://adu.g-fox.cn:80  [223.202.6.22]
+======================================================
+GET /adu.gif?channelid=stub.firefox.com.cn&fxversion=59.0.2&ceversion=2018.3&ver=2_2&pk=%7B2150155b-27e9-4458-a550-ae2a17b70141%7D&uk=%7B410007f2-0a5a-47c3-9ab2-9828965b5e55%7D&cehome=true&locale=zh-CN&age=5&default=false&defaultHttp=false&flash=&now=1523594423580 HTTP/1.1
+Host: adu.g-fox.cn
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+12:40:24  https://shavar.services.mozilla.com:443  [52.35.21.241]
+======================================================
+POST /downloads?client=navclient-auto-ffox&appver=59.0&pver=2.2 HTTP/1.1
+Host: shavar.services.mozilla.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Content-Length: 349
+Content-Type: text/plain
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+allow-flashallow-digest256;a:1490633678
+base-track-digest256;a:1512580265
+block-flash-digest256;a:1496263270
+block-flashsubdoc-digest256;a:1512160865
+except-flash-digest256;a:1494877265
+except-flashallow-digest256;a:1490633678
+except-flashsubdoc-digest256;a:1517935265
+mozplugin-block-digest256;a:1471849627
+mozstd-trackwhite-digest256;a:1512580265
+
+======================================================
+
+
+
+======================================================
+14:39:34  http://10.127.21.237:80
+======================================================
+POST /dvwa/login.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/login.php
+Cookie: security=low; PHPSESSID=pm1jg6hanvskesp9seqg0jg6g6
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 88
+
+username=admin&password=password&Login=Login&user_token=c6d075839a3fc9e6d97a1fb75c1f87af
+======================================================
+
+
+
+======================================================
+14:39:34  http://10.127.21.237:80
+======================================================
+GET /dvwa/index.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/login.php
+Cookie: security=low; PHPSESSID=pm1jg6hanvskesp9seqg0jg6g6
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:39:34  http://10.127.21.237:80
+======================================================
+GET /dvwa/favicon.ico HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: security=low; PHPSESSID=pm1jg6hanvskesp9seqg0jg6g6
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:39:34  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/css/main.css HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/index.php
+Cookie: security=low; PHPSESSID=pm1jg6hanvskesp9seqg0jg6g6
+Connection: close
+
+GET http://10.127.21.237/dvwa/dvwa/js/dvwaPage.js HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/index.php
+Cookie: security=low; PHPSESSID=pm1jg6hanvskesp9seqg0jg6g6
+Connection: keep-alive
+
+
+======================================================
+
+
+
+======================================================
+14:39:34  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/js/dvwaPage.js HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/index.php
+Cookie: security=low; PHPSESSID=pm1jg6hanvskesp9seqg0jg6g6
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:39:34  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/images/logo.png HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/index.php
+Cookie: security=low; PHPSESSID=pm1jg6hanvskesp9seqg0jg6g6
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:39:37  http://10.127.21.237:80
+======================================================
+GET /dvwa/security.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/index.php
+Cookie: security=low; PHPSESSID=pm1jg6hanvskesp9seqg0jg6g6
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:39:38  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/images/lock.png HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: image/png,image/*;q=0.8,*/*;q=0.5
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/security.php
+Cookie: security=low; PHPSESSID=pm1jg6hanvskesp9seqg0jg6g6
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:39:42  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/xss_r/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/security.php
+Cookie: security=low; PHPSESSID=pm1jg6hanvskesp9seqg0jg6g6
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:39:45  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/xss_r/?name=name HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/
+Cookie: security=low; PHPSESSID=pm1jg6hanvskesp9seqg0jg6g6
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:39:48  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/fi/?page=include.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/?name=name
+Cookie: security=low; PHPSESSID=pm1jg6hanvskesp9seqg0jg6g6
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:39:49  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/fi/?page=file1.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/vulnerabilities/fi/?page=include.php
+Cookie: security=low; PHPSESSID=pm1jg6hanvskesp9seqg0jg6g6
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+14:40:38  http://safebrowsing.clients.google.com:80  [172.217.160.78]
+======================================================
+POST /safebrowsing/downloads?client=navclient-auto-ffox&appver=27.0.1&pver=2.2&wrkey=AKEgNitN2zBNMxITexshXIOrppl-Yt9zqhJYFXXlpTM2fFDafrOhEMkFkbAPN2xqhSy_RT9GcMbou7wV2-NqCDdTDzVzTKGdKg== HTTP/1.1
+Host: safebrowsing.clients.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Length: 5374
+Content-Type: text/plain
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+goog-malware-shavar;a:166004-208002:s:156691-159256,159258-160279,160281-160909,160911-161120,161122-161314,161316-161848,161850-173177,173179-173341,173343-173814,173816,173818-173885,173887-174119,174121-177017,177019-177042,177044-177135,177138-177160,177162,177164-177167,177169-177191,177193-177222,177224-177326,177328,177330-177374,177376-177381,177383-177392,177394-177549,177551-177582,177584-177839,177841-178712,178714-179370,179372-182684,182686-184309,184311-186997,186999-187019,187021-187064,187066-187083,187085-187115,187117-187322,187324-187495,187497-187517,187519-187711,187713-187851,187853-187869,187871-188161,188163-188378,188380-189109,189111-189264,189266-189875,189877-190029,190031-198658,198660-199914:mac
+goog-phish-shavar;a:404059-412421:s:225555-225556,225558-225559,225561-225566,225568-225569,225572-225576,225578-225580,225583-225584,225586-225588,225591-225592,225594,225596-225598,225600-225603,225607-225613,225615,225617,225619-225622,225624-225631,225633,225635-225645,225647-225655,225657-225660,225662-225667,225669,225671-225673,225675,225679,225681-225687,225689,225691-225699,225702-225728,225730-225749,225751-225760,225762,225764-225766,225768-225773,225775-225779,225782-225787,225789-225800,225802-225805,225807,225810-225812,225814-225819,225822-225824,225826-225828,225830-225834,225836,225838-225840,225842-225849,225851,225853,225855-225865,225867-225880,225882-225892,225894,225896-225897,225899,225901,225903-225909,225911-225921,225924-225930,225933-225935,225937-225942,225944,225947,225949,225951-225952,225954-225955,225957-225963,225965,225967-225993,225995-226001,226003-226004,226006-226013,226015-226017,226019-226023,226025-226033,226035-226039,226041-226043,226045-226064,226066-226073,226075-226076,226078-226087,226089-226097,226101-226103,226105-226110,226113-226117,226120-226121,226123-226124,226126-226127,226129-226130,226132,226134,226137,226139,226141-226146,226148,226151-226161,226163-226185,226187-226196,226201-226206,226208-226210,226214-226217,226219,226221-226222,226224-226250,226252-226261,226263-226299,226303-226314,226316-226328,226330-226351,226353-226379,226381-226401,226403-226413,226415-226429,226431-226438,226441-226504,226506,226508-226509,226512-226527,226530-226531,226533-226534,226536-226538,226540-226566,226568-226571,226573,226575-226589,226591-226598,226600-226622,226624-226629,226631-226663,226665-226708,226710-226739,226741-226756,226758-226789,226791-226795,226797-226810,226812,226814-226817,226819-226821,226823-226827,226829,226831-226832,226834,226836,226838-226840,226842-226849,226851-226854,226856,226858,226861-226863,226865-226866,226869-226873,226876-226877,226879-226881,226883-226900,226902-226903,226905-226921,226923-226931,226933-226939,226942-226949,226951-226959,226961-226970,226972-226975,226977-226989,226991-226995,226997-227029,227031-227047,227049,227052,227054-227059,227061-227063,227065-227076,227080-227081,227083-227097,227099-227110,227112-227119,227121-227146,227148-227151,227155-227173,227176,227179-227180,227182-227189,227191,227195-227201,227204-227215,227217-227225,227228-227235,227237-227245,227247-227249,227251,227253,227258-227263,227265-227274,227276,227278,227280-227286,227289-227301,227306-227308,227310-227320,227323-227336,227339-227363,227365-227367,227369-227384,227386-227392,227395-227397,227399-227448,227450-227451,227455-227465,227467-227468,227470-227549,227551-227564,227566-227569,227571-227582,227584-227610,227613-227643,227645-227648,227650,227652-227666,227669-227730,227733-227801,227804,227807,227809,227811-227814,227816-227818,227820-227821,227824-227825,227827-227828,227830-227845,227847-227849,227851,227853-227857,227859-227865,227867-227945,227948-228038,228040,228042-228066,228068-228152,228154-228171,228173-228185,228187-228193,228195-228222,228225-228229,228231-228257,228259,228261-228282,228284-228285,228287-228291,228294-228297,228299-228356,228358-228366,228368-228373,228375-228400,228402-228414,228416-228422,228424-228466,228468-228478,228480-228483,228485-228490,228493-228494,228497,228499-228500,228503,228505-228507,228509-228516,228518,228521,228525,228527-228536,228538-228543,228545-228549,228551-228553,228555-228559,228561-228564,228566-228652,228654-228658,228660-228680,228682-228702,228704-228748,228751-228769,228771-228773,228775-228779,228781-228785,228787-228791,228793-228853,228855,228857-228864,228866-228868,228870-228882,228884-228902,228906-228970,228972-229006,229008-229017,229019-229027,229029-229130,229132-229184,229186-229187,229189-229193,229195-229218,229220-229261,229263-229283,229285-229416,229418-229419,229421-229427,229429-229432,229434-229437,229439-229441,229443-229453,229455-229503,229505-229520,229522-229567,229569-229579,229582-229599,229601-229614,229616-229656,229658-229673,229675-229678,229680-229694,229696-229731,229733-229818,229820-229823,229825,229827,229829-229849,229851-229876,229878-229885,229887-229889,229891-229901,229903-229957,229959,229961-229967,229969-230068,230070-230107,230109-230112,230114-230321,230323-230352,230354-230498,230500-230618,230620,230622-230833,230835-230850,230852-230861,230863-231001,231003-231089,231091-231221,231223-231468,231470-231496,231498-231617,231619-231858,231860-232038,232040-232084,232086-232150,232152-232311,232313-232427,232429-232623,232625-232962,232964-232986,232988-233061:mac
+
+======================================================
+
+
+
+======================================================
+14:40:39  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChNnb29nLW1hbHdhcmUtc2hhdmFyOABAAkoMCAEQl6gRGLOoESABSgwIARCUqBEYlagRIAFKDAgBEI-oERiSqBEgAUoMCAEQiqgRGIyoESABSgwIARCHqBEYiKgRIAFKDAgBEISoERiFqBEgAUoMCAEQgKgRGIGoESABSgwIARD9pxEY_acRIAFKDAgBEPqnERj6pxEgAUoMCAEQ6qcRGPenESABSgwIARDnpxEY6KcRIAFKDAgBEOGnERjlpxEgAUoMCAEQ3qcRGN-nESABSgwIARDVpxEY3KcRIAFKDAgBEM-nERjTpxEgAUoMCAEQzKcRGMynESABSgwIARDEpxEYyqcRIAFKDAgBEMCnERjBpxEgAUoMCAEQuqcRGL6nESABSgwIARC1pxEYt6cRIAFKDAgBELKnERizpxEgAUoMCAEQrKcRGK-nESABSgwIARCopxEYqqcRIAFKDAgBEKWnERimpxEgAUoMCAEQoqcRGKKnESABSgwIARCZpxEYn6cRIAFKDAgBEJGnERiXpxEgAUoMCAEQjacRGI6nESABSgwIARCLpxEYi6cRIAFKDAgBEIenERiJpxEgAUoMCAEQgqcRGIWnESABSgwIARD9phEY_6YRIAFKDAgBEPumERj7phEgAUoMCAEQ9aYRGPmmESABSgwIARDzphEY86YRIAFKDAgBEOumERjwphEgAUoMCAEQ56YRGOemESABSgwIARDfphEY46YRIAFKDAgBENymERjdphEgAUoMCAEQ2KYRGNqmESABSgwIARDWphEY1qYRIAFKDAgBENOmERjUphEgAUoMCAEQ0aYRGNGmESABSgwIARDNphEYz6YRIAFKDAgBEMmmERjJphEgAUoMCAEQoKYRGMemESABSgwIARCbphEYnqYRIAFKDAgBEJamERiXphEgAUoMCAEQ6KURGJSmESABSgwIARDmpREY5qURIAFKDAgBENilERjkpREgAUoMCAEQ1KURGNWlESABSgwIARDQpREY0qURIAFKDAgBEM2lERjOpREgAUoMCAEQyaURGMulESABSgwIARC-pREYx6URIAFKDAgBEK6lERi8pREgAUoMCAEQk6URGKylESABSgwIARCRpREYkaURIAFKDAgBEIqlERiPpREgAUoMCAEQ4KQRGIilESABSgwIARDUpBEY3qQRIAFKDAgBENGkERjSpBEgAUoMCAEQk6QRGM-kESABSgwIARCPpBEYkaQRIAFKDAgBEIekERiNpBEgAUoMCAEQ76MRGIWkESABSgwIARDroxEY7aMRIAFKDAgBENijERjooxEgAUoMCAEQ0qMRGNajESABSgwIARDGoxEY0KMRIAFKDAgBELSjERjEoxEgAUoMCAEQr6MRGLKjESABSgwIARCqoxEYq6MRIAFKDAgBEIyjERijoxEgAQ HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:40:39  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChNnb29nLW1hbHdhcmUtc2hhdmFyOABAAkoMCAEQi6MRGIujESABSgwIARD6ohEYiaMRIAFKDAgBEPSiERj4ohEgAUoMCAEQ2KIRGPKiESABSgwIARDNohEY1qIRIAFKDAgBEMKiERjLohEgAUoMCAEQkKIRGL-iESABSgwIARCMohEYjqIRIAFKDAgBEPKhERiKohEgAUoMCAEQ7KERGPChESABSgwIARDWoREY6qERIAFKDAgBENShERjUoREgAUoMCAEQzqERGNKhESABSgwIARDIoREYzKERIAFKDAgBEMahERjGoREgAUoMCAEQlKERGMShESABSgwIARCRoREYkqERIAFKDAgBEIihERiPoREgAUoMCAEQhqERGIahESABSgwIARCCoREYhKERIAFKDAgBEP-gERj_oBEgAUoMCAEQ_KARGP2gESABSgwIARD1oBEY-qARIAFKDAgBENWgERjzoBEgAUoMCAEQ06ARGNOgESABSgwIARDRoBEY0aARIAFKDAgBEMygERjPoBEgAUoMCAEQyKARGMigESABSgwIARDBoBEYwqARIAFKDAgBEKygERi_oBEgAUoMCAEQi6ARGKqgESABSgwIARCHoBEYiKARIAFKDAgBEIWgERiFoBEgAUoMCAEQg6ARGIOgESABSgwIARD_nxEY_58RIAFKDAgBEPufERj8nxEgAUoMCAEQzJ8RGPefESABSgwIARDKnxEYyp8RIAFKDAgBEMCfERjInxEgAUoMCAEQvp8RGL6fESABSgwIARC8nxEYvJ8RIAFKDAgBELmfERi6nxEgAUoMCAEQt58RGLefESABSgwIARC1nxEYtZ8RIAFKDAgBEIyfERiznxEgAUoMCAEQiJ8RGIqfESABSgwIARD2nhEYhZ8RIAFKDAgBEPOeERj0nhEgAUoMCAEQw54RGPGeESABSgwIARDAnhEYwJ4RIAFKDAgBELyeERi-nhEgAUoMCAEQuJ4RGLqeESABSgwIARCxnhEYtp4RIAFKDAgBEKyeERivnhEgAUoMCAEQqZ4RGKmeESABSgwIARCenhEYp54RIAE HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:40:40  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChNnb29nLW1hbHdhcmUtc2hhdmFyOABAAkoMCAEQl54RGJyeESABSgwIARD2nREYlZ4RIAFKDAgBEO-dERj0nREgAUoMCAEQ5p0RGO2dESABSgwIARDJnREY5J0RIAFKDAgBELudERjHnREgAUoMCAEQuZ0RGLmdESABSgwIARCvnREYt50RIAFKDAgBEPycERisnREgAUoMCAEQ-pwRGPqcESABSgwIARD2nBEY95wRIAFKDAgBEPKcERj0nBEgAUoMCAEQ75wRGO-cESABSgwIARDqnBEY65wRIAFKDAgBEOicERjonBEgAUoMCAEQ5JwRGOacESABSgwIARDUnBEY4pwRIAFKDAgBEM-cERjSnBEgAUoMCAEQzJwRGM2cESABSgwIARC4nBEYyZwRIAFKDAgBEKucERi2nBEgAUoMCAEQppwRGKicESABSgwIARCJnBEYpJwRIAFKDAgBEIacERiHnBEgAUoMCAEQg5wRGIOcESABSgwIARD_mxEYgJwRIAFKDAgBEPubERj8mxEgAUoMCAEQ75sRGPibESABSgwIARDrmxEY7ZsRIAFKDAgBEOWbERjmmxEgAUoMCAEQ35sRGOKbESABSgwIARDdmxEY3ZsRIAFKDAgBENabERjbmxEgAUoMCAEQ0psRGNKbESABSgwIARDEmxEYz5sRIAFKDAgBELqbERjCmxEgAUoMCAEQoJsRGLibESABSgwIARCYmxEYnpsRIAFKDAgBEJabERiWmxEgAUoMCAEQk5sRGJObESABSgwIARCRmxEYkZsRIAFKDAgBEI2bERiOmxEgAUoMCAEQ85oRGIubESABSgwIARDkmhEY8ZoRIAFKDAgBENKaERjimhEgAUoMCAEQz5oRGM-aESABSgwIARDNmhEYzZoRIAFKDAgBEMqaERjLmhEgAUoMCAEQyJoRGMiaESABSgwIARDGmhEYxpoRIAFKDAgBEK-aERjEmhEgAUoMCAEQrZoRGK2aESABSgwIARCnmhEYq5oRIAFKDAgBEJ-aERilmhEgAUoMCAEQnJoRGJ2aESABSgwIARCXmhEYmpoRIAFKDAgBEI6aERiUmhEgAUoMCAEQ_ZkRGIqaESABSgwIARDsmREY-5kRIAFKDAgBEOiZERjqmREgAUoMCAEQ2JkRGOWZESABSgwIARDTmREY1ZkRIAFKDAgBEM6ZERjRmREgAUoMCAEQy5kRGMuZESABSgwIARDGmREYx5kRIAFKDAgBEMSZERjEmREgAUoMCAEQv5kRGL-ZESABSgwIARC1mREYvZkRIAFKDAgBELOZERizmREgAUoMCAEQsJkRGLGZESABSgwIARCsmREYrpkRIAFKDAgBEKaZERiqmREgAUoMCAEQo5kRGKSZESABSgwIARChmREYoZkRIAFKDAgBEJ-ZERifmREgAUoMCAEQnJkRGJ2ZESABSgwIARCZmREYmZkRIAE HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:40:40  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChNnb29nLW1hbHdhcmUtc2hhdmFyOABAAkoMCAEQl5kRGJiZESABSgwIARCUmREYlZkRIAFKDAgBEJCZERiSmREgAUoMCAEQjZkRGI6ZESABSgwIARCLmREYi5kRIAFKDAgBEISZERiEmREgAUoMCAEQgpkRGIKZESABSgwIARD_mBEY_5gRIAFKDAgBEP2YERj9mBEgAUoMCAEQ-pgRGPuYESABSgwIARD3mBEY-JgRIAFKDAgBEPKYERj1mBEgAUoMCAEQ7pgRGO-YESABSgwIARDrmBEY65gRIAFKDAgBEOmYERjpmBEgAUoMCAEQ5JgRGOeYESABSgwIARDhmBEY4pgRIAFKDAgBEN2YERjfmBEgAUoMCAEQ25gRGNuYESABSgwIARDVmBEY1ZgRIAFKDAgBENCYERjSmBEgAUoMCAEQzpgRGM6YESABSgwIARDKmBEYypgRIAFKDAgBEMeYERjHmBEgAUoMCAEQxJgRGMSYESABSgwIARDBmBEYwpgRIAFKDAgBEL2YERi9mBEgAUoMCAEQupgRGLqYESABSgwIARCzmBEYtpgRIAFKDAgBELCYERixmBEgAUoMCAEQrZgRGK2YESABSgwIARCrmBEYq5gRIAFKDAgBEKeYERinmBEgAUoMCAEQpZgRGKWYESABSgwIARCemBEYnpgRIAFKDAgBEJqYERiamBEgAUoMCAEQl5gRGJeYESABSgwIARCVmBEYlZgRIAFKDAgBEJOYERiTmBEgAUoMCAEQj5gRGI-YESABSgwIARCNmBEYjZgRIAFKDAgBEIqYERiKmBEgAUoMCAEQhJgRGIWYESAB HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:40:41  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChNnb29nLW1hbHdhcmUtc2hhdmFyOABAAkoQCAAQ_LgRGIW9ESABKgLeAg HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:40:41  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChNnb29nLW1hbHdhcmUtc2hhdmFyOABAAkoQCAAQgLURGPu4ESABKgLmAQ HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:40:42  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChNnb29nLW1hbHdhcmUtc2hhdmFyOABAAkoMCAAQ5bERGP-0ESAB HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:40:43  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChNnb29nLW1hbHdhcmUtc2hhdmFyOABAAkoMCAAQ2a4RGOSxESAB HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:40:44  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChFnb29nLXBoaXNoLXNoYXZhcjgAQAJKDAgBEJrfLRi-3y0gAUoMCAEQk98tGJPfLSABSgwIARDK3i0Ykd8tIAFKDAgBEL_eLRjI3i0gAUoMCAEQpd4tGL3eLSABSgwIARCa3i0Yo94tIAFKDAgBEJjeLRiY3i0gAUoMCAEQid4tGJbeLSABSgwIARCH3i0Yh94tIAFKDAgBEIHeLRiC3i0gAUoMCAEQ_90tGP_dLSABSgwIARD43S0Y-t0tIAFKDAgBEPbdLRj23S0gAUoMCAEQ890tGPTdLSABSgwIARDw3S0Y8N0tIAFKDAgBEOzdLRju3S0gAUoMCAEQ6d0tGOndLSABSgwIARDl3S0Y5d0tIAFKDAgBEOLdLRji3S0gAUoMCAEQ390tGN_dLSABSgwIARDU3S0Y1d0tIAFKDAgBENLdLRjS3S0gAUoMCAEQz90tGNDdLSABSgwIARDH3S0YyN0tIAFKDAgBELrdLRi63S0gAUoMCAEQt90tGLfdLSABSgwIARCv3S0Ysd0tIAFKDAgBEKzdLRit3S0gAUoMCAEQpN0tGKTdLSABSgwIARCY3S0Ynd0tIAFKDAgBEJbdLRiW3S0gAUoMCAEQlN0tGJTdLSABSgwIARCS3S0Ykt0tIAFKDAgBEI7dLRiQ3S0gAUoMCAEQi90tGIvdLSABSgwIARCI3S0YiN0tIAFKDAgBEIbdLRiG3S0gAUoMCAEQhN0tGITdLSABSgwIARD-3C0Y_twtIAFKDAgBEPzcLRj83C0gAUoMCAEQ-dwtGPrcLSABSgwIARDz3C0Y89wtIAFKDAgBEO_cLRjv3C0gAUoMCAEQ7NwtGOzcLSABSgwIARDp3C0Y6dwtIAFKDAgBENHcLRjR3C0gAUoMCAEQz9wtGM_cLSABSgwIARDN3C0YzdwtIAFKDAgBEMvcLRjL3C0gAUoMCAEQxdwtGMncLSABSgwIARDC3C0Yw9wtIAFKDAgBELvcLRi-3C0gAUoMCAEQuNwtGLncLSABSgwIARC13C0YtdwtIAFKDAgBEKLcLRiy3C0gAQ HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:40:44  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChFnb29nLXBoaXNoLXNoYXZhcjgAQAJKDAgBEJ7cLRih3C0gAUoMCAEQm9wtGJzcLSABSgwIARCW3C0YltwtIAFKDAgBEIncLRiK3C0gAUoMCAEQhtwtGIfcLSABSgwIARCE3C0YhNwtIAFKDAgBEPzbLRiA3C0gAUoMCAEQ8dstGPLbLSABSgwIARDO2y0Yz9stIAFKDAgBELjbLRi62y0gAUoMCAEQjtstGI7bLSABSgwIARDk2i0Y5dotIAFKDAgBEJzaLRja2i0gAUoMCAEQh9otGJnaLSABSgwIARCF2i0YhdotIAFKDAgBEIDaLRiD2i0gAUoMCAEQ-tktGPzZLSABSgwIARD32S0Y99ktIAFKDAgBENrZLRj12S0gAUoMCAEQztktGM7ZLSABSgwIARDK2S0YytktIAFKDAgBEMfZLRjI2S0gAQ HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:40:45  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChFnb29nLXBoaXNoLXNoYXZhcjgAQAJKDAgBEMDZLRjG2S0gAUoMCAEQttktGLzZLSABSgwIARCj2S0Yq9ktIAFKDAgBEKHZLRih2S0gAUoMCAEQn9ktGJ_ZLSABSgwIARCP2S0YkNktIAFKDAgBEIjZLRiK2S0gAUoMCAEQ9NgtGPjYLSABSgwIARDj2C0Y8tgtIAFKDAgBEOHYLRjh2C0gAUoMCAEQzdgtGM7YLSABSgwIARC42C0YudgtIAFKDAgBEJDYLRiR2C0gAUoMCAEQ8tctGPTXLSABSgwIARCk1y0YqNctIAFKDAgBEOvWLRiE1y0gAUoMCAEQ5tYtGOnWLSABSgwIARDg1i0Y5NYtIAFKDAgBENrWLRje1i0gAUoMCAEQzNYtGNjWLSABSgwIARDJ1i0YydYtIAFKDAgBELrWLRjH1i0gAQ HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:40:45  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChFnb29nLXBoaXNoLXNoYXZhcjgAQAJKDAgBEKfWLRi51i0gAUoMCAEQoNYtGKXWLSABSgwIARCa1i0YntYtIAE HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:40:46  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChFnb29nLXBoaXNoLXNoYXZhcjgAQAJKDAgBEL_fLRi_3y0gAUoMCAAQ3-4eGKjvHiAB HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:40:46  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChFnb29nLXBoaXNoLXNoYXZhcjgAQAJKDAgAEJXxHhjn8h4gAQ HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:40:47  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChFnb29nLXBoaXNoLXNoYXZhcjgAQAJKDAgAEInwHhiU8R4gAQ HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+
+======================================================
+14:40:47  http://safebrowsing-cache.google.com:80  [172.217.160.78]
+======================================================
+GET /safebrowsing/rd/ChFnb29nLXBoaXNoLXNoYXZhcjgAQAJKDAgAEKnvHhiI8B4gAQ HTTP/1.1
+Host: safebrowsing-cache.google.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Cookie: NID=128=ejAwaMwnl6XeuCbwUctx1iDKl2d4EgbGWlWuOYnMhviEcVqCdfuCQ1-yDLhSgBj082vPaYRxaDXwtyfeLO5v8_wghVvQanH2EAF7mzkRo3nPbQLAC40Td3POI7ECS-V0
+Connection: close
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+======================================================
+
+
+

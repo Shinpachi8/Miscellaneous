@@ -123,6 +123,8 @@ def getLinks(filename):
                     headers["Referer"] = "".join(_.split(":")[1:]).strip()
                 if _.startswith("Cookie"):
                     headers["Cookie"] = _.split(":")[1].strip()
+                if _.startswith("Content-Type"):
+                    headers['Content-Type'] = _.split(':')[1].strip()
                 if _.startswith("Accept-Language"):
                     headers['Accept-Language'] = _.split(":")[1].strip()
 
@@ -170,20 +172,24 @@ def start_point(args):
     for index in dict_links:
         url = dict_links[index]['url']
         headers = dict_links[index]['headers']
+        Content-Type = headers.get('Content-Type', '')
+        if 'multipart/form-data' in Content-Type:
+            continue
+
         data = dict_links[index]['data'] if 'data' in dict_links[index] else None
         if data:
             method = 'POST'
         else:
             method = 'GET'
         HTTPQUEUE.put(THTTPJOB(url, method=method, data=data, headers=headers))
-    
+
     outqueue = Queue()
     logging.info("[-] Totally {0} requests".format(HTTPQUEUE.qsize()))
     time.sleep(3)
     threads = []
     # 30个线程来跑
     for i in xrange(args.threads):
-        thd = detectXSS(HTTPQUEUE, outqueue, delay)
+        thd = detectXSS(HTTPQUEUE, outqueue, args.delay)
         #thd.setDaemon(True)
         threads.append(thd)
 
@@ -209,40 +215,57 @@ class detectXSS(threading.Thread):
         self.inqueue =  inqueue
         self.outqueue = outqueue
         self.delay = delay
-    
+
     def run(self):
         while True:
             if self.inqueue.empty():
                 break
             hj = self.inqueue.get()
+            isjson = False
+            if hj.method == 'GET':
+                query = hj.url.get_query
+            else:
+                if hj.headers.get('Content-Type', '').find('json') >= 0:
+                    query = urllib.encode(json.loads(hj.data))
+                    isjson=True
+                else:
+                    query = hj.data
+
             for p in XSS_Rule:
-                poll = Pollution(hj.url.get_query, XSS_Rule[p]).payload_generate()
+                poll = Pollution(query, XSS_Rule[p], isjson=isjson).payload_generate()
                 # poll is dict list
                 for payload in poll:
-                    hj.url.get_dict_query = payload
+                    if hj.method == 'GET':
+                        hj.url.get_dict_query = payload
+                    else:
+                        if isjson:
+                            hj.data = json.dumps(payload)
+                        else:
+                            hj.data = urllib.urlencode(payload)
+                    #print hj.url.url_string()
                     time.sleep(self.delay)
-                    hj.request()
+                    status_code, headers, content, t = hj.request()
                     if p == 'xss':
                         for regex in XSS_Rule[p]:
-                            if regex in hj.response.content and hj.response.status_code == 200 and hj.response.headers.get('Content-Type', '')  not in  ["application/json", "text/plain", "application/javascript", "text/json", "text/javascript", "application/x-javascript"]:
+                            if regex in content and status_code == 200 and headers.get('Content-Type', '')  not in  ["application/json", "text/plain", "application/javascript", "text/json", "text/javascript", "application/x-javascript"]:
                                 self.outqueue.put(('XSS', payload, hj.response.request.url))
                                 break
                     if p == 'lfi':
-                        if "root:x:0" in hj.response.content and hj.response.status_code == 200:
-                            self.outqueue.put('LFI', payload, hj.response.request.url)
+                        if "root:x:0" in content and status_code == 200:
+                            self.outqueue.put(('LFI', payload, hj.response.request.url))
                             break
                     if p == 'redirect':
-                        if 'Valar Morghulis' in hj.response.content and hj.response.status_code == 200:
-                            self.outqueue.put('Unsafe Redirect', payload, hj.response.request.url)
+                        if 'Valar Morghulis' in content and status_code == 200:
+                            self.outqueue.put(('Unsafe Redirect', payload, hj.response.request.url))
                             break
-                    
+
                     if p == 'ssti':
-                        if '3351376549499229720' in hj.response.content and hj.response.status_code == 200:
-                            self.outqueue.put('SSTI', payload, hj.response.request.url)
+                        if '3351376549499229720' in content and status_code == 200:
+                            self.outqueue.put(('SSTI', payload, hj.response.request.url))
                             break
-    
-                    
-                    
+
+
+
 
 
 

@@ -10,7 +10,7 @@ class Pollution(object):
     this class aim to use the payload
     to the param in requests
     """
-    def __init__(self, url, payloads, data=None, pollution_all=False):
+    def __init__(self, url, payloads, data=None, pollution_all=False, append=True):
         """
         :url: the url to parse, if get must had the params
         :payloads:  List, the payloads to added in params
@@ -21,6 +21,7 @@ class Pollution(object):
         self.data = data
         self.json = False
         self.pollution_all = pollution_all
+        self.append = append
         self.polluted_urls = []
 
         if type(self.payloads) != list:
@@ -32,8 +33,8 @@ class Pollution(object):
             return
         if self.method == 'GET':
             parsed_url = Url.url_parse(self.url)
-            print "===================================="
-            print parsed_url
+            #print "===================================="
+            #print parsed_url
             query_string = parsed_url.query
         else:
             try:
@@ -43,12 +44,15 @@ class Pollution(object):
                 query_string = self.data
         if query_string is None:
             return
-        print query_string
+        #print query_string
         query_dict = Url.qs_parse(query_string)
         for key in query_dict.keys():
             for payload in self.payloads:
                 tmp_qs = query_dict.copy()
-                tmp_qs[key] = tmp_qs[key] + payload
+                if self.append:
+                    tmp_qs[key] = tmp_qs[key] + payload
+                else:
+                    tmp_qs[key] = payload
                 tmp_qs_str = Url.build_qs(tmp_qs)
                 if self.method == 'GET':
                     self.polluted_urls.append({'method': 'GET', 'url': Url.url_unparse((parsed_url.scheme, parsed_url.netloc, parsed_url.path,    parsed_url.params, tmp_qs_str, parsed_url.fragment))})

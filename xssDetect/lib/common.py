@@ -277,6 +277,9 @@ class THTTPJOB(object):
                 return -1, {}, '', 0
             self. time_check = end_time - start_time
             return self.response.status_code, self.response.headers, self.response.text, self.time_check
+    
+    def __str__(self):
+        return "[THTTPOBJ] method={} url={} data={}".format(self.method, self.url.url_string(), self.data )
 
 
 
@@ -341,7 +344,7 @@ class Pollution(object):
 
     def pollut(self):
         if self.isjson:
-            query_dict = json.loads(self.query)
+            query_dict = dict(urlparse.parse_qsl(self.query, keep_blank_values=True))
         else:
             query_dict = dict(urlparse.parse_qsl(self.query, keep_blank_values=True))
 

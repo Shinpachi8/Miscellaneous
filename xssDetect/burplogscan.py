@@ -111,10 +111,12 @@ def getLinks(filename):
             path = ""
             host = ""
             headers = {"Cookie": "", "User-Agent": ""}
+            method = ''
 
             for _ in tmp:
                 if _.startswith("GET") or _.startswith("POST"):
                     # 以防格式不对，多出来一个请求头
+                    method = _[:4].strip()
                     if path == "":
                         path = _.split(" ")[1]
                     else:
@@ -136,7 +138,7 @@ def getLinks(filename):
             # 去重，利用域名，目录， 和参数的sort值来判断，如果相同就忽略
             # 否则就加入到no_repeat里
             url = "http://" + host + path
-            if not checkRepeat(url, no_repeat):
+            if not checkRepeat(url, method, no_repeat):
                 result[index] = {}
                 result[index]["url"] = url
                 result[index]["headers"] = headers
@@ -153,7 +155,7 @@ def checkType(path):
     else:
         return True
 
-def checkRepeat(host, no_repeat=None):
+def checkRepeat(host, method, no_repeat=None):
     try:
         url_node = urlparse.urlparse(host)
         query_dict = urlparse.parse_qs(url_node.query)
@@ -161,7 +163,7 @@ def checkRepeat(host, no_repeat=None):
         host = url_node.netloc
         path = url_node.path
         # host + path + param 来判断是否存在
-        tmp = host + path + param
+        tmp = method + host + path + param
         if tmp in no_repeat:
             return True
         else:
@@ -266,7 +268,10 @@ class detectXSS(threading.Thread):
                     poll = Pollution(query, copy_rules, isjson=isjson).payload_generate()
                     # print poll
                     # poll is dict list
+                    found = False
                     for payload in poll:
+                        if found:
+                            break
                         if hj.method == 'GET':
                             hj.url.get_dict_query = payload
                         else:
@@ -274,29 +279,33 @@ class detectXSS(threading.Thread):
                                 hj.data = json.dumps(payload)
                             else:
                                 hj.data = urllib.urlencode(payload)
-                        #print hj.url.url_string()
+                        print hj
                         time.sleep(self.delay)
                         status_code, headers, content, t = hj.request()
                         if p == 'xss':
                             for regex in XSS_Rule[p]:
-                                print hj.headers.get('Cookie')
-                                print status_code, headers.get('Content-Type', '')
+                                # print hj.headers.get('Cookie')
+                                # print status_code, headers.get('Content-Type', '')
                                 if regex in content and status_code == 200 and headers.get('Content-Type', '')  not in  ["application/json", "text/plain", "application/javascript", "text/json", "text/javascript", "application/x-javascript"]:
-                                    print "-------------------------------------"
+                                    # print "-------------------------------------"
                                     self.outqueue.put(('XSS', payload, hj.response.request.url))
+                                    found = True
                                     break
                         if p == 'lfi':
                             if "root:x:0" in content and status_code == 200:
                                 self.outqueue.put(('LFI', payload, hj.response.request.url))
+                                found = True
                                 break
                         if p == 'redirect':
                             if 'Valar Morghulis' in content and status_code == 200:
                                 self.outqueue.put(('Unsafe Redirect', payload, hj.response.request.url))
+                                found = True
                                 break
 
                         if p == 'ssti':
                             if '3351376549499229720' in content and status_code == 200:
                                 self.outqueue.put(('SSTI', payload, hj.response.request.url))
+                                found = True
                                 break
 
 

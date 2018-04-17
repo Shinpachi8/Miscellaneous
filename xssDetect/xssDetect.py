@@ -18,7 +18,7 @@ import logging
 from Queue import Queue
 from colorama import *
 from classSQL import *
-from lib.common import *
+from common import *
 
 """
 根据网络上的一些脚本，自己改了一下

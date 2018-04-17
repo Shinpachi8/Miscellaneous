@@ -279,14 +279,14 @@ class detectXSS(threading.Thread):
                                 hj.data = json.dumps(payload)
                             else:
                                 hj.data = urllib.urlencode(payload)
-                        print hj
+                        #print hj
                         time.sleep(self.delay)
                         status_code, headers, content, t = hj.request()
                         if p == 'xss':
                             for regex in XSS_Rule[p]:
                                 # print hj.headers.get('Cookie')
                                 # print status_code, headers.get('Content-Type', '')
-                                if regex in content and status_code == 200 and headers.get('Content-Type', '')  not in  ["application/json", "text/plain", "application/javascript", "text/json", "text/javascript", "application/x-javascript"]:
+                                if regex in content and status_code == 200 and headers.get('Content-Type', '').split(';')[0]  not in  ["application/json", "text/plain", "application/javascript", "text/json", "text/javascript", "application/x-javascript"]:
                                     # print "-------------------------------------"
                                     self.outqueue.put(('XSS', payload, hj.response.request.url))
                                     found = True
@@ -322,7 +322,7 @@ class detectXSS(threading.Thread):
                 hj.headers['X-Forwarded-For'] = real_headers['X-Forwarded-For'] + payload
                 hj.headers['Referer'] = real_headers['Referer'] + payload
                 hj.request()
-            
+
 
 
 

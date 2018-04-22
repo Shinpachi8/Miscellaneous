@@ -92,62 +92,104 @@ def getLinks(filename):
     DEBUG = True
     with open(filename, 'rb') as f:
         content=f.read()
-        blocks = re.split("======================================================[\n|\r\n]", content)
-        for index, block in enumerate(blocks):
+    blocks = re.split("======================================================[\n|\r\n]", content)
+    for index, block in enumerate(blocks):
+        # if "search.video.iqiyi.com" not in block:
+        #     continue
+        block = re.split("[\n|\r\n]", block)
 
-            block = re.split("[\n|\r\n]", block)
-
-            # continue
-            tmp = [i for i in block if i]
-            if (len(tmp) < 4): continue
-            if (not tmp[0].startswith('GET')) and (not tmp[0].startswith('POST')): continue
-            try:
-                p = tmp[0].split(" ")[1]
-                if not checkType(p):
-                    continue
-            except:
+        # continue
+        tmp = [i for i in block if i]
+        if (len(tmp) < 4): continue
+        if (not tmp[0].startswith('GET')) and (not tmp[0].startswith('POST')): continue
+        try:
+            p = tmp[0].split(" ")[1]
+            if not checkType(p):
                 continue
+        except:
+            continue
 
-            path = ""
-            host = ""
-            headers = {"Cookie": "", "User-Agent": ""}
-            method = ''
+        path = ""
+        host = ""
+        headers = {"Cookie": "", "User-Agent": ""}
+        method = ''
 
-            for _ in tmp:
-                if _.startswith("GET") or _.startswith("POST"):
-                    # 以防格式不对，多出来一个请求头
-                    method = _[:4].strip()
-                    if path == "":
-                        path = _.split(" ")[1]
-                    else:
-                        break
-                if _.startswith("Host"):
-                    #print _.split(":")[1]
+        method = tmp[0][:4].strip()
+        if method == 'GET':
+            path = tmp[0].split(" ")[1]
+            for _ in tmp[1:]:
+                if _.startswith('Host'):
+                    # print _
                     host = _.split(":")[1].strip()
-                if _.startswith("User-Agent"):
-                    headers["User-Agent"] = _.split(":")[1].strip()
-                if _.startswith("Referer"):
-                    headers["Referer"] = "".join(_.split(":")[1:]).strip()
-                if _.startswith("Cookie"):
-                    headers["Cookie"] = _.split(":")[1].strip()
-                if _.startswith("Content-Type"):
-                    headers['Content-Type'] = _.split(':')[1].strip()
-                if _.startswith("Accept-Language"):
-                    headers['Accept-Language'] = _.split(":")[1].strip()
+                else:
+                    try:
+                        xx = _.split(":")
+                        headers[xx[0].strip()] = "".join(xx[1:]).strip()
+                    except:
+                        print _
+                        break
+                
+        elif method == 'POST':
+            path = tmp[0].split(" ")[1]
+            for _ in tmp[1:-1]:
+                if _.startswith('Host'):
+                    host = _.split(":")[1].strip()
+                else:
+                    try:
+                        xx = _.split(":")
+                        headers[xx[0].strip()] = "".join(xx[1:]).strip()
+                    except:
+                        print _
+                        break
+        else:
+            continue
+        # for _ in tmp:
+        #     if _.startswith("GET") or _.startswith("POST"):
+        #         # 以防格式不对，多出来一个请求头
+        #         method = _[:4].strip()
+        #         if path == "":
+        #             path = _.split(" ")[1]
+        #         else:
+        #             break
+        #     if _.startswith("Host"):
+        #         #print _.split(":")[1]
+        #         host = _.split(":")[1].strip()
+        #     if _.startswith("User-Agent"):
+        #         headers["User-Agent"] = _.split(":")[1].strip()
+        #     if _.startswith("Referer"):
+        #         headers["Referer"] = "".join(_.split(":")[1:]).strip()
+        #     if _.startswith("Cookie"):
+        #         headers["Cookie"] = _.split(":")[1].strip()
+        #     if _.startswith("Content-Type"):
+        #         headers['Content-Type'] = _.split(':')[1].strip()
+        #     if _.startswith("Accept-Language"):
+        #         headers['Accept-Language'] = _.split(":")[1].strip()
 
-            # 去重，利用域名，目录， 和参数的sort值来判断，如果相同就忽略
-            # 否则就加入到no_repeat里
+        # 去重，利用域名，目录， 和参数的sort值来判断，如果相同就忽略
+        # 否则就加入到no_repeat里
+        # if path.startswith('http'):
+        #     print repr(tmp)
+        #     print block
+        #     print "====================="
+        # print "host={} & path={}".format(host, path)
+        if path.startswith("http://"):
+            url = path
+        else:
             url = "http://" + host + path
-            if not checkRepeat(url, method, no_repeat):
-                result[index] = {}
-                result[index]["url"] = url
-                result[index]["headers"] = headers
-                if tmp[0].startswith("POST"):
-                    result[index]["data"] = tmp[-1]
-            else:
-                continue
-        print "The length: {0}".format(len(result))
-        return result
+        print "URL={}".format(url)
+        if not checkRepeat(url, method, no_repeat):
+            result[index] = {}
+            result[index]["url"] = url
+            result[index]["headers"] = headers
+            if tmp[0].startswith("POST"):
+                result[index]["data"] = tmp[-1]
+        else:
+            continue
+    print "The length: {0}".format(len(result))
+    # for i in xrange(50):
+    #     if i in result:
+    #         print result[i]
+    return result
 
 def checkType(path):
     if path.split("?")[0].split(".")[-1] in (("f4v","bmp","bz2","css","doc","eot","flv","gif","gz","ico","jpeg","jpg","js","less","mp3", "mp4", "pdf","png","rar","rtf","swf","tar","tgz","txt","wav","woff","xml","zip")):
@@ -175,6 +217,7 @@ def checkRepeat(host, method, no_repeat=None):
 
 def start_point(args):
     dict_links = getLinks(args.file)
+    # sys.exit(0)
     HTTPQUEUE = Queue()
     for index in dict_links:
         url = dict_links[index]['url']
@@ -198,16 +241,26 @@ def start_point(args):
     # 30个线程来跑
     for i in xrange(args.threads):
         thd = detectXSS(HTTPQUEUE, outqueue, args.delay)
-        #thd.setDaemon(True)
+        thd.setDaemon(True)
         threads.append(thd)
 
     for thd in threads:
         thd.start()
 
-    for thd in threads:
-        if thd.is_alive():
-            thd.join()
-
+    time1 = time.time()
+    while True:
+        try:
+            if threading.activeCount() <= 1:
+                print "All Down"
+                break
+            
+            if time.time() - time1 > 1200:
+                print "Morn than 20 mins auto break"
+                break
+        except KeyboardInterrupt as e:
+            print "User killed"
+            break
+    
     while not outqueue.empty():
         a = outqueue.get()
         print "[++++++]" + Fore.GREEN + "[{}]\n        ".format(a[0]) + Fore.YELLOW + "[{}]\n        ".format(a[1]) + Fore.RED + a[2] + Style.RESET_ALL
@@ -351,7 +404,9 @@ if __name__ == '__main__':
     except:
         print Usage
         exit(0)
+    s_time = time.time()
     start_point(args)
+    print "Used {}s In process".format((time.time() - s_time))
 
 
 

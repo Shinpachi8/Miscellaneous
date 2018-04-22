@@ -15,6 +15,7 @@ import time
 import httplib
 import urllib
 import requests
+from requests import  ConnectTimeout
 requests.packages.urllib3.disable_warnings()
 
 
@@ -207,13 +208,14 @@ class THTTPJOB(object):
         self.files = files
         self.filename = filename
         self.filetype = filetype
+        # self.connect_error = False
         self.block_path = block_path
         self_headers = {
             'User-Agent': ('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)'
                 'Chrome/38.0.2125.111 Safari/537.36 IQIYI Cloud Security Scanner tp_cloud_security[at]qiyi.com'),
             'Connection': 'close',
         }
-        self.ConnectionError = False
+        self.ConnectionErrorCount = 0
         self.headers = headers if headers else self_headers
         self.block_static = block_static
         self.allow_redirects = allow_redirects
@@ -233,9 +235,12 @@ class THTTPJOB(object):
             self.response = requests.Response()
             return -1, {}, '', 0
         elif self.url.get_host in BLACK_LIST_HOST:
-            print "found {} in black list host".format(self.url.get_host)
+            # print "found {} in black list host".format(self.url.get_host)
             self.response = requests.Response()
             return -1, {}, '', 0
+        elif self.ConnectionErrorCount >=3 :
+            return -1, {}, '', 0
+
         else:
             start_time = time.time()
             try:
@@ -272,8 +277,9 @@ class THTTPJOB(object):
                             )
                     end_time = time.time()
             except Exception as e:
-                print "[lib.common] [THHTPJON.request] {}".format(repr(e))
+                print "[lib.common] [THTTPJOB.request] {}".format(repr(e))
                 end_time = time.time()
+                self.ConnectionErrorCount += 1
                 return -1, {}, '', 0
             self. time_check = end_time - start_time
             return self.response.status_code, self.response.headers, self.response.text, self.time_check

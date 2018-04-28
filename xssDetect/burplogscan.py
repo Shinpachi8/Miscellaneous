@@ -131,7 +131,7 @@ def getLinks(filename):
                     except:
                         print _
                         break
-                
+
         elif method == 'POST':
             path = tmp[0].split(" ")[1]
             for _ in tmp[1:-1]:
@@ -228,8 +228,8 @@ def start_point(args):
             if threading.activeCount() <= 1:
                 print "All Down"
                 break
-            
-            if time.time() - time1 > 1200:
+
+            if time.time() - time1 > args.limit * 60:
                 print "Morn than 20 mins auto break"
                 break
         except KeyboardInterrupt as e:
@@ -244,7 +244,7 @@ def start_point(args):
         time_result = SQLInjectionTime(url, headers=headers, data=data)
         if time_result:
             outqueue.put(('SQLInjection Time', 'awvs', url))
-    
+
 
 
     for index in dict_links.keys():
@@ -263,7 +263,7 @@ def start_point(args):
     while not outqueue.empty():
         a = outqueue.get()
         print "[++++++]" + Fore.GREEN + "[{}]\n        ".format(a[0]) + Fore.YELLOW + "[{}]\n        ".format(a[1]) + Fore.RED + a[2] + Style.RESET_ALL
-    
+
 
 
 
@@ -392,6 +392,7 @@ def parse_arg():
     parser =  argparse.ArgumentParser()
     parser.add_argument("-t", "--threads", type=int, default=100, help="the threads num, default is 100")
     parser.add_argument("-d", "--delay", type=int, default=0, help="the delay of each request, default is 0")
+    parser.add_argument("--limit", type=int, default=20, help="the default time to execute")
     parser.add_argument("file",  help="the burpsuite log file")
     args = parser.parse_args()
     return args

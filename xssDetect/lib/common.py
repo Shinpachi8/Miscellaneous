@@ -166,7 +166,7 @@ class TURL(object):
 
 
 
-def LogUtil(path='tmp/test.log', name='test'):
+def LogUtil(path='/tmp/test.log', name='test'):
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
 
@@ -352,6 +352,15 @@ def is_https(url, port=None):
     return service
 
 
+def is_json(data):
+    if not data:
+        return False
+    try:
+        json.loads(data)
+        return True
+    except:
+        return False
+
 
 class Pollution(object):
     """
@@ -441,19 +450,19 @@ class MySQLUtils():
                              password=MySQLUtils.password,
                              charset='utf8mb4',
                              db=MySQLUtils.db)
-        
+
     def insert(self, sql):
         with self.conn.cursor() as cursor:
             cursor.execute(sql)
             self.conn.commit()
-    
+
     def fetchone(self, sql):
         data = ''
         with self.conn.cursor() as cursor:
             cursor.execute(sql)
             data = cursor.fetchone()
         return data
-    
+
     def fetchall(self, sql):
         data = []
         with self.conn.cursor() as cursor:

@@ -20,6 +20,8 @@ from Queue import Queue
 from colorama import *
 from classSQL import *
 from lib.common import *
+from classSQLTimeInjection import SQLInjectionTime
+# from classSQL import *
 
 """
 根据网络上的一些脚本，自己改了一下
@@ -34,10 +36,11 @@ v1版本，不保证稳定性，只操作GET型的XSS， payload可以自己添�
 requests.packages.urllib3.disable_warnings()
 
 _random=str(random.randint(300,182222))
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s ^^^: %(message)s')
-logging.getLogger("requests").setLevel(logging.WARNING)
+# logging.basicConfig(level=logging.INFO,
+#                     format='%(asctime)s ^^^: %(message)s')
+# logging.getLogger("requests").setLevel(logging.WARNING)
 lock = threading.Lock()
+# insert_sql = "insert into vuln values "
 # XSS规则
 XSS_Rule = {
     "xss":[
@@ -143,40 +146,12 @@ def getLinks(filename):
                         break
         else:
             continue
-        # for _ in tmp:
-        #     if _.startswith("GET") or _.startswith("POST"):
-        #         # 以防格式不对，多出来一个请求头
-        #         method = _[:4].strip()
-        #         if path == "":
-        #             path = _.split(" ")[1]
-        #         else:
-        #             break
-        #     if _.startswith("Host"):
-        #         #print _.split(":")[1]
-        #         host = _.split(":")[1].strip()
-        #     if _.startswith("User-Agent"):
-        #         headers["User-Agent"] = _.split(":")[1].strip()
-        #     if _.startswith("Referer"):
-        #         headers["Referer"] = "".join(_.split(":")[1:]).strip()
-        #     if _.startswith("Cookie"):
-        #         headers["Cookie"] = _.split(":")[1].strip()
-        #     if _.startswith("Content-Type"):
-        #         headers['Content-Type'] = _.split(':')[1].strip()
-        #     if _.startswith("Accept-Language"):
-        #         headers['Accept-Language'] = _.split(":")[1].strip()
 
-        # 去重，利用域名，目录， 和参数的sort值来判断，如果相同就忽略
-        # 否则就加入到no_repeat里
-        # if path.startswith('http'):
-        #     print repr(tmp)
-        #     print block
-        #     print "====================="
-        # print "host={} & path={}".format(host, path)
         if path.startswith("http://"):
             url = path
         else:
             url = "http://" + host + path
-        print "URL={}".format(url)
+        # print "URL={}".format(url)
         if not checkRepeat(url, method, no_repeat):
             result[index] = {}
             result[index]["url"] = url
@@ -260,10 +235,35 @@ def start_point(args):
         except KeyboardInterrupt as e:
             print "User killed"
             break
+
+    for index in dict_links.keys():
+        item = dict_links[index]
+        url = item['url']
+        headers = item['headers']
+        data = item['data'] if 'data' in item else None
+        time_result = SQLInjectionTime(url, headers=headers, data=data)
+        if time_result:
+            outqueue.put(('SQLInjection Time', 'awvs', url))
     
+
+
+    for index in dict_links.keys():
+        item = dict_links[index]
+        url = item['url']
+        headers = item['headers']
+        data = item['data'] if 'data' in item else None
+        time.sleep(3)
+        aim_error_list = sqli_test(url, headers, data)
+        for i in aim_error_list:
+            print "[+] [{}]:\t".format(i[0]) + Fore.GREEN + "Found SQLi Error-Based Injection=> url:{} =>data:{}".format(i[1], i[2])  + Style.RESET_ALL
+
+
+
+
     while not outqueue.empty():
         a = outqueue.get()
         print "[++++++]" + Fore.GREEN + "[{}]\n        ".format(a[0]) + Fore.YELLOW + "[{}]\n        ".format(a[1]) + Fore.RED + a[2] + Style.RESET_ALL
+    
 
 
 
@@ -341,6 +341,9 @@ class detectXSS(threading.Thread):
                                 # print status_code, headers.get('Content-Type', '')
                                 if regex in content and status_code == 200 and headers.get('Content-Type', '').split(';')[0]  not in  ["application/json", "text/plain", "application/javascript", "text/json", "text/javascript", "application/x-javascript"]:
                                     # print "-------------------------------------"
+                                    # with lock:
+                                    #     a = MySQLUtils()
+
                                     self.outqueue.put(('XSS', payload, hj.response.request.url))
                                     found = True
                                     break

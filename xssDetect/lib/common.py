@@ -14,6 +14,8 @@ import socket
 import time
 import httplib
 import urllib
+import logging
+import pymysql
 import requests
 from requests import  ConnectTimeout
 requests.packages.urllib3.disable_warnings()
@@ -162,6 +164,29 @@ class TURL(object):
     def __repr__(self):
         return '<TURL for %s>' % self.final_url
 
+
+
+def LogUtil(path='tmp/test.log', name='test'):
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+
+    #create formatter
+    formatter = logging.Formatter(fmt='[%(asctime)s] [%(levelname)s] [%(funcName)s] %(message)s ')
+
+    # create console
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(formatter)
+
+    # create file
+    file_handler = logging.FileHandler(path, encoding='utf-8')
+    console_handler.setFormatter(formatter)
+
+    logger.addHandler(console_handler)
+    logger.addHandler(file_handler)
+    return logger
+
+
+logger = LogUtil()
 
 
 class THTTPJOB(object):
@@ -401,6 +426,44 @@ class Url:
     @staticmethod
     def urlencode(qs):
         return urllib.quote(qs)
+
+
+class MySQLUtils():
+    host = '127.0.0.1'
+    port = 3306
+    username = 'root'
+    password = ''
+    db = 'vuln'
+
+    def __init__(self):
+        self.conn = pymysql.connect(host=MySQLUtils.host,
+                             user=MySQLUtils.username,
+                             password=MySQLUtils.password,
+                             charset='utf8mb4',
+                             db=MySQLUtils.db)
+        
+    def insert(self, sql):
+        with self.conn.cursor() as cursor:
+            cursor.execute(sql)
+            self.conn.commit()
+    
+    def fetchone(self, sql):
+        data = ''
+        with self.conn.cursor() as cursor:
+            cursor.execute(sql)
+            data = cursor.fetchone()
+        return data
+    
+    def fetchall(self, sql):
+        data = []
+        with self.conn.cursor() as cursor:
+            cursor.execute(sql)
+            data = cursor.fetchall()
+        return data
+
+    def close(self):
+        self.conn.close()
+
 
 if __name__ == '__main__':
     file = 'img.png'

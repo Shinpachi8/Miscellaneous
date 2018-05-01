@@ -12,10 +12,12 @@ import re
 import json
 import socket
 import time
+import string
 import httplib
 import urllib
 import logging
 import pymysql
+import random
 import requests
 from requests import  ConnectTimeout
 requests.packages.urllib3.disable_warnings()
@@ -245,7 +247,15 @@ class THTTPJOB(object):
         self.block_static = block_static
         self.allow_redirects = allow_redirects
         self.verify = verify
+        self.is_json = is_json
         self.timeout = timeout
+        if self.method == 'GET':
+            self.request_param_dict = self.url.get_dict_query
+        else:
+            if self.is_json:
+                self.request_param_dict = json.loads(self.data)
+            else:
+                self.request_param_dict = dict(urlparse.parse_qsl(self.data))
 
 
     def request(self):
@@ -270,6 +280,7 @@ class THTTPJOB(object):
             start_time = time.time()
             try:
                 if self.method == 'GET':
+                    self.url.get_dict_query = self.request_param_dict
                     self.response = requests.get(
                         self.url.url_string(),
                         headers = self.headers,
@@ -280,6 +291,7 @@ class THTTPJOB(object):
                     end_time = time.time()
                 else:
                     if not self.files:
+                        self.data = self.request_param_dict
                         self.response = requests.post(
                             self.url.url_string(),
                             data = self.data,
@@ -472,6 +484,11 @@ class MySQLUtils():
 
     def close(self):
         self.conn.close()
+
+
+def random_str(length=8):
+    s = string.lowercase + string.uppercase + string.digits
+    return "".join(random.sample(s, length))
 
 
 if __name__ == '__main__':

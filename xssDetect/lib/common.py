@@ -22,6 +22,7 @@ import requests
 from requests import  ConnectTimeout
 requests.packages.urllib3.disable_warnings()
 
+logging.getLogger('requests').setLevel(logging.WARNING)
 
 STATIC_EXT = ["f4v","bmp","bz2","css","doc","eot","flv","gif"]
 STATIC_EXT += ["gz","ico","jpeg","jpg","js","less","mp3", "mp4"]
@@ -490,6 +491,64 @@ def random_str(length=8):
     s = string.lowercase + string.uppercase + string.digits
     return "".join(random.sample(s, length))
 
+
+REDIS_DB = '0'
+REDIS_HOST = '127.0.0.1'
+REDIS_PASSWORD = ''
+SQLI_TIME_QUEUE = 'time:queue'
+
+class RedisUtil(object):
+    def __init__(self, db, host, password='', port=6379):
+        self.db = db
+        self.host = host
+        self.password = password
+        # self.taskqueue = taskqueue
+        self.port = port
+        self.connect()
+    
+    def connect(self):
+        try:
+            self.conn = redis.StrictRedis(
+                host=self.host,
+                port=self.port,
+                db=self.db,
+                password=self.password
+            )
+        except Exception as e:
+            print repr(e)
+            print "RedisUtil Connection Error"
+            self.conn = None
+        # finally:
+            # return conn
+
+
+    @property
+    def is_connected(self):
+        try:
+            if self.conn.ping():
+                return True
+        except:
+            print "RedisUtil Object Not Connencd"
+            return False
+
+
+    def task_push(self, queue, data):
+        self.conn.lpush(queue, (data))
+
+    def task_fetch(self, queue):
+        return self.conn.lpop(queue)
+    
+
+    @property
+    def task_count(self, queue):
+        return self.conn.llen(queue)
+    
+
+    def set_exist(self, setqueue, key):
+        return self.conn.sismember(setqueue, key)
+    
+    def set_push(self, setqueue, key):
+        self.conn.sadd(setqueue, key)
 
 if __name__ == '__main__':
     file = 'img.png'

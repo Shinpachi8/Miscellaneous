@@ -15,6 +15,7 @@ import time
 import string
 import httplib
 import urllib
+import redis
 import logging
 import pymysql
 import random
@@ -39,7 +40,8 @@ BLACK_LIST_HOST += ['services.addons.mozilla.org', 'g-fox.cn', 'addons.firefox.c
 BLACK_LIST_HOST += ['versioncheck-bg.addons.mozilla.org', 'firefox.settings.services.mozilla.com']
 BLACK_LIST_HOST += ['blocklists.settings.services.mozilla.com', 'normandy.cdn.mozilla.net']
 BLACK_LIST_HOST += ['activity-stream-icons.services.mozilla.com', 'ocsp.digicert.com']
-BLACK_LIST_HOST += ['safebrowsing.clients.google.com', 'safebrowsing-cache.google.com']
+BLACK_LIST_HOST += ['safebrowsing.clients.google.com', 'safebrowsing-cache.google.com', 'localhost']
+BLACK_LIST_HOST += ['127.0.0.1']
 
 class TURL(object):
     """docstring for TURL"""
@@ -505,7 +507,7 @@ class RedisUtil(object):
         # self.taskqueue = taskqueue
         self.port = port
         self.connect()
-    
+
     def connect(self):
         try:
             self.conn = redis.StrictRedis(
@@ -537,18 +539,21 @@ class RedisUtil(object):
 
     def task_fetch(self, queue):
         return self.conn.lpop(queue)
-    
+
 
     @property
     def task_count(self, queue):
         return self.conn.llen(queue)
-    
+
 
     def set_exist(self, setqueue, key):
         return self.conn.sismember(setqueue, key)
-    
+
     def set_push(self, setqueue, key):
         self.conn.sadd(setqueue, key)
+
+    #def close(self):
+    #    self.conn.close()
 
 if __name__ == '__main__':
     file = 'img.png'

@@ -239,13 +239,18 @@ def start_point(args):
             if time.time() - time1 > args.limit * 60:
                 print "Morn than 20 mins auto break"
                 break
+            logger.info("now threading.activeCount = {}".format(threading.activeCount()))
+            time.sleep(5 * 60)
         except KeyboardInterrupt as e:
             print "User killed"
             break
 
     for index in dict_links.keys():
         item = dict_links[index]
-        redis_conn.task_push(SQLI_TIME_QUEUE, json.dumps(item))
+        try:
+            redis_conn.task_push(SQLI_TIME_QUEUE, json.dumps(item))
+        except Exception as e:
+            logger.error("redis_push errror for {}".format(repr(e)))
         # url = item['url']
         # headers = item['headers']
         # data = item['data'] if 'data' in item else None
@@ -268,7 +273,7 @@ def start_point(args):
             url = item['url']
             headers = item['headers']
             data = item['data'] if 'data' in item else None
-            time.sleep(3)
+            #time.sleep(3)
             aim_error_list = sqli_test(url, headers, data)
             for i in aim_error_list:
                 print "[+] [{}]:\t".format(i[0]) + Fore.GREEN + "Found SQLi Error-Based Injection=> url:{} =>data:{}".format(i[1], i[2])  + Style.RESET_ALL
@@ -354,6 +359,7 @@ class detectXSS(threading.Thread):
                                 hj.data = urllib.urlencode(payload)
                         #print hj
                         time.sleep(self.delay)
+                        logger.info("[test] [URL={}]".format(hj.url_string()))
                         status_code, headers, content, t = hj.request()
                         if p == 'xss':
                             for regex in XSS_Rule[p]:

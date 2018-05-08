@@ -872,7 +872,7 @@ class SQLInjectionTime(object):
                     # here shoud be return a format result
                     return True
 
-                r = self.testTimingStartPoint(varIndex)
+                r = self.testBoolStartPoint(varIndex)
                 if r:
                     return True
 

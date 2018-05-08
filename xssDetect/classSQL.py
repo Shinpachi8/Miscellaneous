@@ -216,7 +216,8 @@ class classSQL(object):
                 if self.method == 'GET':
                     rsp = requests.get(url, headers=self.headers)
                 else:
-                    rsp = requests.post(self.url, data=url, headers=self.headers, proxies={'http': '127.0.0.1:8080'}, timeout=10, verify=False)
+                    #rsp = requests.post(self.url, data=url, headers=self.headers, proxies={'http': '127.0.0.1:8080'}, timeout=10, verify=False)
+                    rsp = requests.post(self.url, data=url, headers=self.headers,  timeout=10, verify=False)
                 if rsp.status_code != 200:
                     break  # return error
                 else:

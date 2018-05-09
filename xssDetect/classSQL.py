@@ -14,6 +14,7 @@ import copy
 import requests
 import json
 import re
+from lib.common import *
 
 class classSQL(object):
     payload = [
@@ -48,7 +49,7 @@ class classSQL(object):
             for p in payload:
                 for param in values.keys():
                     temp_dict = copy.deepcopy(values)
-                    temp_dict[param] =  temp_dict[param] + p
+                    temp_dict[param] =   p
                     temp_query = urllib.urlencode(temp_dict)
                     self.to_check_list.append(urlparse.urlunparse((_.scheme, _.netloc, _.path, _.params, temp_query, _.fragment)))
         elif self.method == 'POST':
@@ -227,7 +228,8 @@ class classSQL(object):
                     self.aim_error_list.append((self.method, self.url, url))
                     # to confirm the error like awvs
             except Exception as e:
-                print repr(e)
+                # print repr(e)
+                logger.error(repr(e))
         # print self.aim_error_list
 
 
@@ -243,10 +245,10 @@ def sqli_test(url, headers, data=None):
     t = a.aim_error_list
     if a.aim_error_list:
         a.confirm_sqli()
-        if a.aim_error_list:
-            print "10 [found SQLi] {}".format(a.aim_error_list)
-        else:
-            print "5 [found SQLi no Confirm] {}".format(t)
+        # if a.aim_error_list:
+        #     # print "10 [found SQLi] {}".format(a.aim_error_list)
+        # else:
+            # print "5 [found SQLi no Confirm] {}".format(t)
     return a.aim_error_list
 
 

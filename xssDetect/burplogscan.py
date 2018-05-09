@@ -232,12 +232,19 @@ def start_point(args):
     time1 = time.time()
     while True:
         try:
-            if threading.activeCount() <= 1:
-                print "All Down"
+            # if threading.activeCount() <= 1:
+            #     logger.info( "All Down")
+            #     break
+            alive_count = 0
+            for t in threads:
+                if t.is_alive():
+                    alive_count += 1
+            if alive_count == 0:
+                logger.info("all down")
                 break
 
             if time.time() - time1 > args.limit * 60:
-                print "Morn than 20 mins auto break"
+                logger.info("Morn than 20 mins auto break")
                 break
             logger.info("now threading.activeCount = {}".format(threading.activeCount()))
             time.sleep(5 * 60)

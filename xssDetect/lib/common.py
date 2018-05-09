@@ -382,7 +382,7 @@ class Pollution(object):
     this class aim to use the payload
     to the param in requests
     """
-    def __init__(self, query, payloads, pollution_all=False, isjson=False):
+    def __init__(self, query, payloads, pollution_all=False, isjson=False, replace=True):
         """
         :query: the url query part
         :payloads:  List, the payloads to added in params
@@ -391,6 +391,7 @@ class Pollution(object):
         self.payloads = payloads
         self.query = query
         self.isjson = isjson
+        self.replace = replace
         self.pollution_all = pollution_all
         self.polluted_urls = []
 
@@ -406,7 +407,10 @@ class Pollution(object):
         for key in query_dict.keys():
             for payload in self.payloads:
                 tmp_qs = query_dict.copy()
-                tmp_qs[key] = tmp_qs[key] + payload
+                if self.replace:
+                    tmp_qs[key] = payload
+                else:
+                    tmp_qs[key] = tmp_qs[key] + payload
                 self.polluted_urls.append(tmp_qs)
 
     def payload_generate(self):

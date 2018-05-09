@@ -359,7 +359,7 @@ class detectXSS(threading.Thread):
                                 hj.data = urllib.urlencode(payload)
                         #print hj
                         time.sleep(self.delay)
-                        logger.info("[test] [URL={}]".format(hj.url_string()))
+                        #logger.info("[test] [URL={}]".format(hj.url.url_string()))
                         status_code, headers, content, t = hj.request()
                         if p == 'xss':
                             for regex in XSS_Rule[p]:

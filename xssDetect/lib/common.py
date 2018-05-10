@@ -176,7 +176,7 @@ def LogUtil(path='/tmp/test.log', name='test'):
     logger.setLevel(logging.DEBUG)
 
     #create formatter
-    formatter = logging.Formatter(fmt='[%(asctime)s] [%(levelname)s] [%(funcName)s] %(message)s ')
+    formatter = logging.Formatter(fmt=u'[%(asctime)s] [%(levelname)s] [%(funcName)s] %(message)s ')
 
     # create console
     console_handler = logging.StreamHandler()

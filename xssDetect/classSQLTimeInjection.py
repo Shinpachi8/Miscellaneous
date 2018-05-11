@@ -10,6 +10,7 @@ author: jxy
 import sys
 import random
 import json
+import difflib
 import math
 import re
 from lib.common import *
@@ -75,8 +76,10 @@ class SQLInjectionTime(object):
         if self.hj.ConnectionErrorCount > 0:
             return False
         param_value = self.orivalue[self.variations[varIndex]]
+        #logger.info("param_value={}".format(param_value))
         body1 = self.filter_body(html, param_value)
         time1 = time_used
+        self.origBody = body1
 
         # 第二次请求原始值
         status_code, headers, html, time_used = self.hj.request()
@@ -147,8 +150,19 @@ class SQLInjectionTime(object):
         body = re.sub(r'time\s*[:]\s*\d+\.?\d*', '', body)
         # 过滤掉
         # param_value = self.orivalue[self.variations[varIndex]]
-        if len(str(param_value)) > 4:
+        #if len(str(param_value)) > 4:
+        try:
+            body = urllib.unquote(body)
+        except:
+            body = body
+        if True:
             body.replace(param_value, '')
+            body.replace(urllib.quote(param_value), '')
+            #logger.info('before len(body)={}'.format((body)))
+            body.replace(urllib.quote(param_value).replace('%20', '+'), '')
+            body.replace(urllib.quote(param_value).replace('%3D', '='), '')
+            body.replace(urllib.quote(param_value).replace('%3D', '=').replace('%20', '+'), '')
+            #logger.info('after len(body)={}'.format(len(body)))
 
         return body
 
@@ -195,6 +209,8 @@ class SQLInjectionTime(object):
         # 原始响应
         origBody = self.origBody
 
+        # difflib compare the response
+
         # 测试的响应
         testBody = ""
         paramValue = ""
@@ -220,7 +236,7 @@ class SQLInjectionTime(object):
         hasbrackets = True if quoteChar.find(')') > -1  else False
         prefix_payload = ''
         if not hasbrackets:
-            payload1 = likeStr + quoteChar + " AND 2*3*8=6*8 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+            payload1 = likeStr + quoteChar + " AND 2*3*8=6*8 AND " +  '\'' + randStr + '\'' + equalitySign + quoteChar  + randStr  + likeStr
         else:
             prefix_payload = quoteChar[:quoteChar.find(')')]
             payload1 = likeStr + quoteChar + " AND 2*3*8=6*8 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
@@ -232,17 +248,27 @@ class SQLInjectionTime(object):
         self.hj.request_param_dict = paramValue
         status_code, headers, html, time_used = self.hj.request()
         if  self.hj.ConnectionErrorCount >0:
+            logger.info('has error??????')
             return False
 
-        testBody = self.filter_body(html, urllib.urlencode(paramValue))
+        #logger.info('origValue={}'.format(origValue))
+        #logger.info('self.variations={}'.format(self.variations))
+        testBody = self.filter_body(html, (paramValue[self.variations[varIndex]]))
+        logger.info('paramValue[self.variations] = {}'.format(paramValue[self.variations[varIndex]]))
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() < 0.9:
         if testBody != origBody:
+            #logger.info('paramValue')
+            #logger.info('testBody!=origBody')
+            #logger.info('{}'.format(testBody))
+            #logger.info('------------------------------')
+            #logger.info('{}'.format(origBody))
             return False
 
         # add to confirmInjectionHistory
 
         # 测试假值
         if not hasbrackets:
-            payload2 = likeStr + quoteChar + " AND 2*3*8=6*9 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+            payload2 = likeStr + quoteChar + " AND 2*3*8=6*9 AND " + '\'' + randStr + '\'' + equalitySign + quoteChar + randStr  + likeStr
         else:
             payload2 = likeStr + quoteChar + " AND 2*3*8=6*9 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload2= {}".format(payload2))
@@ -255,13 +281,14 @@ class SQLInjectionTime(object):
             return False
 
         testBody = self.filter_body(html, urllib.urlencode(paramValue))
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() > 0.99:
         if testBody == origBody:
             return False
 
         # add to confirmInjectionHistory
         # 再测一个假值
         if not hasbrackets:
-            payload3 = likeStr + quoteChar + " AND 3*3<(2*4) AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+            payload3 = likeStr + quoteChar + " AND 3*3<(2*4) AND " + '\'' + randStr + '\'' + equalitySign + quoteChar + randStr  + likeStr
         else:
             payload3 = likeStr + quoteChar + " AND 3*3<(2*4) AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload3= {}".format(payload3))
@@ -275,6 +302,7 @@ class SQLInjectionTime(object):
 
         testBody = self.filter_body(html, urllib.urlencode(paramValue))
         if testBody == origBody:
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() > 0.99:
             return False
 
         # add to confirmInjectionHistory
@@ -292,6 +320,7 @@ class SQLInjectionTime(object):
             return False
 
         testBody = self.filter_body(html, urllib.urlencode(paramValue))
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() < 0.9:
         if testBody != origBody:
             return False
         # and to conrimInjecitionHistory
@@ -311,6 +340,7 @@ class SQLInjectionTime(object):
             return False
 
         testBody = self.filter_body(html, urllib.urlencode(paramValue))
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() < 0.9:
         if testBody != origBody:
             return False
         # and to conrimInjecitionHistory
@@ -331,6 +361,7 @@ class SQLInjectionTime(object):
 
         testBody = self.filter_body(html, urllib.urlencode(paramValue))
         if testBody == origBody:
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() < 0.9:
             return False
         # and to conrimInjecitionHistory
 
@@ -352,6 +383,8 @@ class SQLInjectionTime(object):
 
         testBody = self.filter_body(html, urllib.urlencode(paramValue))
         if testBody != origBody:
+
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() >  0.99:
             return False
         # add to confirmInjectionHistory
 
@@ -371,6 +404,7 @@ class SQLInjectionTime(object):
 
         testBody = self.filter_body(html, urllib.urlencode(paramValue))
         if testBody == origBody:
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() <  0.9:
             return False
         # and to conrimInjecitionHistory
 
@@ -390,6 +424,7 @@ class SQLInjectionTime(object):
 
         testBody = self.filter_body(html, urllib.urlencode(paramValue))
         if testBody == origBody:
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() <  0.9:
             return False
         # and to conrimInjecitionHistory
 
@@ -409,6 +444,7 @@ class SQLInjectionTime(object):
 
         testBody = self.filter_body(html, urllib.urlencode(paramValue))
         if testBody != origBody:
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() >  0.99:
             return False
 
         # 假值
@@ -427,6 +463,7 @@ class SQLInjectionTime(object):
 
         testBody = self.filter_body(html, urllib.urlencode(paramValue))
         if testBody == origBody:
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() >  0.99:
             return False
         # and to conrimInjecitionHistory
 
@@ -446,6 +483,8 @@ class SQLInjectionTime(object):
 
         testBody = self.filter_body(html, urllib.urlencode(paramValue))
         if testBody != origBody:
+
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() <  0.9:
             return False
 
         # logger.info("test if here")
@@ -934,7 +973,7 @@ class SQLInjectionTime(object):
 
                 #r = self.testTimingStartPoint(varIndex)
                 #if r:
-                #    # here shoud be return a format result
+                    # here shoud be return a format result
                 #    return True
 
                 r = self.testBoolStartPoint(varIndex)
@@ -983,26 +1022,26 @@ def main():
     #url = 'http://10.127.21.237/sqli-labs/Less-23/?id=1'
     #url = 'http://10.127.21.237/sqli-labs/Less-25/?id=1'
     url = 'http://10.127.21.237/sqli-labs/Less-25a/?id=1'
-    url_list = ['http://127.0.0.1/sqli-labs/Less-26/?id=1',]
-    url_list += ['http://127.0.0.1/sqli-labs/Less-1/?id=1',]
-    # url_list += ['http://127.0.0.1/sqli-labs/Less-2/?id=1',]
-    # url_list += ['http://127.0.0.1/sqli-labs/Less-3/?id=1',]
-    #url_list += ['http://127.0.0.1/sqli-labs/Less-26a/?id=1',]
-    #url_list += ['http://127.0.0.1/sqli-labs/Less-27/?id=1',]
-    #url_list += ['http://127.0.0.1/sqli-labs/Less-27a/?id=1',]
-    # url_list += ['http://127.0.0.1/sqli-labs/Less-28/?id=1',]
-    # url_list += ['http://127.0.0.1/sqli-labs/Less-28a/?id=1',]
-    # url_list += ['http://127.0.0.1/sqli-labs/Less-29/?id=1',]
-    # url_list += ['http://127.0.0.1/sqli-labs/Less-30/?id=1',]
-    # url_list += ['http://127.0.0.1/sqli-labs/Less-31/?id=1',]
-    # url_list += ['http://127.0.0.1/sqli-labs/Less-32/?id=1',]
-    # url_list += ['http://127.0.0.1/sqli-labs/Less-33/?id=1',]
-    # url_list += ['http://127.0.0.1/sqli-labs/Less-35/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-36/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-38/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-39/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-40/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-41/?id=1',]
+    url_list = ['http://10.127.21.237/sqli-labs/Less-26/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-1/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-2/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-3/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-26a/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-27/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-27a/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-28/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-28a/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-29/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-30/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-31/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-32/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-33/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-35/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-36/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-38/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-39/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-40/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-41/?id=1',]
     '''
     url_list += ['http://10.127.21.237/sqli-labs/Less-46/?sort=1',]
     url_list += ['http://10.127.21.237/sqli-labs/Less-47/?sort=1',]

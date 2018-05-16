@@ -322,7 +322,7 @@ class THTTPJOB(object):
                 self.ConnectionErrorCount += 1
                 return -1, {}, '', 0
             self.time_check = end_time - start_time
-            return self.response.status_code, self.response.headers, self.response.text, self.time_check
+            return self.response.status_code, self.response.headers, self.response.content, self.time_check
 
     def __str__(self):
         return "[THTTPOBJ] method={} url={} data={}".format(self.method, self.url.url_string(), self.data )

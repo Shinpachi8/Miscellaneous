@@ -11,6 +11,7 @@ import sys
 import random
 import json
 import difflib
+import pymysql
 import math
 import re
 from lib.common import *
@@ -26,7 +27,7 @@ data: 2018/05/14
     分别调用了： testBoolStartPoint、testTimingStartPoint来分别检测bool型与时延注入
         testBooleStartPoint调用了： testInjectionNumber、testInjection、testInjectionWithOR 来检测数字，混合的不稳定响应的情况
         testTimingStartPoint调用了： testTiming 来检测时延注入
-            testTiming 检测返回的响应时间与payload的sleep是否相符， 
+            testTiming 检测返回的响应时间与payload的sleep是否相符，
             testInjectionNumber、testInjection、testInjectionWithOR, 调用 payload来请求， 检测响应中的值是否与原响应值相同， 调用 了filter_body函数
                 filter_body： 过滤掉时间，与payload自身， TODO： 提取出标签的text值，减少因为服务器的callback中随机数的误报？
                                                         TODO： 宽字符注入，如何匹配html中的payload？
@@ -162,7 +163,7 @@ class SQLInjectionTime(object):
         #     # get a tag text
         #     for a_tag in soup.find_all('a'):
         #         clean_body += a_tag.get_text()
-            
+
         #     # get p tag text
         #     for a_tag in soup.find_all('p'):
         #         clean_body += a_tag.get_text()
@@ -182,7 +183,7 @@ class SQLInjectionTime(object):
         #     for h in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
         #         for a_tag in soup.find_all(h):
         #             clean_body += a_tag.get_text()
-            
+
         # except Exception as e:
         #     logger.error("Parse The HTML Error For Rason={}".format(repr(e)))
 
@@ -204,6 +205,14 @@ class SQLInjectionTime(object):
             body = body.replace(urllib.quote(param_value).replace('%20', '+'), '')
             body = body.replace(urllib.quote(param_value).replace('%3D', '='), '')
             body = body.replace(urllib.quote(param_value).replace('%3D', '=').replace('%20', '+'), '')
+            #body = body.replace(param_value, '')
+            body = body.replace(pymysql.escape_string(param_value), '')
+            body = body.replace(pymysql.escape_string(param_value.replace(' ', '+')), '')
+            body = body.replace(pymysql.escape_string(urllib.quote(param_value)), '')
+            #logger.info('before len(body)={}'.format((body)))
+            body = body.replace(pymysql.escape_string(urllib.quote(param_value).replace('%20', '+')), '')
+            body = body.replace(pymysql.escape_string(urllib.quote(param_value).replace('%3D', '=')), '')
+            body = body.replace(pymysql.escape_string(urllib.quote(param_value).replace('%3D', '=').replace('%20', '+')), '')
             #logger.info('after len(body)={}'.format(len(body)))
         else:
             logger.error("param_value = {} & len(param_value) = {}".format(param_value, len(param_value)))
@@ -1300,7 +1309,7 @@ class SQLInjectionTime(object):
             if time_result:
                 logger.info(Fore.RED + "Found Bool Injection At URL={}".format(self.url) + Style.RESET_ALL)
                 return True
-        
+
         for quoteChar in prefix:
             time_result = self.testInjection(varIndex, quoteChar, False)
             if time_result:
@@ -1328,10 +1337,10 @@ class SQLInjectionTime(object):
                     return True
 
 
-                # r = self.testTimingStartPoint(varIndex)
-                # if r:
-                #     #here shoud be return a format result
-                #     return True
+                r = self.testTimingStartPoint(varIndex)
+                if r:
+                    #here shoud be return a format result
+                    return True
 
 
 

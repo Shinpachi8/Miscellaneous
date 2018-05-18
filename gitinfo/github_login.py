@@ -23,8 +23,8 @@ def login():
         "Referer": "https://github.com/",
         "Connection": "Keep-Alive",
     }
-    username = "@163.com"
-    password = "!1"
+    username = "what_ever_a@163.com"
+    password = "whatever!1"
 
     base_url = "https://github.com"
     session = requests.Session()
@@ -89,7 +89,7 @@ def update(response, headers):
 
 if __name__ == '__main__':
     headers = login()
-    # print headers
+    print headers
     #_octo=GH1.1.1985934553.1505834380; logged_in=yes; dotcom_user=viewer2015; user_session=gETz7G7tqReB__HSWOZeFrZwzHo3rego-gM2DArFZX16w3jW; __Host-user_session_same_site=gETz7G7tqReB__HSWOZeFrZwzHo3rego-gM2DArFZX16w3jW; _gh_sess=eyJsYXN0X3dyaXRlIjoxNTA1OTA4NDc2NzQ5LCJzZXNzaW9uX2lkIjoiNjkwNWU1Y2E5NjE2Yjg4ZmRhNjkzYzljNjhjYTIyOTAiLCJsYXN0X3JlYWRfZnJvbV9yZXBsaWNhcyI6MTUwNTk4MjkyMjk4Niwic3B5X3JlcG8iOiJyaW5nMDRoL3BhcGVycyIsInNweV9yZXBvX2F0IjoxNTA1OTIxNzU3LCJjb250ZXh0IjoiLyIsImZsYXNoIjp7ImRpc2NhcmQiOlsiYW5hbHl0aWNzX2xvY2F0aW9uIl0sImZsYXNoZXMiOnsiYW5hbHl0aWNzX2xvY2F0aW9uIjoiL2Rhc2hib2FyZCJ9fX0%3D--afa300ef4905c21803df2afd9e331aa0b19c324c; _ga=GA1.2.1722114177.1505834380; _gat=1; tz=Asia%2FShanghai"
 
     #_ga=GA1.2.1722114177.1505834380; _gat=1; tz=Asia%2FShanghai"

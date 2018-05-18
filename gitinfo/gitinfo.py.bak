@@ -1,0 +1,313 @@
+#!/usr/bin/env python
+# coding=utf-8
+
+import time
+import re
+import MySQLdb
+import logging
+import requests
+import hashlib
+from github_login import *
+from time import sleep
+import random
+from scanwork import *
+from sqlalchemy_gitinfo import *
+
+requests.packages.urllib3.disable_warnings()
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                    datefmt='%m-%d %H:%M',)
+# logging.getLogger().setLevel(logging.DEBUG)
+# requests_log = logging.getLogger("requests.packages.urllib3")
+# requests_log.setLevel(logging.INFO)
+
+
+reg_emails1 = re.compile('[\w!#$%&\'*+/=?^_`{|}~-]+(?:\.[\w!#$%&\'*+/=?^_`{|}~-]+)*'+'@(?:[\w](?:[\w-]*[\w])?\.)'+'[\w](?:[\w-]*[\w])?')
+reg_emails2 = re.compile('[\w!#$%&\'*+/=?^_`{|}~-]+(?:\.[\w!#$%&\'*+/=?^_`{|}~-]+)*'+'@(?:[\w](?:[\w-]*[\w])?\.)'+'(?:[\w](?:[\w-]*[\w])?\.)'+'[\w](?:[\w-]*[\w])?')
+
+
+domains=["tencent.com","baidu.com","sohu.com","discuz.net","rising.com.cn","alibaba.com","alibaba-inc.com","360.cn","maxthon.cn","renren.com","ifeng.com","snda.com","sdo.com","sogou-inc.com","9you.com","duba.net","xunlei.com","ctrip.com","19lou.com","shooter.cn","verycd.com","mop.com","ourgame.com","douban.com","youku.com","wanmei.com","39.net","uc.cn","pps.tv","taobao.com","blogbus.com","shopex.cn","gtja.com","alipay.com","phpwind.net","ftchinese.com","lenovo.com","net.cn","17173.com","qiyi.com","focus.cn","chinaren.com","tudou.com","ztgame.com","mtime.com","tompda.com","51.com","shandagames.com","4399.com","jiepang.com","it168.com","huawei.com","ku6.com","dxy.cn","xiami.com","xywy.com","qunar.com","7daysinn.cn","phpcms.cn","pipi.cn","58.com","ganji.com","chinaunix.net","songtaste.com","gaopeng.com","duowan.com","dnspod.cn","tuchong.com","yeepay.com","the9.com","ylmf.com","cnzz.com","pindao.com","jd.com","dzcom","91wan.com","guokr.com","newegg.com.cn","lashou.com","55tuan.com","zhihu.com","cnbeta.com","pptv.com","9158.com","ubox.cn","hudong.com","sangfor.com.cn","vancl.com","unnoo.com","sucop.com","bianfeng.com","6.cn","elong.com","10jqka.com.cn","anquanbao.com","taomee.com","yxlink.com","coremail.cn","crucco.com","zhenai.com","dangdang.com","aipai.com","xiaomi.com","joy.cn","letao.com","jingwei.com","51job.com","changyou.com","hada.me","sf-express.com","kingsoft.com","leyou.com","jiayuan.com","soufun.com","youtx.com","lefeng.com","yoybuy.com","eset.com.cn","7k7k.com","aqgj.cn","guosen.com.cn","ly.com","tom.com","cntv.cn","veryeast.cn","12306.cn","goodbaby.com","cenwor.com","tttuangou.net","jiangmin.com","yonyou.com","ccw.com.cn","vip.com","ftsafe.com.cn","csdn.net","topsec.com.cn","west263.com","wanda.cn","letv.com","dns.com.cn","diandian.com","kugou.com","us.syyx.com","xiu.com","baihe.com","kingdee.com","iboxpay.com","nokia.com","playcool.com","duote.com","wdlinux.cn","yupoo.com","263.net","coo8.com","wooyun.org","36kr.com","dahe.cn","cmseasy.cn","tianya.cn","suning.com","zol.com.cn","easybuy.com.cn","gome.com.cn","jiajia.me","5173.com","baobeihuijia.com","thinksky.hk","neusoft.com","gamemayi.com","51web.com","dajie.com","qianpin.com","2345.com","51cto.com","guang.com","lvmama.com","happigo.com","m18.com","gooann.com","lakala.com","knownsec.com","99.com","xd.com","jiapin.com","docin.com","ip66.com","tnyoo.com","cwan.com","dianping.com","sclub.com.tw","iciba.com","xoyo.com","ijinshan.com","xueqiu.com","chinacache.com","hx168.com.cn","17sup.com","mangocity.com","shop.edu.cn","tiexue.net","cpic.com.cn","venustech.com.cn","huatu.com","178.com","yihaodian.com","house365.com","51greenorange.com","360shop.com.cn","weibo.com","touzhu.cn","qiaogu.com","zblogcn.com","firefox.com.cn","xcar.com.cn","goldmail.cn","trip8080.com","baijob.com","zhubajie.com","acfun.tv","qfpay.com","xianguo.com","tp-link.com.cn","zhenpin.com","hiall.com.cn","800app.com","yuantiku.com","redbaby.com.cn","baixing.com","2cto.com","linktrust.com.cn","womai.com","tuciabbay.com","1ting.com","akcms.com","kingosoft.com","meitu.com","meizu.com","taocms.org","53kf.com","oschina.net","thinksns.com","hxage.com","moliyo.com","3158.cn","oppo.com","tuniu.com","3158.com","meituan.com","eversec.com.cn","kuaibo.com","cins.cn","papa.me","591wed.com","cheshi.com","shopxx.net","m1905.com","argos.cn","tgbus.com","mafengwo.cn","cnblogs.comcmt","fun.tv","hupu.com","sudu.cn","feng.com","nandu.com","changba.com","jinwankansha.com","51bi.com","chinaz.com","umeng.com","mogujie.com","xinghua.org.cn","coolping.com","chinanetcenter.com","iyiyun.com","yunyun.com","eguan.cn","winenice.com","opera.com","zhimei.com","tongbu.com","haodf.com","3322.org","dodonew.com","lesuke.com","iiyi.com","sudytech.com","8684.cn","bjsako.com","newsmyshop.com","tiancity.com","looyu.com","jollymm.com","dopool.com","fantong.com","zhuna.cn","secoo.com","gamtee.com","huanqiu.com","kanglu.com","wssys.net","xinnet.com","ebrun.com","duoshuo.com","bilibili.tv","gfan.com","pconline.com.cn","50cms.com","trs.com.cn","xdf.cn","htinns.com","wacai.com","mplife.com","donews.com","qyer.com","9978.cn","admin5.com","etuan.com","liepin.com","998.com","eastmoney.com","hc360.com","welove520.com","autonavi.com","lusen.com","ecisp.cn","lightinthebox.com","desdev.cn","sgcc.com.cn","mydrivers.com","zte.com.cn","56.com","mbaobao.com","airchina.com.cn","spacebuilder.cn","eyou.net","didatuan.com","jstv.com","v2ex.com","yesky.com","nsfocus.com","qiushibaike.com","anjuke.com","hexun.com","creditcard.cmbc.com.cn","founderbn.com","youmi.cn","ceair.com","sdcms.cn","gddddo.cn","now.cn","safedog.cn","hiwifi.com","jeecms.com","gewara.com","rong360.com","renrendai.com","zzidc.com","jiuxian.com","yinyuetai.com","tcl.com","sootoo.com","ppdai.com","locojoy.com","5sing.com","candou.com","appchina.com","300.cn","phpstat.net","52pk.com","shendu.com","ccidnet.com","diditaxi.com.cn","jiankongbao.com","fc.tcl.com","aicai.com","smartisan.cn","sto.cn","duokan.com","cndns.com","haier.net","haier.com","ehaier.com","jushanghui.com","hairongyi.com","ooopic.com","autohome.com.cn","che168.com","pp.cc","super8.com.cn","17k.com","59.cn","zhaopin.com","amazon.cn","yundaex.com","51zhangdan.com","leiphone.com","ikuai8.com","aoshitang.com","codoon.com","moko.cc","nuomi.com","liba.com","tuan800.com","bizcn.com","destoon.com","22.cn","baofeng.com","kyfw.12306.cn","zgsj.com","chuangxin.com","diyou.cn","zbird.com","e-chinalife.com","kuaiyong.com","v5shop.com.cn","zuzuche.com","chinapost.com.cn","pook.com","4.cn","crsky.com","wandoujia.com","oupeng.com","h3c.com","pcauto.com.cn","pclady.com.cn","pcbaby.com.cn","pcgames.com.cn","pchouse.com.cn","baomihua.com","dolphin.com","pcpop.com","itpub.net","zhe800.com","caijing.com.cn","hikvision.com","bitauto.com","fengyunzhibo.com","app111.com","hanweb.com","id5.cn","jumei.com","onefoundation.cn","weipai.cn","zuche.com","sfbest.com","dbappsecurity.com.cn","jobui.com","imobile.com.cn","shenzhenair.com","douguo.com","v1.cn","diyicai.com","kuwo.cn","csair.com","mama.cn","115.com","foxitsoftware.cn","zto.cn","cofco.com","mycolorway.com","breadtrip.com","qiniu.com","mingdao.com","zoomla.cn","ename.cn","feixin.10086.cn","icafe8.com","anymacro.com","zhujiwu.com","ele.me","phpyun.com","thinkphp.cn","500wan.com","paidai.com","fumu.com","homeinns.com","chinabank.com.cn","meishichina.com","hinews.cn","jj.cn","immomo.com","cnaaa.com","duobei.com","gw.com.cn","tieyou.com","qibosoft.com","zqgame.com","meilishuo.com","sitestar.cn","qmango.com","sohu-inc.com","onlylady.com","edong.com","99bill.com","12321.cn","kongzhong.com","ucloud.cn","kuaidadi.com","cyzone.cn","ujipin.com","damai.cn","jinjianginns.com","stockstar.com","zdnet.com.cn","netentsec.com","spb.gov.cn","cnzxsoft.com","chinaamc.com","china.com","jb51.net","cmstop.com","lecai.com","yongche.com","pingan.com","51credit.com","cnfol.com","china-sss.com","btcchina.com","okcoin.com","kaspersky.com.cn","yinxiang.com","nipic.com","antiy.com","juhe.cn","wumii.org","uzai.com","anzhi.com","yto.net.cn","58pic.com","t3.com.cn","aibang.com","yaolan.com","zhongchou.com","ubuntu.org.cn","smartisan.com","hb-n-tax.gov.cn","chanjet.com","bytedance.com","1hai.cn","tebon.com.cn","tdxinfo.com","tujia.com","cmbchina.com","dbw.cn","pingan.com","legendsec.com","woniu.com","mcafee.com","vasee.com","juesheng.com","wasu.cn","wowsai.com","chinadaily.com.cn","51talk.com","mbachina.com","ifanr.com","boc.cn","jiathis.com","gongchang.com","nbcb.com.cn","91160.com","imooc.com","gf.com.cn","bangcle.com","zhuqu.com","cnmo.com","17ugo.com","zcool.com.cn","jiemian.com","creditease.cn","ebay.com","12308.com","7po.com","itenable.com.cn","tesla.cn","szse.cn","enorth.com.cn","newone.com.cn","haodai.com","cdb.com.cn","sino-life.com","coocaa.com","cgbchina.com.cn","17500.cn","chsi.com.cn","yz.chsi.com.cn","cnpc.com.cn","petrochina.com.cn","welomo.com","zank.mobi","kf5.com","ehaier.com","piccnet.com.cn","88.com.cn","shenhuagroup.com.cn","unionpayintl.com","haigou.unionpay.com","youzu.com","yxdown.com","56.com","gopay.com.cn","wiwide.com","fesco.com.cn","samsung.com","sfn.cn","chinaums.com","htsc.com.cn","ciwong.com","hp.com","itouzi.com","cs.ecitic.com","to8to.com","camera360.com","cfsc.com.cn","ebscn.com","24cp.com","chinahr.com","sinopec.com","mcdonalds.com.cn","chexun.com","jinri.cn","psbc.com","swsresearch.com","picchealth.com","cnooc.com.cn","yohobuy.com","h3c.com","icbccs.com.cn","aol.com","umetrip.com","sunits.com","youyuan.com","cdrcb.com","comba.com.cn","adtsec.com","nffund.com","zhaoshang.net","cytobacco.com","weizhonggou.com","addnewer.com","scti.cn","feiniu.com","chinapnr.com","heetian.com","yungouos.com","zjedu.org","ccic-net.com.cn","shengpay.com","yirendai.com","essence.com.cn","1218.com.cn","228.com.cn","anbanggroup.com","m6go.com","xiangshe.com","vvipone.com","51jingying.com","cmbc.com.cn","51idc.com","autono1.com","jsbchina.cn","dfzq.com.cn","ssscc.com.cn","chaoxing.com","yingjiesheng.com","thfund.com.cn","duxiu.com","myfund.com","x.com.cn","cits.cn","lufax.com","hongkongairlines.com","touna.cn","hhedai.com","jinlianchu.com","tsinghua.edu.cn","qufenqi.com","tv.tcl.com","pinganfang.com","boqii.com","plu.cn","flnet.com","beibei.com","mizhe.com","vivo.com.cn","ahtv.cn","daling.com","cankaoxiaoxi.com","s.cn","lingying.com","voc.com.cn","bankofshanghai.com","wukonglicai.com","zszq.com","fanhuan.com","zhiwang.yixin.com","91jinrong.com","cec.com.cn","jxlife.com.cn","csrc.gov.cn","dianrong.com","leyou.com.cn","benlai.com","cdce.cn","fxiaoke.com","metao.com","minmetals.com.cn","jzjt.com","sinosig.com","umpay.com","sgcc.com.cn","leju.com","fuzegame.tv","fuzegame.com","lonlife.cn","zbj.com","didichuxing.com","emao.com","cang.com","qianxs.com","meican.com","westsecu.com","feidee.com","easou.com","easou-inc.com","csvw.com","cjn.cn","pku.edu.cn","longzhu.com","jdpay.com","tuhu.cn","yahui.cc", "zufangit.cn", "gionee.com"]
+
+user_agents = [
+    # 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/9.0.3 Safari/7046A194A',
+    'Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16',
+    'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/50.1',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36',
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Ubuntu/11.10 Chromium/18.0.1025.142 Chrome/18.0.1025.142 Safari/535.19',
+]
+
+headers={
+    'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:56.0) Gecko/20100101 Firefox/56.0',
+    "Accept-Language" : "zh-CN,zh;q=0.8,zh-TW;q=0.3",
+    "Accept" : "text/html,",
+    "Connection" : "close",
+    "Cookie" : "_octo=GH1.1.1985934553.1505834380; logged_in=yes; dotcom_user=viewer2015; user_session=gETz7G7tqReB__HSWOZeFrZwzHo3rego-gM2DArFZX16w3jW; __Host-user_session_same_site=gETz7G7tqReB__HSWOZeFrZwzHo3rego-gM2DArFZX16w3jW; _gh_sess=eyJsYXN0X3dyaXRlIjoxNTA1OTA4NDc2NzQ5LCJzZXNzaW9uX2lkIjoiNjkwNWU1Y2E5NjE2Yjg4ZmRhNjkzYzljNjhjYTIyOTAiLCJsYXN0X3JlYWRfZnJvbV9yZXBsaWNhcyI6MTUwNTk4MjkyMjk4Niwic3B5X3JlcG8iOiJyaW5nMDRoL3BhcGVycyIsInNweV9yZXBvX2F0IjoxNTA1OTIxNzU3LCJjb250ZXh0IjoiLyIsImZsYXNoIjp7ImRpc2NhcmQiOlsiYW5hbHl0aWNzX2xvY2F0aW9uIl0sImZsYXNoZXMiOnsiYW5hbHl0aWNzX2xvY2F0aW9uIjoiL2Rhc2hib2FyZCJ9fX0%3D--afa300ef4905c21803df2afd9e331aa0b19c324c; _ga=GA1.2.1722114177.1505834380; _gat=1; tz=Asia%2FShanghai",
+    "Referer" : "https://github.com/",
+    "Upgrade-Insecure-Requests" : "1",
+    "x-requested-with" : "XMLHttpRequest",
+    "Content-Type" : "application/x-www-form-urlencoded; charset=UTF-8",
+    "X-PJAX" : "true",
+    "X-PJAX-Container" : "#js-pjax-container",
+    }
+
+raw_headers = {
+    "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:56.0) Gecko/20100101 Firefox/56.0",
+    "Accept" : "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language" : "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3",
+    "Accept-Encoding" : "gzip, deflate, br",
+    "DNT" : "1",
+    "Connection" : "close",
+    "Upgrade-Insecure-Requests" : "1",
+}
+
+error_times = 0
+proxy_list = []
+# Cookie = "_octo=GH1.1.418494287.1505394458; _gat=1; logged_in=yes; dotcom_user=Wh12a; user_session=evY17aBBDgBaC7dx-3aCLR290HPIByspMdYIiv2X1Wli31ez; __Host-user_session_same_site=evY17aBBDgBaC7dx-3aCLR290HPIByspMdYIiv2X1Wli31ez; _gh_sess=eyJsYXN0X3dyaXRlIjoxNTA2NDE2NDU2NzY0LCJmbGFzaCI6eyJkaXNjYXJkIjpbImFuYWx5dGljc19kaW1lbnNpb24iLCJhbmFseXRpY3NfbG9jYXRpb24iXSwiZmxhc2hlcyI6eyJhbmFseXRpY3NfZGltZW5zaW9uIjp7Im5hbWUiOiJkaW1lbnNpb241IiwidmFsdWUiOiJMb2dnZWQgSW4ifSwiYW5hbHl0aWNzX2xvY2F0aW9uIjoiL2Rhc2hib2FyZCJ9fSwic2Vzc2lvbl9pZCI6ImNkYjZhMmIzMjAxZWY1ZWYxZDkyM2E5N2ZiMDUyNTY5IiwiY29udGV4dCI6Ii8iLCJsYXN0X3JlYWRfZnJvbV9yZXBsaWNhcyI6MTUwNjQxNjQ1NzI4NH0%3D--924ce26c487c4f1ab98d709468972b14173015d7; _ga=GA1.2.1183873523.1505394458; tz=Asia%2FShanghai"
+
+# headers["Cookie"] = Cookie
+def update_cookie(response):
+    s = response.headers["Set-Cookie"]
+    # print s
+    gh_sess =  [x for x in list(set(s.split(","))) if x.find("_gh_sess") > 0]
+    
+    if not gh_sess:
+        print gh_sess
+        return False
+    else:
+        gh_sess = gh_sess[0]
+        origin_cookie = headers["Cookie"]
+        origin_cookie = origin_cookie.split(";")
+        updated_cookie = ""
+        for i in origin_cookie:
+            if i.find("_gh_sess") > 0:
+                updated_cookie += gh_sess
+            else:
+                updated_cookie += i
+            updated_cookie += ";"
+
+        headers["Cookie"] = updated_cookie
+        return True
+
+
+def getHtmlSummary(url):
+    # logging.info("headers:\t" + str(headers))
+
+    if url.find("raw.githubusercontent.com") > 0:
+        tmp_headers = raw_headers
+    else:
+        tmp_headers = headers
+
+    tmp_headers["User-Agent"] = user_agents[random.randint(0, 3)]
+    try:
+        pr = random_proxy()
+        proxy = {pr[0].lower() : pr[0]+ "://" + pr[1] }
+        page = requests.get(url, headers=tmp_headers, verify=False, timeout=20, proxies=proxy)
+    except Exception as e:
+        page = requests.get(url, headers=tmp_headers, verify=False, timeout=20)
+    #logging.info("request.headers.ua: {}".format(headers['User-Agent']))
+    #logging.info("request.headers.cookie: {}".format(headers['Cookie']))
+    # print page.headers
+    if "Set-Cookie" in page.headers:
+        if update_cookie(page):
+            logging.info("update cookie success")
+        else:
+            logging.info("failed with update cookie")
+    content = page.text
+    return content
+
+
+
+def getHtmlurl(html):
+    reg = r'href="(.*?)" title'
+    urlre = re.compile(reg)
+    urllist = re.findall(urlre, html)
+    return urllist
+
+
+
+def load_proxy():
+    global proxy_list
+    with open("valid_proxy.txt", "r") as f:
+        for i in f:
+            if i.startswith("http"):
+                i = i.strip()
+                protocal, proxy = i.split("://")[0], i.split("://")[1]
+                proxy_list.append((protocal, proxy))
+    proxy_list = list(set(proxy_list))
+
+
+def random_proxy():
+    return proxy_list[random.randint(0, len(proxy_list) - 1)]
+
+
+def get_md5(url):
+    return hashlib.md5(url).hexdigest()
+
+
+def getTime():
+    return time.strftime("%Y-%m-%d", time.localtime())
+
+
+# def insert_db(cursor, data):
+#     # data = [(hash, url, email, time, checked)]
+#     insert = "insert into githubinfo (hashvalue, url, email, time, checked) values ('{hashvalue}', '{url}', '{email}', '{time}', {checked})"
+#     for d in data:
+#         try:
+#             insert_sql = insert.format(hashvalue=d[0], url=d[1], email=d[2], time=d[3], checked=d[4])
+#             logging.info(insert_sql)
+#             cursor.execute(insert_sql)
+#             # cursor.commit()
+#         except Exception as e:
+#             logging.error("[insert_db] " + repr(e))
+#             raise e
+#             # cursor.rollback()
+
+# def fetch_db(cursor, hashs):
+#     select = "select * from githubinfo where hashvalue = '{}'"
+#     try:
+#         sql = select.format(hashs)
+#         logging.info(sql)
+#         cursor.execute(sql)
+#         result = cursor.fetchone()
+#         if result:
+#             return True
+#         else:
+#             return False
+#     except Exception as e:
+#         logging.error("[fetch_db] " + repr(e))
+#         return False
+
+#后期改成三组，分别为python, php, text 语言的.
+def gitinfo_scan():
+
+    Cookie = login()
+    if Cookie is None:
+        return
+
+    # global headers
+    headers["Cookie"] = Cookie
+
+    conn = MySQLdb.connect(host="127.0.0.1", port=3306, user="root", passwd="root", db="githubscan")
+    cursor = conn.cursor()
+
+
+    htmlSummaryList = [
+       "https://github.com/search?o=desc&p={}&q=smtp+pass+mail&l=Java&s=indexed&type=Code&utf8=%E2%9C%93&_pjax=%23js-pjax-container",
+       "https://github.com/search?o=desc&p={}&q=smtp+pass+mail&l=Python&s=indexed&type=Code&utf8=%E2%9C%93&_pjax=%23js-pjax-container",
+       "https://github.com/search?o=desc&p={}&q=smtp+pass+mail&l=PHP&s=indexed&type=Code&utf8=%E2%9C%93&_pjax=%23js-pjax-container",
+       "https://github.com/search?o=desc&p={}&q=smtp+pass+mail&l=INI&s=indexed&type=Code&utf8=%E2%9C%93&_pjax=%23js-pjax-container",
+        ]
+
+    # qq_163_mails = set()
+    for html in htmlSummaryList:
+        # print "[+] [fetching]\t" + html.format("0")
+
+        x = range(1,100)
+        random.shuffle(x)
+        for i in x:
+            logging.info("[fetching] " + html.format(i))
+            #global headers
+            headers["Referer"] = html.format(i)
+            # logging.info("request.headers = {}".format(headers))
+            try :
+                htmlSummary = getHtmlSummary(html.format(i))
+                urllist = getHtmlurl(htmlSummary)
+            except Exception as e:
+                print str(e)
+                continue
+
+            # logging.info("urllist: {}".format(urllist))
+            # if len(urllist) < 10:
+            #     Cookie = login()
+            #     if Cookie is None:
+            #         return
+            #     # global headers
+            #     headers["Cookie"] = Cookie
+            #     global error_times
+
+            #     error_times += 1
+            #     if error_times == 5:
+            #         return
+            #     continue
+
+            for url in urllist[2:12]:
+                try:
+                    if 'blob' in url:
+                        url = url.split('blob/')[0] + url.split('blob/')[1]
+                    else:
+                        continue
+                    print "Parseing https://raw.githubusercontent.com" + url
+                    url = "https://raw.githubusercontent.com" + url
+                    htmlDetail = getHtmlSummary(url)
+                    mail1 = reg_emails1.findall(htmlDetail)
+                    mail2 = reg_emails2.findall(htmlDetail)
+
+                    mail = mail1 + mail2
+                    mail = list(set([m for m in mail if m.split("@")[-1] in domains]))
+                    if mail:
+                        data = []
+                        logging.info("date: {}  mail:{}".format(getTime(), mail))
+                        hashs = get_md5(url)
+                        if fetch_db(cursor, hashs):
+                            return
+                        time = getTime()
+                        checked = 0
+                        email = ",".join(mail)
+                        email = email.replace("'", "").replace('"', "")
+                        logging.info("Email:\t" + email)
+
+                        data.append((hashs, url, email, time, checked))
+                        try:
+                            insert_db(cursor, data)
+                            conn.commit()
+                        except Exception as e:
+                            logging.error("[main] Error insert {} For {}".format(data, repr(e)))
+                            conn.rollback()
+                    sleep(random.randint(1,4))
+                except Exception as e:
+                    logging.error("[main]" + repr(e))
+
+    conn.close()
+
+
+def test():
+    session = login()
+    if session is None:
+        return
+
+    conn = MySQLdb.connect(host="127.0.0.1", port=3307, user="root", passwd="root", db="githubscan")
+    cursor = conn.cursor()
+    # url = "/SasaHao/test/d5a5e0fc926cb733868cc61cb25b7d2393083013/ad_show_test/shell/.svn/text-base/sendMail.py.svn-base"
+    url = "https://raw.githubusercontent.com/SasaHao/test/d5a5e0fc926cb733868cc61cb25b7d2393083013/ad_show_test/shell/.svn/text-base/sendMail.py.svn-base"
+    htmlDetail = getHtmlSummary(session, url)
+    mail1 = reg_emails1.findall(htmlDetail)
+    mail2 = reg_emails2.findall(htmlDetail)
+
+    mail = mail1 + mail2
+    mail = list(set([m for m in mail if m.split("@")[-1] in domains]))
+    if mail:
+        data = []
+        logging.info("date: {}  mail:{}".format(getTime(), mail))
+        hashs = get_md5(url)
+        if fetch_db(cursor, hashs):
+            return
+        time = getTime()
+        checked = 0
+        email = ",".join(mail)
+        email = email.replace("'", "").replace('"', "")
+        logging.info("Email:\t" + email)
+
+        data.append((hashs, url, email, time, checked))
+        try:
+            insert_db(cursor, data)
+            conn.commit()
+        except Exception as e:
+            logging.error("[main] Error insert {} For {}".format(data, repr(e)))
+            conn.rollback()
+    cursor.close()
+
+if __name__ == '__main__':
+    load_proxy()
+    gitinfo_scan()
+
+

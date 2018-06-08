@@ -39,7 +39,7 @@ requests.packages.urllib3.disable_warnings()
 _random=str(random.randint(300,182222))
 # logging.basicConfig(level=logging.INFO,
 #                     format='%(asctime)s ^^^: %(message)s')
-# logging.getLogger("requests").setLevel(logging.WARNING)
+logging.getLogger("requests").setLevel(logging.WARNING)
 lock = threading.Lock()
 # insert_sql = "insert into vuln values "
 # XSS规则
@@ -233,9 +233,7 @@ def start_point(args):
     time1 = time.time()
     while True:
         try:
-            # if threading.activeCount() <= 1:
-            #     logger.info( "All Down")
-            #     break
+            '''
             alive_count = 0
             for t in threads:
                 if t.is_alive():
@@ -243,12 +241,15 @@ def start_point(args):
             if alive_count == 0:
                 logger.info("all down")
                 break
+            '''
+            if threading.active_count() <= 1:
+                break
 
             if time.time() - time1 > args.limit * 60:
                 logger.info("Morn than 20 mins auto break")
                 break
             logger.info("now threading.activeCount = {}".format(threading.activeCount()))
-            time.sleep(5 * 60)
+            time.sleep(60)
         except KeyboardInterrupt as e:
             print "User killed"
             break
@@ -284,7 +285,8 @@ def start_point(args):
             #time.sleep(3)
             aim_error_list = sqli_test(url, headers, data)
             for i in aim_error_list:
-                print "[+] [{}]:\t".format(i[0]) + Fore.GREEN + "Found SQLi Error-Based Injection=> url:{} =>data:{}".format(i[1], i[2])  + Style.RESET_ALL
+                msg =  "[+] [{}]:\t".format(i[0]) + Fore.GREEN + "Found SQLi Error-Based Injection=> url:{} =>data:{}".format(i[1], i[2])  + Style.RESET_ALL
+                outqueue.put((i[0], i[1], i[2]))
         except KeyboardInterrupt:
             break
         except Exception as e:

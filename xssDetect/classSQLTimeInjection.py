@@ -1387,8 +1387,8 @@ def main():
     #url = 'http://10.127.21.237/sqli-labs/Less-25/?id=1'
     url = 'http://10.127.21.237/sqli-labs/Less-25a/?id=1'
     url_list = ['http://10.127.21.237/sqli-labs/Less-26/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-1/?id=1',]
-    # url_list += ['http://10.127.21.237/sqli-labs/Less-2/?id=1',]
+    url_list += ['http://qc.bi.game.pps.tv/index.php?r=consoleGame/showReport/rank?start_date=2018-05-20&end_date=2018-05-23&game_id=3654',]
+    #url_list += ['http://s13.iqiyi.dm.chuangquannet.cn/api/game_step.php?playerid=&step=100&name=&uid=1240967466',]
     # url_list += ['http://10.127.21.237/sqli-labs/Less-3/?id=1',]
     # url_list += ['http://10.127.21.237/sqli-labs/Less-26a/?id=1',]
     # url_list += ['http://10.127.21.237/sqli-labs/Less-27/?id=1',]
@@ -1401,7 +1401,7 @@ def main():
     # url_list += ['http://10.127.21.237/sqli-labs/Less-32/?id=1',]
     # url_list += ['http://10.127.21.237/sqli-labs/Less-33/?id=1',]
     # url_list += ['http://10.127.21.237/sqli-labs/Less-35/?id=1',]
-    url_list += ['http://10.127.21.237/sqli-labs/Less-36/?id=1',]
+    #url_list += ['http://10.127.21.237/sqli-labs/Less-36/?id=1',]
     # url_list += ['http://10.127.21.237/sqli-labs/Less-38/?id=1',]
     # url_list += ['http://10.127.21.237/sqli-labs/Less-39/?id=1',]
     # url_list += ['http://10.127.21.237/sqli-labs/Less-40/?id=1',]

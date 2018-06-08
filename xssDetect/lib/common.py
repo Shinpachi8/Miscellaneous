@@ -171,9 +171,10 @@ class TURL(object):
 
 
 
-def LogUtil(path='/tmp/test.log', name='test'):
+def LogUtil(path='/tmp/test-xssdetect.log', name='test'):
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
+    logging.getLogger('requests').setLevel(logging.WARNING)
 
     #create formatter
     formatter = logging.Formatter(fmt=u'[%(asctime)s] [%(levelname)s] [%(funcName)s] %(message)s ')

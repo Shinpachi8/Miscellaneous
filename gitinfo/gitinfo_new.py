@@ -120,24 +120,6 @@ def pickemail(url):
         sqlal.close()
 
 
-def earlyer(html, latest):
-    soup = bs(html, 'html.parser')
-    alldatetime = soup.find_all('relative-time')
-    if alldatetime:
-        now = alldatetime[0]['datetime']
-    else:
-        return (True, latest)
-
-    new = ' '.join(now.rstrip('Z').split('T'))
-    new = datetime.datetime.strptime(new, '%Y-%m-%d %H:%M:%S')
-
-    old = ' '.join(latest.rstrip('Z').split('T'))
-    old = datetime.datetime.strptime(old, '%Y-%m-%d %H:%M:%S')
-    print "latest:={} and now={} and new < old={}".format(latest, now, new < old)
-
-    return (new < old, now)
-
-
 
 
 #后期改成三组，分别为python, php, text 语言的.
@@ -147,13 +129,7 @@ def gitinfo_scan():
     Cookie = login()
     if Cookie is None:
         return
-    # global headers
-    with open('latest.json', 'r') as f:
-        latest = json.load(f)
 
-    new_latest = ['', '', '', '']
-    # already_early_flag = False
-    already_update_time = [False, False, False, False]
     headers["Cookie"] = Cookie
     htmlSummaryList = [
        "https://github.com/search?o=desc&p={}&q=smtp+pass+mail&l=Java&s=indexed&type=Code&utf8=%E2%9C%93&_pjax=%23js-pjax-container",
@@ -167,25 +143,14 @@ def gitinfo_scan():
         count_add_queue = 0
         x = range(1,80)
         # random.shuffle(x)
-        already_early_flag = False
         for i in x:
-            if already_early_flag is True:
-                continue
             logging.info("[fetching] " + html.format(i))
             #global headers
             headers["Referer"] = html.format(i)
             # logging.info("request.headers = {}".format(headers))
             try :
                 htmlSummary = getHtmlSummary(html.format(i))
-                (early, now) =  earlyer(htmlSummary, latest[index])
-                if early is True:
-                    logging.info("already found the latest file so for")
-                    # print ("already found the latest file so for, now={}".format(now))
-                    already_early_flag = True
-                if not already_update_time[index]:
-                    new_latest[index] = now
-                    already_update_time[index] = True
-                    continue
+
                 if "You have triggered an abuse detection mechanism." in htmlSummary and "Please wait a few minutes before you try again" in htmlSummary:
                     logging.info("your ip has been baned by github")
                     time.sleep(60*3)
@@ -199,7 +164,7 @@ def gitinfo_scan():
                     if 'blob' in url:
                         url = url.split('blob/')[0] + url.split('blob/')[1]
                     else:
-                        print "blob not in: {}".format(url)
+                        # print "blob not in: {}".format(url)
                         continue
                     url = "https://raw.githubusercontent.com" + url
                     # print "[+] Parsing Url:\t" + url
@@ -211,10 +176,6 @@ def gitinfo_scan():
             # print time.ctime() + "\tcount_add_queue:\t{}".format(count_add_queue)
             time.sleep(random.randint(1, 5))
         print "Add {} item in url: [{}]".format(count_add_queue, html.format(1))
-
-
-    with open('latest.json', 'w') as f:
-        json.dump(new_latest, f)
 
     thread_pool.start_work()
     thread_pool.work_queue.join()

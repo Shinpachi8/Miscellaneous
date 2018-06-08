@@ -473,6 +473,7 @@ def start_point(args):
 
     # print "[-][-] Done!"
     # use classSQL to scan the error-based sqli
+    '''
     for index in dict_result.keys():
         item = dict_result[index]
         url = item['url']
@@ -482,6 +483,7 @@ def start_point(args):
         aim_error_list = sqli_test(url, headers, data)
         for i in aim_error_list:
             print "[+] [{}]:\t".format(i[0]) + Fore.GREEN + "Found SQLi Error-Based Injection=> url:{} =>data:{}".format(i[1], i[2])  + Style.RESET_ALL
+    '''
 
 
 

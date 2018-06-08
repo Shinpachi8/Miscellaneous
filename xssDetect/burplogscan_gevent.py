@@ -2,7 +2,8 @@
 #coding=utf-8
 
 import gevent
-from gevent import monkey: monkey.patch_all()
+from gevent import monkey
+monkey.patch_all()
 import threading
 import random
 import requests
@@ -17,7 +18,7 @@ import time
 import sys
 import argparse
 from AutoSqli import AutoSqli
-import logging
+#import logging
 from gevent.queue import Queue
 from colorama import *
 from classSQL import *
@@ -41,7 +42,7 @@ requests.packages.urllib3.disable_warnings()
 _random=str(random.randint(300,182222))
 # logging.basicConfig(level=logging.INFO,
 #                     format='%(asctime)s ^^^: %(message)s')
-logging.getLogger("requests").setLevel(logging.WARNING)
+#logging.getLogger("requests").setLevel(logging.WARNING)
 lock = threading.Lock()
 # insert_sql = "insert into vuln values "
 # XSS规则
@@ -226,7 +227,6 @@ def start_point(args):
     outqueue = Queue()
     logger.info("[-] Totally {0} requests".format(HTTPQUEUE.qsize()))
     time.sleep(3)
-    threads = []
     # 30个线程来跑
     delay = args.delay
     try:
@@ -234,19 +234,10 @@ def start_point(args):
     except KeyboardInterrupt as e:
         print "User Killed"
     except Exception as e:
-        logger.error(repr(e))
-    time1 = time.time()
-    # while True:
-    #     try:
-    #         if time.time() - time1 > args.limit * 60:
-    #             logger.info("Morn than 20 mins auto break")
-    #             break
-    #         # logger.info("now threading.activeCount = {}".format(threading.activeCount()))
-    #         time.sleep(60)
-    #     except KeyboardInterrupt as e:
-    #         print "User killed"
-    #         break
+        msg = '[gevent.joinall] {}'.format(repr(e))
+        logger.error(msg)
 
+    logger.info('exploit success, now push to redis..')
     for index in dict_links.keys():
         item = dict_links[index]
         try:
@@ -254,12 +245,12 @@ def start_point(args):
         except Exception as e:
             logger.error("redis_push errror for {}".format(repr(e)))
 
+    logger.info('push to redis success, now detect error sql injection')
 
-    start_time = time.time()
     for index in dict_links.keys():
-        if time.time() - start_time > args.limit * 60:
-            break
         try:
+            msg = 'Total {}, Now index={}'.format(len(dict_links.keys()), index)
+            console_output(msg)
             item = dict_links[index]
             url = item['url']
             headers = item['headers']
@@ -275,10 +266,11 @@ def start_point(args):
         except Exception as e:
             logger.error("sql error test errror: {}".format(repr(e)))
 
+    logger.info('error sql injection successful, now output the data')
 
     while not outqueue.empty():
         a = outqueue.get()
-        logger.info("[++++++]" + Fore.GREEN + "[{}]\n        ".format(a[0]) + Fore.YELLOW + "[{}]\n        ".format(a[1]) + Fore.RED + a[2] + Style.RESET_ALL)
+        logger.info("[++++++]\n" + Fore.GREEN + "[{}]\n        ".format(a[0]) + Fore.YELLOW + "[{}]\n        ".format(a[1]) + Fore.RED + a[2] + Style.RESET_ALL)
 
 
 
@@ -289,6 +281,7 @@ def exploit(inqueue, outqueue, delay):
     while True:
         if inqueue.empty():
             break
+        console_output('There Still {} Remains '.format(inqueue.qsize()))
         hj = inqueue.get()
         isjson = False
         if hj.method == 'GET':
@@ -330,24 +323,19 @@ def exploit(inqueue, outqueue, delay):
                     # hj.data = XSS_Rule[p]
                 # print copy_rules
                 poll = Pollution(query, copy_rules, isjson=isjson).payload_generate()
-                # print poll
+                #print poll
                 # poll is dict list
                 found = False
                 for payload in poll:
                     if found:
                         break
-                    if hj.method == 'GET':
-                        hj.url.get_dict_query = payload
-                    else:
-                        if isjson:
-                            hj.data = json.dumps(payload)
-                        else:
-                            hj.data = urllib.urlencode(payload)
+                    hj.request_param_dict = payload
                     #print hj
                     time.sleep(delay)
                     #logger.info("[test] [URL={}]".format(hj.url.url_string()))
                     status_code, headers, content, t = hj.request()
                     if p == 'xss':
+                        #logger.info(content)
                         for regex in XSS_Rule[p]:
                             # print hj.headers.get('Cookie')
                             # print status_code, headers.get('Content-Type', '')

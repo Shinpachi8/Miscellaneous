@@ -195,7 +195,7 @@ class classSQL(object):
             for url in self.to_check_list:
                 try:
                     if self.method == 'GET':
-                        rsp = requests.get(url, headers=self.headers, timeout=10)
+                        rsp = requests.get(url, headers=self.headers, timeout=10, verify=False)
                     else:
                         rsp = requests.post(self.url, data=url, headers=self.headers, timeout=10, verify=False)
                     if rsp.status_code != 200:
@@ -215,7 +215,7 @@ class classSQL(object):
         for url in self.to_check_list:
             try:
                 if self.method == 'GET':
-                    rsp = requests.get(url, headers=self.headers)
+                    rsp = requests.get(url, headers=self.headers, timeout=10, verify=False)
                 else:
                     #rsp = requests.post(self.url, data=url, headers=self.headers, proxies={'http': '127.0.0.1:8080'}, timeout=10, verify=False)
                     rsp = requests.post(self.url, data=url, headers=self.headers,  timeout=10, verify=False)
@@ -229,7 +229,8 @@ class classSQL(object):
                     # to confirm the error like awvs
             except Exception as e:
                 # print repr(e)
-                logger.error(repr(e))
+                #logger.error(repr(e))
+                break
         # print self.aim_error_list
 
 

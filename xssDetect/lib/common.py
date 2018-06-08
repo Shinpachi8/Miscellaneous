@@ -23,7 +23,7 @@ import requests
 from requests import  ConnectTimeout
 requests.packages.urllib3.disable_warnings()
 
-logging.getLogger('requests').setLevel(logging.WARNING)
+#logging.getLogger('requests').setLevel(logging.WARNING)
 
 STATIC_EXT = ["f4v","bmp","bz2","css","doc","eot","flv","gif"]
 STATIC_EXT += ["gz","ico","jpeg","jpg","js","less","mp3", "mp4"]
@@ -175,6 +175,7 @@ def LogUtil(path='/tmp/test-xssdetect.log', name='test'):
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
     logging.getLogger('requests').setLevel(logging.WARNING)
+    logging.getLogger("urllib3").setLevel(logging.WARNING)
 
     #create formatter
     formatter = logging.Formatter(fmt=u'[%(asctime)s] [%(levelname)s] [%(funcName)s] %(message)s ')
@@ -266,8 +267,8 @@ class THTTPJOB(object):
         """
         return status_code, headers, htmlm, time_check
         """
-        logging.getLogger('requests').setLevel(logging.WARNING)
-        
+        #logging.getLogger('requests').setLevel(logging.WARNING)
+
         if self.block_static and self.url.is_ext_static():
             self.response = requests.Response()
             return -1, {}, '', 0
@@ -320,7 +321,7 @@ class THTTPJOB(object):
                             )
                     end_time = time.time()
             except Exception as e:
-                print "[lib.common] [THTTPJOB.request] {}".format(repr(e))
+                #print "[lib.common] [THTTPJOB.request] {}".format(repr(e))
                 end_time = time.time()
                 self.ConnectionErrorCount += 1
                 return -1, {}, '', 0

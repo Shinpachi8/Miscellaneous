@@ -1,0 +1,265 @@
+======================================================
+17:47:27  http://10.127.21.237:80
+======================================================
+GET /dvwa/security.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/index.php
+Cookie: security=low; PHPSESSID=5s4jbcdie9mqso60oqdgj3qbo2
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+17:47:27  http://10.127.21.237:80
+======================================================
+GET /dvwa/dvwa/images/lock.png HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: */*
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/security.php
+Cookie: security=low; PHPSESSID=5s4jbcdie9mqso60oqdgj3qbo2
+Connection: close
+
+
+======================================================
+
+
+
+======================================================
+17:47:29  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/xss_r/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/security.php
+Cookie: security=low; PHPSESSID=5s4jbcdie9mqso60oqdgj3qbo2
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+17:47:32  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/xss_r/?name=123123 HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/
+Cookie: security=low; PHPSESSID=5s4jbcdie9mqso60oqdgj3qbo2
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+17:47:34  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/xss_d/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_r/?name=123123
+Cookie: security=low; PHPSESSID=5s4jbcdie9mqso60oqdgj3qbo2
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+17:47:36  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/xss_d/?default=French HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_d/
+Cookie: security=low; PHPSESSID=5s4jbcdie9mqso60oqdgj3qbo2
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+17:47:40  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli_blind/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/vulnerabilities/xss_d/?default=French
+Cookie: security=low; PHPSESSID=5s4jbcdie9mqso60oqdgj3qbo2
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+17:47:42  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli_blind/?id=1&Submit=Submit HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/vulnerabilities/sqli_blind/
+Cookie: security=low; PHPSESSID=5s4jbcdie9mqso60oqdgj3qbo2
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+17:47:43  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/vulnerabilities/sqli_blind/?id=1&Submit=Submit
+Cookie: security=low; PHPSESSID=5s4jbcdie9mqso60oqdgj3qbo2
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+17:47:45  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli/?id=11&Submit=Submit HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/vulnerabilities/sqli/
+Cookie: security=low; PHPSESSID=5s4jbcdie9mqso60oqdgj3qbo2
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+17:47:47  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/sqli/?id=1&Submit=Submit HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/vulnerabilities/sqli/?id=11&Submit=Submit
+Cookie: security=low; PHPSESSID=5s4jbcdie9mqso60oqdgj3qbo2
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+17:47:49  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/upload/ HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/vulnerabilities/sqli/?id=1&Submit=Submit
+Cookie: security=low; PHPSESSID=5s4jbcdie9mqso60oqdgj3qbo2
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+17:47:50  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/fi/?page=include.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/vulnerabilities/upload/
+Cookie: security=low; PHPSESSID=5s4jbcdie9mqso60oqdgj3qbo2
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+
+======================================================
+17:47:51  http://10.127.21.237:80
+======================================================
+GET /dvwa/vulnerabilities/fi/?page=file1.php HTTP/1.1
+Host: 10.127.21.237
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2
+Accept-Encoding: gzip, deflate
+Referer: http://10.127.21.237/dvwa/vulnerabilities/fi/?page=include.php
+Cookie: security=low; PHPSESSID=5s4jbcdie9mqso60oqdgj3qbo2
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+======================================================
+
+
+

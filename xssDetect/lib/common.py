@@ -266,6 +266,8 @@ class THTTPJOB(object):
         """
         return status_code, headers, htmlm, time_check
         """
+        logging.getLogger('requests').setLevel(logging.WARNING)
+        
         if self.block_static and self.url.is_ext_static():
             self.response = requests.Response()
             return -1, {}, '', 0

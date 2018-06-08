@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 #coding=utf-8
 
+import gevent
+from gevent import monkey: monkey.patch_all()
 import threading
 import random
 import requests
@@ -16,7 +18,7 @@ import sys
 import argparse
 from AutoSqli import AutoSqli
 import logging
-from Queue import Queue
+from gevent.queue import Queue
 from colorama import *
 from classSQL import *
 from lib.common import *
@@ -197,6 +199,10 @@ def checkRepeat(host, method, no_repeat=None):
         return True
 
 
+def console_output(msg):
+    sys.stdout.write(msg + "\r")
+    sys.stdout.flush()
+
 def start_point(args):
     dict_links = getLinks(args.file)
     # sys.exit(0)
@@ -218,41 +224,28 @@ def start_point(args):
         HTTPQUEUE.put(THTTPJOB(url, method=method, data=data, headers=headers))
 
     outqueue = Queue()
-    logging.info("[-] Totally {0} requests".format(HTTPQUEUE.qsize()))
+    logger.info("[-] Totally {0} requests".format(HTTPQUEUE.qsize()))
     time.sleep(3)
     threads = []
     # 30个线程来跑
-    for i in xrange(args.threads):
-        thd = detectXSS(HTTPQUEUE, outqueue, args.delay)
-        thd.setDaemon(True)
-        threads.append(thd)
-
-    for thd in threads:
-        thd.start()
-
+    delay = args.delay
+    try:
+        gevent.joinall([gevent.spawn(exploit, HTTPQUEUE, outqueue, delay) for i in xrange(50)])
+    except KeyboardInterrupt as e:
+        print "User Killed"
+    except Exception as e:
+        logger.error(repr(e))
     time1 = time.time()
-    while True:
-        try:
-            '''
-            alive_count = 0
-            for t in threads:
-                if t.is_alive():
-                    alive_count += 1
-            if alive_count == 0:
-                logger.info("all down")
-                break
-            '''
-            if threading.active_count() <= 1:
-                break
-
-            if time.time() - time1 > args.limit * 60:
-                logger.info("Morn than 20 mins auto break")
-                break
-            logger.info("now threading.activeCount = {}".format(threading.activeCount()))
-            time.sleep(60)
-        except KeyboardInterrupt as e:
-            print "User killed"
-            break
+    # while True:
+    #     try:
+    #         if time.time() - time1 > args.limit * 60:
+    #             logger.info("Morn than 20 mins auto break")
+    #             break
+    #         # logger.info("now threading.activeCount = {}".format(threading.activeCount()))
+    #         time.sleep(60)
+    #     except KeyboardInterrupt as e:
+    #         print "User killed"
+    #         break
 
     for index in dict_links.keys():
         item = dict_links[index]
@@ -260,17 +253,6 @@ def start_point(args):
             redis_conn.task_push(SQLI_TIME_QUEUE, json.dumps(item))
         except Exception as e:
             logger.error("redis_push errror for {}".format(repr(e)))
-        # url = item['url']
-        # headers = item['headers']
-        # data = item['data'] if 'data' in item else None
-        # try:
-        #     time_result = SQLInjectionTime(url, headers=headers, data=data).startTest()
-        #     if time_result:
-        #         outqueue.put(('SQLInjection Time', 'awvs', url))
-        # except KeyboardInterrupt:
-        #     break
-        # except Exception as e:
-        #     continue
 
 
     start_time = time.time()
@@ -286,13 +268,12 @@ def start_point(args):
             aim_error_list = sqli_test(url, headers, data)
             for i in aim_error_list:
                 msg =  "[+] [{}]:\t".format(i[0]) + Fore.GREEN + "Found SQLi Error-Based Injection=> url:{} =>data:{}".format(i[1], i[2])  + Style.RESET_ALL
+                logger.info(msg)
                 outqueue.put((i[0], i[1], i[2]))
         except KeyboardInterrupt:
             break
         except Exception as e:
             logger.error("sql error test errror: {}".format(repr(e)))
-
-
 
 
     while not outqueue.empty():
@@ -409,125 +390,6 @@ def exploit(inqueue, outqueue, delay):
             hj.headers['X-Forwarded-For'] = real_headers['X-Forwarded-For'] +  "XFF" + payload
             hj.headers['Referer'] = real_headers['Referer'] + "Refer"+ payload
             hj.request()
-
-
-
-class detectXSS(threading.Thread):
-    """docstring for detectXSS"""
-    def __init__(self, inqueue, outqueue, delay):
-        threading.Thread.__init__(self)
-        self.inqueue =  inqueue
-        self.outqueue = outqueue
-        self.delay = delay
-
-    def run(self):
-        while True:
-            if self.inqueue.empty():
-                break
-            hj = self.inqueue.get()
-            isjson = False
-            if hj.method == 'GET':
-                query = hj.url.get_query
-            else:
-                if hj.headers.get('Content-Type', '').find('json') >= 0:
-                    # print "with json, data is {}".format(hj.data)
-                    query = urllib.urlencode(json.loads(hj.data))
-                    isjson=True
-                else:
-                    query = hj.data
-            # domain to replace
-            domain = base64.b64encode(hj.url.url_string()).replace('=', '')
-            for p in XSS_Rule:
-                if p in ['cli', 'xxe']:
-                    copy_rules = copy.copy(XSS_Rule[p])   # copy a rules to replace the {domain}
-                    copy_rules = [pp.replace('{domain}', domain) for pp in copy_rules]
-                else:
-                    copy_rules = XSS_Rule[p]
-                    # print "no cli,xxe rulse  {}".format(copy_rules)
-                    # p.replace('{domain}', domain)
-                if p == 'xxe':
-                    # if payload type is xxe, we only need to chage the Content-Type to application/xml
-                    # and method to POST
-                    # then request
-                    ContentType_status = hj.headers.get('Content-Type', '')
-                    hj.headers['Content-Type'] = 'application/xml'
-                    method_status = hj.method
-                    hj.method = 'POST'
-                    for rule in copy_rules:
-                        hj.data = rule
-                        hj.request()
-                    hj.method = method_status
-                    hj.headers['Content-Type'] = ContentType_status
-                else:
-                        # hj.data = XSS_Rule[p]
-                    # print copy_rules
-                    poll = Pollution(query, copy_rules, isjson=isjson).payload_generate()
-                    # print poll
-                    # poll is dict list
-                    found = False
-                    for payload in poll:
-                        if found:
-                            break
-                        if hj.method == 'GET':
-                            hj.url.get_dict_query = payload
-                        else:
-                            if isjson:
-                                hj.data = json.dumps(payload)
-                            else:
-                                hj.data = urllib.urlencode(payload)
-                        #print hj
-                        time.sleep(self.delay)
-                        #logger.info("[test] [URL={}]".format(hj.url.url_string()))
-                        status_code, headers, content, t = hj.request()
-                        if p == 'xss':
-                            for regex in XSS_Rule[p]:
-                                # print hj.headers.get('Cookie')
-                                # print status_code, headers.get('Content-Type', '')
-                                if regex in content and status_code == 200 and headers.get('Content-Type', '').split(';')[0]  not in  ["application/json", "text/plain", "application/javascript", "text/json", "text/javascript", "application/x-javascript"]:
-                                    # print "-------------------------------------"
-                                    # with lock:
-                                    #     a = MySQLUtils()
-
-                                    self.outqueue.put(('XSS', payload, hj.response.request.url))
-                                    found = True
-                                    break
-                        if p == 'lfi':
-                            if "root:x:0" in content and status_code == 200:
-                                self.outqueue.put(('LFI', payload, hj.response.request.url))
-                                found = True
-                                break
-                        if p == 'redirect':
-                            if 'Valar Morghulis' in content and status_code == 200:
-                                self.outqueue.put(('Unsafe Redirect', payload, hj.response.request.url))
-                                found = True
-                                break
-
-                        if p == 'ssti':
-                            if '3351376549499229720' in content and status_code == 200:
-                                self.outqueue.put(('SSTI', payload, hj.response.request.url))
-                                found = True
-                                break
-
-
-            # FUZZ THE HTTP HEADERS
-            hj.headers['Client-IP'] = '127.0.0.1'
-            hj.headers['X-Forwarded-For'] = '127.0.0.1'
-            hj.headers['Referer'] = 'http://www.baidu.com' if 'Referer' not in hj.headers else hj.headers['Referer']
-            real_headers = hj.headers.copy()
-            cli_payloads = copy.copy(XSS_Rule['cli'])
-            cli_payloads = [p.replace('{domain}', domain) for p in cli_payloads]
-            for payload in cli_payloads:
-                hj.headers['User-Agent'] = real_headers['User-Agent'] + "UA" +  payload
-                hj.headers['Client-IP'] = real_headers['Client-IP'] + "ClientIP" +payload
-                hj.headers['X-Forwarded-For'] = real_headers['X-Forwarded-For'] +  "XFF" + payload
-                hj.headers['Referer'] = real_headers['Referer'] + "Refer"+ payload
-                hj.request()
-
-
-
-
-
-
 
 
 
